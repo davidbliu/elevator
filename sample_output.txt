@@ -1,200 +1,400 @@
-At time 0 move elevator 1 to floor 17. going up
-At time 25 move elevator 1 to floor 21. going up
-At time 29 move elevator 1 to floor 33. going down
-At time 41 move elevator 1 to floor 23. going up
-At time 51 move elevator 1 to floor 49. going down
-At time 77 move elevator 1 to floor 0. going up
-At time 126 move elevator 1 to floor 2. going up
-At time 128 move elevator 1 to floor 36. going down
-At time 162 move elevator 1 to floor 18. going down
-At time 180 move elevator 1 to floor 13. going down
-At time 185 move elevator 1 to floor 0. going up
-At time 198 move elevator 1 to floor 16. going up
-At time 214 move elevator 1 to floor 38. going down
-At time 236 move elevator 1 to floor 14. going up
-At time 260 move elevator 1 to floor 41. going up
-At time 287 move elevator 1 to floor 44. going down
-At time 290 move elevator 1 to floor 14. going up
-At time 320 move elevator 1 to floor 43. going down
-At time 349 move elevator 1 to floor 8. going up
-At time 384 move elevator 1 to floor 44. going down
-At time 420 move elevator 1 to floor 23. going down
-At time 441 move elevator 1 to floor 21. going down
-At time 443 move elevator 1 to floor 17. going up
-At time 447 move elevator 1 to floor 25. going up
-At time 455 move elevator 1 to floor 31. going down
-At time 461 move elevator 1 to floor 26. going down
-At time 466 move elevator 1 to floor 14. going up
-At time 478 move elevator 1 to floor 24. going up
-At time 488 move elevator 1 to floor 38. going down
-At time 502 move elevator 1 to floor 18. going down
-At time 522 move elevator 1 to floor 10. going up
-At time 530 move elevator 1 to floor 45. going down
-At time 565 move elevator 1 to floor 4. going up
-At time 606 move elevator 1 to floor 12. going up
-At time 614 move elevator 1 to floor 13. going up
-At time 615 move elevator 1 to floor 25. going up
-At time 627 move elevator 1 to floor 43. going down
-At time 645 move elevator 1 to floor 29. going up
-At time 659 move elevator 1 to floor 37. going down
-At time 667 move elevator 1 to floor 24. going up
-At time 680 move elevator 1 to floor 34. going up
-At time 690 move elevator 1 to floor 50. going down
-At time 706 move elevator 1 to floor 50. going down
-At time 706 move elevator 1 to floor 17. going down
-At time 739 move elevator 1 to floor 8. going down
-At time 748 move elevator 1 to floor 7. going up
-At time 749 move elevator 1 to floor 47. going down
-At time 789 move elevator 1 to floor 38. going down
-At time 798 move elevator 1 to floor 29. going up
-At time 807 move elevator 1 to floor 45. going down
-At time 823 move elevator 1 to floor 6. going up
-At time 862 move elevator 1 to floor 20. going down
-At time 876 move elevator 1 to floor 0. going up
-At time 896 move elevator 1 to floor 30. going down
-At time 926 move elevator 1 to floor 12. going up
-At time 944 move elevator 1 to floor 41. going up
-At time 973 move elevator 1 to floor 47. going down
-At time 979 move elevator 1 to floor 47. going down
-At time 979 move elevator 1 to floor 46. going down
-At time 980 move elevator 1 to floor 38. going up
-At time 988 move elevator 1 to floor 43. going up
-At time 993 move elevator 1 to floor 48. going down
-At time 998 move elevator 1 to floor 14. going up
-At time 1032 move elevator 1 to floor 15. going up
-At time 1033 move elevator 1 to floor 41. going down
-At time 1059 move elevator 1 to floor 8. going up
-At time 1092 move elevator 1 to floor 40. going up
-At time 1124 move elevator 1 to floor 42. going down
-At time 1126 move elevator 1 to floor 13. going up
-At time 1155 move elevator 1 to floor 42. going down
-At time 1184 move elevator 1 to floor 8. going up
-At time 1218 move elevator 1 to floor 33. going down
-At time 1243 move elevator 1 to floor 23. going up
-At time 1253 move elevator 1 to floor 29. going up
-At time 1259 move elevator 1 to floor 44. going down
-At time 1274 move elevator 1 to floor 36. going down
-At time 1282 move elevator 1 to floor 14. going up
-At time 1304 move elevator 1 to floor 26. going up
-At time 1316 move elevator 1 to floor 28. going up
-At time 1318 move elevator 1 to floor 34. going down
-At time 1324 move elevator 1 to floor 28. going up
-At time 1330 move elevator 1 to floor 39. going up
-At time 1341 move elevator 1 to floor 40. going down
-At time 1342 move elevator 1 to floor 2. going up
-At time 1380 move elevator 1 to floor 5. going up
-At time 1383 move elevator 1 to floor 13. going up
-At time 1391 move elevator 1 to floor 20. going down
-At time 1398 move elevator 1 to floor 13. going up
-At time 1405 move elevator 1 to floor 14. going up
-At time 1406 move elevator 1 to floor 33. going up
-At time 1425 move elevator 1 to floor 48. going down
-At time 1440 move elevator 1 to floor 32. going up
-At time 1456 move elevator 1 to floor 37. going down
-At time 1461 move elevator 1 to floor 32. going up
-At time 1466 move elevator 1 to floor 44. going up
-At time 1478 move elevator 1 to floor 45. going down
-At time 1479 move elevator 1 to floor 15. going up
-At time 1509 move elevator 1 to floor 16. going up
-At time 1510 move elevator 1 to floor 32. going up
-At time 1526 move elevator 1 to floor 42. going down
-At time 1536 move elevator 1 to floor 12. going up
-At time 1566 move elevator 1 to floor 43. going down
-At time 1597 move elevator 1 to floor 5. going up
-At time 1635 move elevator 1 to floor 29. going up
-At time 1659 move elevator 1 to floor 46. going down
-At time 1676 move elevator 1 to floor 38. going down
-At time 1684 move elevator 1 to floor 33. going down
-At time 1689 move elevator 1 to floor 28. going up
-At time 1694 move elevator 1 to floor 45. going down
-At time 1711 move elevator 1 to floor 5. going up
-At time 1751 move elevator 1 to floor 8. going up
-At time 1754 move elevator 1 to floor 13. going up
-At time 1759 move elevator 1 to floor 25. going up
-At time 1771 move elevator 1 to floor 39. going up
-At time 1785 move elevator 1 to floor 43. going down
-At time 1789 move elevator 1 to floor 1. going up
-At time 1831 move elevator 1 to floor 18. going up
-At time 1848 move elevator 1 to floor 43. going down
-At time 1873 move elevator 1 to floor 38. going down
-At time 1878 move elevator 1 to floor 0. going up
-At time 1916 move elevator 1 to floor 24. going up
-At time 1940 move elevator 1 to floor 29. going up
-At time 1945 move elevator 1 to floor 41. going down
-At time 1957 move elevator 1 to floor 4. going up
-At time 1994 move elevator 1 to floor 19. going up
-At time 2009 move elevator 1 to floor 30. going up
-At time 2020 move elevator 1 to floor 31. going up
-At time 2021 move elevator 1 to floor 46. going down
-At time 2036 move elevator 1 to floor 42. going down
-At time 2040 move elevator 1 to floor 41. going down
-At time 2041 move elevator 1 to floor 32. going down
-At time 2050 move elevator 1 to floor 26. going down
-At time 2056 move elevator 1 to floor 10. going up
-At time 2072 move elevator 1 to floor 24. going up
-At time 2086 move elevator 1 to floor 38. going down
-At time 2100 move elevator 1 to floor 13. going up
-At time 2125 move elevator 1 to floor 33. going down
-At time 2145 move elevator 1 to floor 3. going up
-At time 2175 move elevator 1 to floor 6. going up
-At time 2178 move elevator 1 to floor 37. going up
-At time 2209 move elevator 1 to floor 47. going up
-At time 2219 move elevator 1 to floor 50. going down
-At time 2222 move elevator 1 to floor 23. going up
-At time 2249 move elevator 1 to floor 43. going down
-At time 2269 move elevator 1 to floor 16. going down
-At time 2296 move elevator 1 to floor 16. going down
-At time 2296 move elevator 1 to floor 4. going up
-At time 2308 move elevator 1 to floor 48. going down
-At time 2352 move elevator 1 to floor 42. going down
-At time 2358 move elevator 1 to floor 26. going up
-At time 2374 move elevator 1 to floor 28. going up
-At time 2376 move elevator 1 to floor 35. going down
-At time 2383 move elevator 1 to floor 11. going up
-At time 2407 move elevator 1 to floor 24. going up
-At time 2420 move elevator 1 to floor 46. going down
-At time 2442 move elevator 1 to floor 27. going up
-At time 2461 move elevator 1 to floor 43. going down
-At time 2477 move elevator 1 to floor 27. going up
-At time 2493 move elevator 1 to floor 48. going down
-At time 2514 move elevator 1 to floor 18. going up
-At time 2544 move elevator 1 to floor 37. going up
-At time 2563 move elevator 1 to floor 49. going down
-At time 2575 move elevator 1 to floor 26. going down
-At time 2598 move elevator 1 to floor 7. going up
-At time 2617 move elevator 1 to floor 9. going up
-At time 2619 move elevator 1 to floor 20. going up
-At time 2630 move elevator 1 to floor 49. going down
-At time 2659 move elevator 1 to floor 39. going up
-At time 2669 move elevator 1 to floor 49. going down
-At time 2679 move elevator 1 to floor 47. going down
-At time 2681 move elevator 1 to floor 3. going up
-At time 2725 move elevator 1 to floor 36. going down
-At time 2758 move elevator 1 to floor 0. going up
-At time 2794 move elevator 1 to floor 10. going up
-At time 2804 move elevator 1 to floor 17. going up
-At time 2811 move elevator 1 to floor 50. going down
-At time 2844 move elevator 1 to floor 38. going down
-At time 2856 move elevator 1 to floor 16. going up
-At time 2878 move elevator 1 to floor 41. going down
-At time 2903 move elevator 1 to floor 35. going up
-At time 2909 move elevator 1 to floor 48. going down
-At time 2922 move elevator 1 to floor 26. going down
-At time 2944 move elevator 1 to floor 1. going up
-At time 2969 move elevator 1 to floor 44. going down
-At time 3012 move elevator 1 to floor 29. going up
-At time 3027 move elevator 1 to floor 34. going down
-At time 3032 move elevator 1 to floor 14. going up
-At time 3052 move elevator 1 to floor 19. going down
-At time 3057 move elevator 1 to floor 6. going up
-At time 3070 move elevator 1 to floor 16. going up
-At time 3080 move elevator 1 to floor 19. going up
-At time 3083 move elevator 1 to floor 29. going up
-At time 3093 move elevator 1 to floor 48. going down
-At time 3112 move elevator 1 to floor 13. going down
-At time 3147 move elevator 1 to floor 6. going up
-At time 3154 move elevator 1 to floor 45. going down
-At time 3193 move elevator 1 to floor 36. going up
-At time 3202 move elevator 1 to floor 42. going down
-At time 3208 move elevator 1 to floor 11. going up
-At time 3239 move elevator 1 to floor 42. going down
+At time 0 move elevator 1 to floor 17
+Elevator at floor 17 going up
+At time 25 move elevator 1 to floor 21
+Elevator at floor 21 going up
+At time 29 move elevator 1 to floor 33
+Elevator at floor 33 going down
+At time 41 move elevator 1 to floor 23
+Elevator at floor 23 going up
+At time 51 move elevator 1 to floor 49
+Elevator at floor 49 going down
+At time 77 move elevator 1 to floor 0
+Elevator at floor 0 going up
+At time 126 move elevator 1 to floor 2
+Elevator at floor 2 going up
+At time 128 move elevator 1 to floor 36
+Elevator at floor 36 going down
+At time 162 move elevator 1 to floor 18
+Elevator at floor 18 going down
+At time 180 move elevator 1 to floor 13
+Elevator at floor 13 going down
+At time 185 move elevator 1 to floor 0
+Elevator at floor 0 going up
+At time 198 move elevator 1 to floor 16
+Elevator at floor 16 going up
+At time 214 move elevator 1 to floor 38
+Elevator at floor 38 going down
+At time 236 move elevator 1 to floor 14
+Elevator at floor 14 going up
+At time 260 move elevator 1 to floor 41
+Elevator at floor 41 going up
+At time 287 move elevator 1 to floor 44
+Elevator at floor 44 going down
+At time 290 move elevator 1 to floor 14
+Elevator at floor 14 going up
+At time 320 move elevator 1 to floor 43
+Elevator at floor 43 going down
+At time 349 move elevator 1 to floor 8
+Elevator at floor 8 going up
+At time 384 move elevator 1 to floor 44
+Elevator at floor 44 going down
+At time 420 move elevator 1 to floor 23
+Elevator at floor 23 going down
+At time 441 move elevator 1 to floor 21
+Elevator at floor 21 going down
+At time 443 move elevator 1 to floor 17
+Elevator at floor 17 going up
+At time 447 move elevator 1 to floor 25
+Elevator at floor 25 going up
+At time 455 move elevator 1 to floor 31
+Elevator at floor 31 going down
+At time 461 move elevator 1 to floor 26
+Elevator at floor 26 going down
+At time 466 move elevator 1 to floor 14
+Elevator at floor 14 going up
+At time 478 move elevator 1 to floor 24
+Elevator at floor 24 going up
+At time 488 move elevator 1 to floor 38
+Elevator at floor 38 going down
+At time 502 move elevator 1 to floor 18
+Elevator at floor 18 going down
+At time 522 move elevator 1 to floor 10
+Elevator at floor 10 going up
+At time 530 move elevator 1 to floor 45
+Elevator at floor 45 going down
+At time 565 move elevator 1 to floor 4
+Elevator at floor 4 going up
+At time 606 move elevator 1 to floor 12
+Elevator at floor 12 going up
+At time 614 move elevator 1 to floor 13
+Elevator at floor 13 going up
+At time 615 move elevator 1 to floor 25
+Elevator at floor 25 going up
+At time 627 move elevator 1 to floor 43
+Elevator at floor 43 going down
+At time 645 move elevator 1 to floor 29
+Elevator at floor 29 going up
+At time 659 move elevator 1 to floor 37
+Elevator at floor 37 going down
+At time 667 move elevator 1 to floor 24
+Elevator at floor 24 going up
+At time 680 move elevator 1 to floor 34
+Elevator at floor 34 going up
+At time 690 move elevator 1 to floor 50
+Elevator at floor 50 going down
+At time 706 move elevator 1 to floor 50
+Elevator at floor 50 going down
+At time 706 move elevator 1 to floor 17
+Elevator at floor 17 going down
+At time 739 move elevator 1 to floor 8
+Elevator at floor 8 going down
+At time 748 move elevator 1 to floor 7
+Elevator at floor 7 going up
+At time 749 move elevator 1 to floor 47
+Elevator at floor 47 going down
+At time 789 move elevator 1 to floor 38
+Elevator at floor 38 going down
+At time 798 move elevator 1 to floor 29
+Elevator at floor 29 going up
+At time 807 move elevator 1 to floor 45
+Elevator at floor 45 going down
+At time 823 move elevator 1 to floor 6
+Elevator at floor 6 going up
+At time 862 move elevator 1 to floor 20
+Elevator at floor 20 going down
+At time 876 move elevator 1 to floor 0
+Elevator at floor 0 going up
+At time 896 move elevator 1 to floor 30
+Elevator at floor 30 going down
+At time 926 move elevator 1 to floor 12
+Elevator at floor 12 going up
+At time 944 move elevator 1 to floor 41
+Elevator at floor 41 going up
+At time 973 move elevator 1 to floor 47
+Elevator at floor 47 going down
+At time 979 move elevator 1 to floor 47
+Elevator at floor 47 going down
+At time 979 move elevator 1 to floor 46
+Elevator at floor 46 going down
+At time 980 move elevator 1 to floor 38
+Elevator at floor 38 going up
+At time 988 move elevator 1 to floor 43
+Elevator at floor 43 going up
+At time 993 move elevator 1 to floor 48
+Elevator at floor 48 going down
+At time 998 move elevator 1 to floor 14
+Elevator at floor 14 going up
+At time 1032 move elevator 1 to floor 15
+Elevator at floor 15 going up
+At time 1033 move elevator 1 to floor 41
+Elevator at floor 41 going down
+At time 1059 move elevator 1 to floor 8
+Elevator at floor 8 going up
+At time 1092 move elevator 1 to floor 40
+Elevator at floor 40 going up
+At time 1124 move elevator 1 to floor 42
+Elevator at floor 42 going down
+At time 1126 move elevator 1 to floor 13
+Elevator at floor 13 going up
+At time 1155 move elevator 1 to floor 42
+Elevator at floor 42 going down
+At time 1184 move elevator 1 to floor 8
+Elevator at floor 8 going up
+At time 1218 move elevator 1 to floor 33
+Elevator at floor 33 going down
+At time 1243 move elevator 1 to floor 23
+Elevator at floor 23 going up
+At time 1253 move elevator 1 to floor 29
+Elevator at floor 29 going up
+At time 1259 move elevator 1 to floor 44
+Elevator at floor 44 going down
+At time 1274 move elevator 1 to floor 36
+Elevator at floor 36 going down
+At time 1282 move elevator 1 to floor 14
+Elevator at floor 14 going up
+At time 1304 move elevator 1 to floor 26
+Elevator at floor 26 going up
+At time 1316 move elevator 1 to floor 28
+Elevator at floor 28 going up
+At time 1318 move elevator 1 to floor 34
+Elevator at floor 34 going down
+At time 1324 move elevator 1 to floor 28
+Elevator at floor 28 going up
+At time 1330 move elevator 1 to floor 39
+Elevator at floor 39 going up
+At time 1341 move elevator 1 to floor 40
+Elevator at floor 40 going down
+At time 1342 move elevator 1 to floor 2
+Elevator at floor 2 going up
+At time 1380 move elevator 1 to floor 5
+Elevator at floor 5 going up
+At time 1383 move elevator 1 to floor 13
+Elevator at floor 13 going up
+At time 1391 move elevator 1 to floor 20
+Elevator at floor 20 going down
+At time 1398 move elevator 1 to floor 13
+Elevator at floor 13 going up
+At time 1405 move elevator 1 to floor 14
+Elevator at floor 14 going up
+At time 1406 move elevator 1 to floor 33
+Elevator at floor 33 going up
+At time 1425 move elevator 1 to floor 48
+Elevator at floor 48 going down
+At time 1440 move elevator 1 to floor 32
+Elevator at floor 32 going up
+At time 1456 move elevator 1 to floor 37
+Elevator at floor 37 going down
+At time 1461 move elevator 1 to floor 32
+Elevator at floor 32 going up
+At time 1466 move elevator 1 to floor 44
+Elevator at floor 44 going up
+At time 1478 move elevator 1 to floor 45
+Elevator at floor 45 going down
+At time 1479 move elevator 1 to floor 15
+Elevator at floor 15 going up
+At time 1509 move elevator 1 to floor 16
+Elevator at floor 16 going up
+At time 1510 move elevator 1 to floor 32
+Elevator at floor 32 going up
+At time 1526 move elevator 1 to floor 42
+Elevator at floor 42 going down
+At time 1536 move elevator 1 to floor 12
+Elevator at floor 12 going up
+At time 1566 move elevator 1 to floor 43
+Elevator at floor 43 going down
+At time 1597 move elevator 1 to floor 5
+Elevator at floor 5 going up
+At time 1635 move elevator 1 to floor 29
+Elevator at floor 29 going up
+At time 1659 move elevator 1 to floor 46
+Elevator at floor 46 going down
+At time 1676 move elevator 1 to floor 38
+Elevator at floor 38 going down
+At time 1684 move elevator 1 to floor 33
+Elevator at floor 33 going down
+At time 1689 move elevator 1 to floor 28
+Elevator at floor 28 going up
+At time 1694 move elevator 1 to floor 45
+Elevator at floor 45 going down
+At time 1711 move elevator 1 to floor 5
+Elevator at floor 5 going up
+At time 1751 move elevator 1 to floor 8
+Elevator at floor 8 going up
+At time 1754 move elevator 1 to floor 13
+Elevator at floor 13 going up
+At time 1759 move elevator 1 to floor 25
+Elevator at floor 25 going up
+At time 1771 move elevator 1 to floor 39
+Elevator at floor 39 going up
+At time 1785 move elevator 1 to floor 43
+Elevator at floor 43 going down
+At time 1789 move elevator 1 to floor 1
+Elevator at floor 1 going up
+At time 1831 move elevator 1 to floor 18
+Elevator at floor 18 going up
+At time 1848 move elevator 1 to floor 43
+Elevator at floor 43 going down
+At time 1873 move elevator 1 to floor 38
+Elevator at floor 38 going down
+At time 1878 move elevator 1 to floor 0
+Elevator at floor 0 going up
+At time 1916 move elevator 1 to floor 24
+Elevator at floor 24 going up
+At time 1940 move elevator 1 to floor 29
+Elevator at floor 29 going up
+At time 1945 move elevator 1 to floor 41
+Elevator at floor 41 going down
+At time 1957 move elevator 1 to floor 4
+Elevator at floor 4 going up
+At time 1994 move elevator 1 to floor 19
+Elevator at floor 19 going up
+At time 2009 move elevator 1 to floor 30
+Elevator at floor 30 going up
+At time 2020 move elevator 1 to floor 31
+Elevator at floor 31 going up
+At time 2021 move elevator 1 to floor 46
+Elevator at floor 46 going down
+At time 2036 move elevator 1 to floor 42
+Elevator at floor 42 going down
+At time 2040 move elevator 1 to floor 41
+Elevator at floor 41 going down
+At time 2041 move elevator 1 to floor 32
+Elevator at floor 32 going down
+At time 2050 move elevator 1 to floor 26
+Elevator at floor 26 going down
+At time 2056 move elevator 1 to floor 10
+Elevator at floor 10 going up
+At time 2072 move elevator 1 to floor 24
+Elevator at floor 24 going up
+At time 2086 move elevator 1 to floor 38
+Elevator at floor 38 going down
+At time 2100 move elevator 1 to floor 13
+Elevator at floor 13 going up
+At time 2125 move elevator 1 to floor 33
+Elevator at floor 33 going down
+At time 2145 move elevator 1 to floor 3
+Elevator at floor 3 going up
+At time 2175 move elevator 1 to floor 6
+Elevator at floor 6 going up
+At time 2178 move elevator 1 to floor 37
+Elevator at floor 37 going up
+At time 2209 move elevator 1 to floor 47
+Elevator at floor 47 going up
+At time 2219 move elevator 1 to floor 50
+Elevator at floor 50 going down
+At time 2222 move elevator 1 to floor 23
+Elevator at floor 23 going up
+At time 2249 move elevator 1 to floor 43
+Elevator at floor 43 going down
+At time 2269 move elevator 1 to floor 16
+Elevator at floor 16 going down
+At time 2296 move elevator 1 to floor 16
+Elevator at floor 16 going down
+At time 2296 move elevator 1 to floor 4
+Elevator at floor 4 going up
+At time 2308 move elevator 1 to floor 48
+Elevator at floor 48 going down
+At time 2352 move elevator 1 to floor 42
+Elevator at floor 42 going down
+At time 2358 move elevator 1 to floor 26
+Elevator at floor 26 going up
+At time 2374 move elevator 1 to floor 28
+Elevator at floor 28 going up
+At time 2376 move elevator 1 to floor 35
+Elevator at floor 35 going down
+At time 2383 move elevator 1 to floor 11
+Elevator at floor 11 going up
+At time 2407 move elevator 1 to floor 24
+Elevator at floor 24 going up
+At time 2420 move elevator 1 to floor 46
+Elevator at floor 46 going down
+At time 2442 move elevator 1 to floor 27
+Elevator at floor 27 going up
+At time 2461 move elevator 1 to floor 43
+Elevator at floor 43 going down
+At time 2477 move elevator 1 to floor 27
+Elevator at floor 27 going up
+At time 2493 move elevator 1 to floor 48
+Elevator at floor 48 going down
+At time 2514 move elevator 1 to floor 18
+Elevator at floor 18 going up
+At time 2544 move elevator 1 to floor 37
+Elevator at floor 37 going up
+At time 2563 move elevator 1 to floor 49
+Elevator at floor 49 going down
+At time 2575 move elevator 1 to floor 26
+Elevator at floor 26 going down
+At time 2598 move elevator 1 to floor 7
+Elevator at floor 7 going up
+At time 2617 move elevator 1 to floor 9
+Elevator at floor 9 going up
+At time 2619 move elevator 1 to floor 20
+Elevator at floor 20 going up
+At time 2630 move elevator 1 to floor 49
+Elevator at floor 49 going down
+At time 2659 move elevator 1 to floor 39
+Elevator at floor 39 going up
+At time 2669 move elevator 1 to floor 49
+Elevator at floor 49 going down
+At time 2679 move elevator 1 to floor 47
+Elevator at floor 47 going down
+At time 2681 move elevator 1 to floor 3
+Elevator at floor 3 going up
+At time 2725 move elevator 1 to floor 36
+Elevator at floor 36 going down
+At time 2758 move elevator 1 to floor 0
+Elevator at floor 0 going up
+At time 2794 move elevator 1 to floor 10
+Elevator at floor 10 going up
+At time 2804 move elevator 1 to floor 17
+Elevator at floor 17 going up
+At time 2811 move elevator 1 to floor 50
+Elevator at floor 50 going down
+At time 2844 move elevator 1 to floor 38
+Elevator at floor 38 going down
+At time 2856 move elevator 1 to floor 16
+Elevator at floor 16 going up
+At time 2878 move elevator 1 to floor 41
+Elevator at floor 41 going down
+At time 2903 move elevator 1 to floor 35
+Elevator at floor 35 going up
+At time 2909 move elevator 1 to floor 48
+Elevator at floor 48 going down
+At time 2922 move elevator 1 to floor 26
+Elevator at floor 26 going down
+At time 2944 move elevator 1 to floor 1
+Elevator at floor 1 going up
+At time 2969 move elevator 1 to floor 44
+Elevator at floor 44 going down
+At time 3012 move elevator 1 to floor 29
+Elevator at floor 29 going up
+At time 3027 move elevator 1 to floor 34
+Elevator at floor 34 going down
+At time 3032 move elevator 1 to floor 14
+Elevator at floor 14 going up
+At time 3052 move elevator 1 to floor 19
+Elevator at floor 19 going down
+At time 3057 move elevator 1 to floor 6
+Elevator at floor 6 going up
+At time 3070 move elevator 1 to floor 16
+Elevator at floor 16 going up
+At time 3080 move elevator 1 to floor 19
+Elevator at floor 19 going up
+At time 3083 move elevator 1 to floor 29
+Elevator at floor 29 going up
+At time 3093 move elevator 1 to floor 48
+Elevator at floor 48 going down
+At time 3112 move elevator 1 to floor 13
+Elevator at floor 13 going down
+At time 3147 move elevator 1 to floor 6
+Elevator at floor 6 going up
+At time 3154 move elevator 1 to floor 45
+Elevator at floor 45 going down
+At time 3193 move elevator 1 to floor 36
+Elevator at floor 36 going up
+At time 3202 move elevator 1 to floor 42
+Elevator at floor 42 going down
+At time 3208 move elevator 1 to floor 11
+Elevator at floor 11 going up
+At time 3239 move elevator 1 to floor 42
+Elevator at floor 42 going down
