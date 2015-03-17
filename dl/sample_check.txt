@@ -398,3 +398,6 @@ DANNETTE got off elevator at floor 42 at time 3208
 elevator now contains 
 elevator now contains 
 elevator now contains 
+boards: 100
+exits: 100
+average wait time 871.78 seconds
