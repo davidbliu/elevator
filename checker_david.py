@@ -20,9 +20,10 @@ with open('sample_output.txt', 'r') as ofile:
 		line1 = output_lines[2*i].split(' ')
 		line2 = output_lines[2*i+1].split(' ')
 		state = {}
-		state['time'] = int(line1[2])
+		state['start_time'] = int(line1[2])
+		state['time'] = int(line2[-1])
 		state['elevator'] = int(line1[5])
-		state['end'] = int(line1[-1])
+		state['floor'] = int(line1[-1])
 		state['direction'] = line2[5].rstrip()
 		outputs.append(state)
 
@@ -32,14 +33,44 @@ elevator_states = outputs
 
 elevator_requests = []
 
+
 # if people are on the right floor, let them in the elevator
-def board_elevator(requests, floor, time, direction):
+def board_elevator(requests, floor, time,hang_time, direction, elevator_requests):
+	new_requests = []
+	new_elevator_requests = elevator_requests
+	for request in requests:
+		request_direction = 'down'
+		if request['floor_b'] > request['floor_a']:
+			request_direction = 'up'
+		if request['floor_a'] == floor and direction == request_direction and request['time']<= time+hang_time:
+			new_elevator_requests.append(request)
+			print request['name']+' boarded elevator at floor '+str(floor)+' at time '+str(time+hang_time)
+		else:
+			new_requests.append(request)
+	return new_requests, new_elevator_requests
 
 
 # for all the requests that are on the right floor, get out of elevatorf
-def empty_elevator(elevator_requests, floor):
+def empty_elevator(elevator_requests, floor, time):
+	new_elevator_requests = []
+	for request in elevator_requests:
+		if request['floor_b'] == floor:
+			# EXITS += 1
+			print request['name'] + ' got off elevator at floor '+str(floor)+ ' at time '+str(time)
+		else:
+			new_elevator_requests.append(request)
+	return new_elevator_requests
 
-for state in elevator_states:
-	print ''
+for i in range(0, len(elevator_states)):
+	state = elevator_states[i]
+	hang_time = 0
+	if i < len(elevator_states)-1:
+		hang_time = elevator_states[i+1]['start_time'] - state['time']
+	requests, elevator_requests = board_elevator(requests, state['floor'], state['time'],hang_time, state['direction'], elevator_requests)
+	elevator_requests = empty_elevator(elevator_requests, state['floor'], state['time'])
 
+	contains = ''
+	for request in elevator_requests:
+		contains += request['name'] + ', '
+	print 'elevator now contains '+contains
 
