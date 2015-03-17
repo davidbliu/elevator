@@ -30,12 +30,13 @@ with open('sample_output.txt', 'r') as ofile:
 
 requests = inputs
 elevator_states = outputs
-
 elevator_requests = []
-
-
+boards = 0
+exits = 0
+total_time = 0
 # if people are on the right floor, let them in the elevator
 def board_elevator(requests, floor, time,hang_time, direction, elevator_requests):
+	global boards
 	new_requests = []
 	new_elevator_requests = elevator_requests
 	for request in requests:
@@ -43,8 +44,10 @@ def board_elevator(requests, floor, time,hang_time, direction, elevator_requests
 		if request['floor_b'] > request['floor_a']:
 			request_direction = 'up'
 		if request['floor_a'] == floor and direction == request_direction and request['time']<= time+hang_time:
+			request['board'] = time+hang_time
 			new_elevator_requests.append(request)
 			print request['name']+' boarded elevator at floor '+str(floor)+' at time '+str(time+hang_time)
+			boards += 1
 		else:
 			new_requests.append(request)
 	return new_requests, new_elevator_requests
@@ -52,10 +55,14 @@ def board_elevator(requests, floor, time,hang_time, direction, elevator_requests
 
 # for all the requests that are on the right floor, get out of elevatorf
 def empty_elevator(elevator_requests, floor, time):
+	global exits
+	global total_time
 	new_elevator_requests = []
 	for request in elevator_requests:
 		if request['floor_b'] == floor:
-			# EXITS += 1
+			time_elapsed = time-request['time']
+			total_time+=time_elapsed
+			exits += 1
 			print request['name'] + ' got off elevator at floor '+str(floor)+ ' at time '+str(time)
 		else:
 			new_elevator_requests.append(request)
@@ -73,4 +80,7 @@ for i in range(0, len(elevator_states)):
 	for request in elevator_requests:
 		contains += request['name'] + ', '
 	print 'elevator now contains '+contains
+print 'boards: '+str(boards)
+print 'exits: '+str(exits)
+print 'average wait time '+str(float(total_time)/float(boards))+ ' seconds' 
 
