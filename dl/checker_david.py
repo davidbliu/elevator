@@ -34,6 +34,8 @@ elevator_requests = []
 boards = 0
 exits = 0
 total_time = 0
+
+
 # if people are on the right floor, let them in the elevator
 def board_elevator(requests, floor, time,hang_time, direction, elevator_requests):
 	global boards
@@ -53,7 +55,7 @@ def board_elevator(requests, floor, time,hang_time, direction, elevator_requests
 	return new_requests, new_elevator_requests
 
 
-# for all the requests that are on the right floor, get out of elevatorf
+# for all the requests that are on the right floor, get out of elevator
 def empty_elevator(elevator_requests, floor, time):
 	global exits
 	global total_time
@@ -80,6 +82,8 @@ for i in range(0, len(elevator_states)):
 	for request in elevator_requests:
 		contains += request['name'] + ', '
 	print 'elevator now contains '+contains
+
+
 print 'boards: '+str(boards)
 print 'exits: '+str(exits)
 print 'average wait time '+str(float(total_time)/float(boards))+ ' seconds' 
