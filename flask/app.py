@@ -16,6 +16,9 @@ def visualize():
 	print requests
 	return render_template('animation.html', requests = requests)
 
+@app.route('/home', methods=['GET'])
+def home():
+	return render_template('home.html')
 
 
 if __name__ == "__main__":
