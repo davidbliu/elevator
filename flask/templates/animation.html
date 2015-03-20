@@ -105,7 +105,7 @@ $(document).ready(function(){
 <head>
 </head>
 <body>
-	<h1>[WD] Elevator Challenge</h1>
+	<h1 style = 'text-align:center'>[WD] Elevator Challenge</h1>
 	<div class = 'col-md-4 info-div'>
 		<h3>Time: <span id ='time'>0</span></h3>
 		<button id = 'step-btn' class = 'btn btn-default'>Step</button>
@@ -113,16 +113,20 @@ $(document).ready(function(){
 		<input id = 'moves-input2' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 2 commands here'></input>
 	</div>
 
-	<div class = 'elevators col-md-3'>
+	<div class = 'elevators col-md-2'>
 		<div class = 'elevator up' id = 'elevator1'></div>
 		<div class = 'elevator up' id = 'elevator2'></div>
 		<div id = 'floors' class = 'floors'></div>
 	</div>
-	<div class = 'requests col-md-4'>
+	<div class = 'requests col-md-3'>
 		<h2>Requests</h2>
 		{% for request in requests %}
 		<div>{{request.name}} {{request.floor1}} {{request.floor2}} {{request.time}}</div>
 		{% endfor %}
-
+		<h2>Elevator 1</h2>
+		<h2>Elevator 2</h2>
+	</div>
+	<div class = 'fulfilled col-md-3'>
+		<h2>Fulfilled Requests</h2>
 	</div>
 </body>
