@@ -40,9 +40,7 @@ for req in requests:
 	for i in range(abs(req.floor1-pos)):
 		commands += 'm'
 		time+=1
-	# pick up person
-	commands += 'i'
-	time += 1
+	
 
 	# take person to destination
 	req_dir = req.floor2-req.floor1
@@ -55,6 +53,10 @@ for req in requests:
 		commands+= "s"
 		time += 1
 
+	# pick up person
+	commands += 'i'
+	time += 1
+	
 	for i in range(abs(req.floor2-req.floor1)):
 		commands+="m"
 		time += 1

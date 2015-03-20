@@ -22,7 +22,7 @@ class Elevator:
 		if self.pos >= Elevator.maxfloor or self.pos < 0:
 			raise Exception("floor outside bounds")
 	def idle(self, time, request_pool):
-		print 'idle at '+str(self.pos)+' '+str(self.direction)+' time is '+str(time)
+		# print 'idle at '+str(self.pos)+' '+str(self.direction)+' time is '+str(time)
 		# check if people have to get out of elevator
 		fulfilled_requests = [r for r in self.requests if r.floor2 == self.pos]
 		requests = [r for r in self.requests if r.floor2 != self.pos]
@@ -57,13 +57,13 @@ def make_move(move, time,  elevator, requests):
 		data = elevator.idle(time, requests)
 		requests = data['new_pool']
 		for f in data['fulfilled']:
-			print f.name
+			print f.name + ' got dropped off at time '+str(time)+' '+str(len(requests))+' people in pool and '+str(len(elevator.requests))+' in elevator'
 	if move == 's':
 		elevator.direction *= -1
 	return requests
 	
 elevator = Elevator()
-movelist = 'iiiiiiiiiiiiiimmmsimmi'
+movelist = 'iiiiiiiiiiiiiimmmsimmismmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmismmmsimmmismiimmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmimmmimmmmmmmimmmmsimmmmmmmmmmmmmmmmmmmmmismmmmmmmmmmmimmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmi'
 check_moves(movelist, requests, elevator)
 
 
