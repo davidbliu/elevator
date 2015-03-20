@@ -1,0 +1,10 @@
+BETSEY at floor 3 wants to go to floor 1 at time 14
+FAE at floor 21 wants to go to floor 0 at time 15
+DORLA at floor 3 wants to go to floor 0 at time 16
+EMERY at floor 1 wants to go to floor 4 at time 32
+DOROTHEA at floor 16 wants to go to floor 1 at time 54
+ALEISHA at floor 20 wants to go to floor 16 at time 76
+CEDRICK at floor 13 wants to go to floor 6 at time 79
+ELOY at floor 2 wants to go to floor 23 at time 101
+CHRISTIANA at floor 12 wants to go to floor 10 at time 103
+KESHIA at floor 23 wants to go to floor 5 at time 122
