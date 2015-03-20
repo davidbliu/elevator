@@ -1,6 +1,5 @@
 <script src="jquery.min.js"></script>
 <link rel="stylesheet" href="bootstrap.min.css">
-<script type = 'text/javascript' src = 'commands.js'></script>
 <script type = 'text/javascript'>
 
 function switchClass(elevator){
@@ -54,6 +53,10 @@ $(document).ready(function(){
 		prev_val = $('#moves-input').val();
 		execInstruction($('#elevator1'), prev_val[0]);
 		$('#moves-input').val(prev_val.substring(1));
+		// now handle elevator 2
+		prev_val = $('#moves-input2').val();
+		execInstruction($('#elevator2'), prev_val[0]);
+		$('#moves-input2').val(prev_val.substring(1));
 		time += 1;
 		$('#time').text(time);
 	});
@@ -100,7 +103,7 @@ $(document).ready(function(){
 <head>
 </head>
 <body>
-	<h1>Elevator Problem</h1>
+	<h1>[WD] Elevator Challenge</h1>
 	<div class = 'col-md-4 info-div'>
 		<h3>Time: <span id ='time'>0</span></h3>
 		<button id = 'step-btn' class = 'btn btn-default'>Step</button>

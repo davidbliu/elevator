@@ -16,9 +16,9 @@ with open('female_names.txt', 'r') as ifile:
 input_lines = []
 # generate input
 time = 0
-for i in range(100):
-	floor_1 = random.randint(0, 50)
-	floor_2 = random.randint(0, 50)
+for i in range(10):
+	floor_1 = random.randint(0, 25)
+	floor_2 = random.randint(0, 25)
 	name = random.sample(names, 1)[0]
 	time = time + random.randint(0, 25)
 	input_string = name + ' at floor '+str(floor_1)+' wants to go to floor '+str(floor_2)+' at time '+str(time)
