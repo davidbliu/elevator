@@ -1,5 +1,8 @@
-<script src="jquery.min.js"></script>
-<link rel="stylesheet" href="bootstrap.min.css">
+<!-- <script src="jquery.min.js"></script> -->
+<script type='text/javascript' src="{{
+  url_for('static', filename='jquery.min.js') }}"></script>
+<link rel="stylesheet" href="{{
+  url_for('static', filename='bootstrap.min.css') }}">
 <script type = 'text/javascript'>
 
 function switchClass(elevator){
@@ -114,5 +117,12 @@ $(document).ready(function(){
 		<div class = 'elevator up' id = 'elevator1'></div>
 		<div class = 'elevator up' id = 'elevator2'></div>
 		<div id = 'floors' class = 'floors'></div>
+	</div>
+	<div class = 'requests col-md-4'>
+		<h2>Requests</h2>
+		{% for request in requests %}
+		<div>{{request.name}} {{request.floor1}} {{request.floor2}} {{request.time}}</div>
+		{% endfor %}
+
 	</div>
 </body>

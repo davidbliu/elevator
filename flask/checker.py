@@ -1,5 +1,5 @@
 requests = []
-REQUESTS = []
+
 class Request:
 	def __init__(self, name, floor1, floor2, time):
 		self.name = name
@@ -50,7 +50,6 @@ with open('sample_input.txt', 'r') as ifile:
 				int(splits[9]),
 				int(splits[-1]))
 		requests.append(req)
-		REQUESTS.append(req)
 
 ### check inputted move sequence to see if valid
 # assume use of only one elevator
@@ -74,9 +73,9 @@ def make_move(move, time,  elevator, requests):
 		elevator.direction *= -1
 	return requests
 	
-# elevator = Elevator()
-# movelist = 'iiiiiiiiiiiiiimmmsimmismmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmismmmsimmmismimmmimmmmmmmmmmmmsimmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmimmmimmmmmmmimmmmsimmmmmmmmmmmmmmmmmmmmmismmmmmmmmmmmimmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmi'
-# check_moves(movelist, requests, elevator)
+elevator = Elevator()
+movelist = 'iiiiiiiiiiiiiimmmsimmismmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmismmmsimmmismimmmimmmmmmmmmmmmsimmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmimmmimmmmmmmimmmmsimmmmmmmmmmmmmmmmmmmmmismmmmmmmmmmmimmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmi'
+check_moves(movelist, requests, elevator)
 
 
 
