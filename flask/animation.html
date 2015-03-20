@@ -1,0 +1,90 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<script type = 'text/javascript'>
+
+function moveElevator(elevator, dir){
+	$(elevator).removeClass('down');
+	$(elevator).removeClass('up');
+	if(dir > 0){
+		$(elevator).addClass('up');
+	}
+	else{
+		$(elevator).addClass('down')
+	}
+	$(elevator).animate({
+		'top':'+='+dir.toString(),
+	});
+}
+
+function drawFloors(){
+	for(var i=0;i<50;i++){
+		floor = document.createElement('div');
+		$(floor).attr('class', 'floor');
+		$(floor).attr('id', i.toString());
+		$(floor).text(i);
+		$('#floors').append($(floor));
+	}
+}
+$(document).ready(function(){
+	console.log('moving floor');
+	drawFloors();
+	$('#right-btn').click(function(){
+		moveElevator($('#elevator1'), 13);
+	});
+	$('#left-btn').click(function(){
+		moveElevator($('#elevator1'), -13);
+	});
+
+});
+</script>
+
+<style type = 'text/css'>
+.elevator{
+	left: 15px;
+	top:13px;
+	position: relative;
+	height: 13px;
+	width: 15px;
+}
+.down{
+	background-color: green;
+}
+.up{
+	background-color: red;
+}
+#elevator2{
+	background-color: red;
+	left:30px;
+}
+.elevators{
+	margin-top: 10px;
+}
+.floor{
+	height: 13px;
+	width: 15px;
+	border: 1px solid black;
+	/*float:left;*/
+	font-size:8px;
+	text-align:center;
+}
+</style>
+
+
+<head>
+</head>
+<body>
+	<h1>Elevator</h1>
+
+	<div class = 'info-div'>
+		<h3>Time: 0</h3>
+		<button id = 'left-btn' class = 'btn btn-default'>Up</button>
+		<button id = 'right-btn' class = 'btn btn-default'>Down</button>
+	</div>
+
+	<div class = 'elevators'>
+		<div class = 'elevator down' id = 'elevator1'></div>
+		<!-- <div class = 'elevator' id = 'elevator2'></div> -->
+		<div id = 'floors' class = 'floors'></div>
+	</div>
+</body>
