@@ -73,9 +73,6 @@ def make_move(move, time,  elevator, requests):
 		elevator.direction *= -1
 	return requests
 	
-elevator = Elevator()
-movelist = 'iiiiiiiiiiiiiimmmsimmismmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmismmmsimmmismimmmimmmmmmmmmmmmsimmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmimmmimmmmmmmimmmmsimmmmmmmmmmmmmmmmmmmmmismmmmmmmmmmmimmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmi'
-check_moves(movelist, requests, elevator)
 
 
 
