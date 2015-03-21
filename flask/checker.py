@@ -42,15 +42,6 @@ class Elevator:
 		new_request_pool = [r for r in request_pool if r not in self.requests]
 		return {'fulfilled':fulfilled_requests, 'new_pool': new_request_pool}
 		
-### LOAD REQUESTS INTO REQUESTS LIST
-with open('sample_input.txt', 'r') as ifile:
-	for line in ifile:
-		splits = line.rstrip().split(' ')
-		req = Request(splits[0],
-				int(splits[3]),
-				int(splits[9]),
-				int(splits[-1]))
-		requests.append(req)
 
 def load_requests(filename):
 	rs = []

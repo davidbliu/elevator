@@ -1,5 +1,4 @@
-inputs = []
-requests = []
+
 class Request:
 	def __init__(self, name, floor1, floor2, time):
 		self.name = name
@@ -7,15 +6,6 @@ class Request:
 		self.floor2 = floor2
 		self.time = time
 # get input lines
-with open('sample_input.txt', 'r') as ifile:
-	for line in ifile:
-		splits = line.rstrip().split(' ')
-		inputs.append([splits[0], int(splits[3]), int(splits[9]), int(splits[-1])])
-		req = Request(splits[0],
-				int(splits[3]),
-				int(splits[9]),
-				int(splits[-1]))
-		requests.append(req)
 
 def get_naive_solution(requests):
 	req = []
