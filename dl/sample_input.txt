@@ -1,4 +1,4 @@
-BETSEY at floor 3 wants to go to floor 1 at time 14
+ALICE at floor 3 wants to go to floor 1 at time 14
 FAE at floor 21 wants to go to floor 0 at time 15
 DORLA at floor 3 wants to go to floor 0 at time 16
 EMERY at floor 1 wants to go to floor 4 at time 32

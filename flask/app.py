@@ -13,8 +13,13 @@ def hello():
 @app.route('/visualize', methods=['GET'])
 def visualize():
 	print 'here are the requests'
+	my_requests = [{'name':r.name, 
+				 'floor1':r.floor1,
+				 'floor2':r.floor2,
+				 'time':r.time,
+				 'direction':r.dir()} for r in requests]
 	print requests
-	return render_template('animation.html', requests = requests)
+	return render_template('animation.html', requests = my_requests)
 
 
 

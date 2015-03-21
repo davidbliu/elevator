@@ -4,8 +4,48 @@
 <link rel="stylesheet" href="{{
   url_for('static', filename='bootstrap.min.css') }}">
 <script type = 'text/javascript'>
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
+}
+
+time = 0;
+ELEVATOR1 = {}
+ELEVATOR1['pos'] = 0
+ELEVATOR1['direction'] = 1
+ELEVATOR1['requests'] = []
+ELEVATOR1['move'] = function(){
+	this.pos += this.direction
+}
+ELEVATOR1['switch'] = function(){
+	this.direction = this.direction * -1;
+}
+ELEVATOR1['idle'] = function(){
+}
+ELEVATOR1['canMove'] = function(){
+	if(this.pos == 0 && this.direction == -1 || this.pos == 24 && this.direction == 1){
+		return false;
+	}
+	return true;
+}
+{% autoescape false %}
+REQUESTS = {{ requests }};
+{% endautoescape %}
+
+ELEVATORS = {}
+ELEVATORS['elevator1'] = ELEVATOR1;
+ELEVATOR2 = clone(ELEVATOR1);
+ELEVATORS['elevator2'] = ELEVATOR2;
+
+ELEVATOR1['request_container'] = '#elevator-1-request-container';
+ELEVATOR2['request_container'] = '#elevator-2-request-container';
 
 function switchClass(elevator){
+	ele = ELEVATORS[$(elevator).attr('id')].switch();
 	if ($(elevator).hasClass('up')){
 		$(elevator).addClass('down');
 		$(elevator).removeClass('up');
@@ -17,7 +57,8 @@ function switchClass(elevator){
 	console.log('switching class');
 }
 function moveElevator(elevator){
-	amount = 130;
+	ele = ELEVATORS[$(elevator).attr('id')].move();
+	amount = 0;
 	if (elevator.hasClass('down')){
 		amount = -13;
 	}
@@ -28,7 +69,69 @@ function moveElevator(elevator){
 		'top':'+='+amount.toString(),
 	}, 1);
 }
+function printstuff(){
+	console.log('printint stuff');
+	console.log(ELEVATOR1.requests.length);
+	for(req in ELEVATOR1.requests){
+		console.log(req);
+	}
+}
+function transferRequest(request, container1, container2){
+}
+function handleIdle(elevator){
+	ele = ELEVATORS[$(elevator).attr('id')];
+	// get fulfilled requests
+	fulfilled_requests = [];
+	for(r in ele.requests){
+		req = ele.requests[r];
+		if(req.floor2 == ele.pos){
+			fulfilled_requests.push(req);
+			req_div = $('#'+req.name);
+			req_div = req_div[0];
+			oldtext = $(req_div).text();
+			oldtext = time.toString()+':'+oldtext;
+			$(req_div).text(oldtext);
+			$('#finished-request-container').prepend(req_div);
+		} 
+	}
+	// get remaining requests
+	requests = [];
+	for (r in ele.requests){
+		req = ele.requests[r];
+		if(req.floor2!=ele.pos){
+			requests.push(req);
+		}
+	}
+	// get new requests
+	new_requests = [];
+	for(r in REQUESTS){
+		req = REQUESTS[r];
+		// console.log(r.floor1.toString()+' '+r.direction.toString()+' '+r.time.toString());
+		if(req.floor1 == ele.pos && req.direction == ele.direction && req.time <= time){
+			new_requests.push(req);
+			req_div = $('#'+req.name);
+			req_div = req_div[0];
+			// $('#request-container').remove(req_div);
+			oldtext = $(req_div).text();
+			oldtext = time.toString()+':'+oldtext;
+			$(req_div).text(oldtext);
+			$(ele.request_container).prepend(req_div);
+			console.log(req_div);
+			console.log('that was request div');
 
+		}
+	}
+	// change ele requests
+	ele.requests = new_requests;
+	ele.requests = ele.requests.concat(requests);
+	// console.log('those were the ele and ful '+new_requests.length.toString()+' requests '+ele.requests.length.toString());
+	for(f in fulfilled_requests){
+		req = fulfilled_requests[f];
+		console.log(req.name+' finished!'); 
+
+		// height if up q were echo r timeout y up i obj php attr s div f get html javascript yes A+ B = AB C D E F G H I IT IS TRUE IF YOU BELIEVE....
+	}
+}
 function drawFloors(){
 	for(var i=0;i<25;i++){
 		floor = document.createElement('div');
@@ -38,29 +141,69 @@ function drawFloors(){
 		$('#floors').append($(floor));
 	}
 }
-function execInstruction(elevator, instruction){
+function isValidInstruction(elevator, instruction){
 	if(instruction == 'm'){
+		ele = ELEVATORS[$(elevator).attr('id')];
+		return ele.canMove();
+	}
+	return true;
+	
+}
+function execInstruction(elevator, instruction){
+	if(!isValidInstruction(elevator, instruction)){
+		alert('Invalid Instruction Entered!'); 
+	}
+	else{
+		if(instruction == 'm'){
 		moveElevator($(elevator));
+		}
+		if(instruction == 's'){
+			switchClass($(elevator));
+		}
+		if(instruction == 'i'){
+			handleIdle($(elevator));
+		}
+		
 	}
-	if(instruction == 's'){
-		switchClass($(elevator));
-	}
+	
+}
+
+function step(){
+	prev_val = $('#moves-input').val();
+	instruction = prev_val[0];
+	
+	execInstruction($('#elevator1'), instruction);
+	$('#moves-input').val(prev_val.substring(1));
+	// e_text = $('#elevator-1-instructions').text()+instruction;
+	// $('#elevator-1-instructions').text(e_text);
+	// now handle elevator 2
+	prev_val = $('#moves-input2').val();
+	instruction = prev_val[0];
+	// if(instruction != "m" || "s" || "i"){
+	// 	instruction = 'i';
+	// }
+	execInstruction($('#elevator2'), instruction);
+	$('#moves-input2').val(prev_val.substring(1));
+	// e_text =  $('#elevator-2-instructions').text()+instruction;
+	// $('#elevator-2-instructions').text(e_text);
+	time += 1;
+	$('#time').text(time);
+
+
 }
 $(document).ready(function(){
-	time = 0;
+	
 	console.log('moving floor');
 	drawFloors();
 
 	$('#step-btn').click(function(){
-		prev_val = $('#moves-input').val();
-		execInstruction($('#elevator1'), prev_val[0]);
-		$('#moves-input').val(prev_val.substring(1));
-		// now handle elevator 2
-		prev_val = $('#moves-input2').val();
-		execInstruction($('#elevator2'), prev_val[0]);
-		$('#moves-input2').val(prev_val.substring(1));
-		time += 1;
-		$('#time').text(time);
+		step();
+	});
+
+	$(document).keypress(function(e) {
+	    if(e.which == 13) {
+	    	step();
+	    }
 	});
 
 });
@@ -108,9 +251,16 @@ $(document).ready(function(){
 	<h1 style = 'text-align:center'>[WD] Elevator Challenge</h1>
 	<div class = 'col-md-4 info-div'>
 		<h3>Time: <span id ='time'>0</span></h3>
+		
 		<button id = 'step-btn' class = 'btn btn-default'>Step</button>
-		<input id = 'moves-input' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 1 commands here'></input>
+		<button id = 'submit-btn' class = 'btn btn-default'>Submit This Input</button>
+		<input id = 'moves-input' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 1 commands here' value='iiiiiiiiiiiiiimmmsimmismmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmismmmsimmmismimmmimmmmmmmmmmmmsimmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmimmmimmmmmmmimmmmsimmmmmmmmmmmmmmmmmmmmmismmmmmmmmmmmimmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmi'></input>
 		<input id = 'moves-input2' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 2 commands here'></input>
+
+		<h3>Elevator 1 Instructions <span id ='e1'></span></h3>
+		<div id = 'elevator-1-instructions'></div>
+		<h3>Elevator 2 Instructions <span id ='e2'></span></h3>
+		<div id = 'elevator-2-instructions'></div>
 	</div>
 
 	<div class = 'elevators col-md-2'>
@@ -120,13 +270,18 @@ $(document).ready(function(){
 	</div>
 	<div class = 'requests col-md-3'>
 		<h2>Requests</h2>
+		<div id = 'request-container'>
 		{% for request in requests %}
-		<div>{{request.name}} {{request.floor1}} {{request.floor2}} {{request.time}}</div>
+		<div id = '{{request.name}}'>{{request.time}}: {{request.name}} {{request.floor1}} to {{request.floor2}}</div>
 		{% endfor %}
+		</div>
 		<h2>Elevator 1</h2>
+		<div id = 'elevator-1-request-container'></div>
 		<h2>Elevator 2</h2>
+		<div id = 'elevator-2-request-container'></div>
 	</div>
 	<div class = 'fulfilled col-md-3'>
-		<h2>Fulfilled Requests</h2>
+		<h2>Finished Requests</h2>
+		<div id = 'finished-request-container'></div>
 	</div>
 </body>
