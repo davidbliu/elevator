@@ -1,4 +1,3 @@
-<!-- <script src="jquery.min.js"></script> -->
 <script type='text/javascript' src="{{
   url_for('static', filename='jquery.min.js') }}"></script>
 <link rel="stylesheet" href="{{
@@ -104,6 +103,7 @@ function handleIdle(elevator){
 	}
 	// get new requests
 	new_requests = [];
+	request_pool = [];
 	for(r in REQUESTS){
 		req = REQUESTS[r];
 		// console.log(r.floor1.toString()+' '+r.direction.toString()+' '+r.time.toString());
@@ -116,14 +116,17 @@ function handleIdle(elevator){
 			oldtext = time.toString()+':'+oldtext;
 			$(req_div).text(oldtext);
 			$(ele.request_container).prepend(req_div);
-			console.log(req_div);
-			console.log('that was request div');
-
+		}
+		else{
+			request_pool.push(req);
 		}
 	}
 	// change ele requests
 	ele.requests = new_requests;
 	ele.requests = ele.requests.concat(requests);
+
+	//change request pool
+	REQUESTS = request_pool;
 	// console.log('those were the ele and ful '+new_requests.length.toString()+' requests '+ele.requests.length.toString());
 	for(f in fulfilled_requests){
 		req = fulfilled_requests[f];
@@ -253,14 +256,15 @@ $(document).ready(function(){
 		<h3>Time: <span id ='time'>0</span></h3>
 		
 		<button id = 'step-btn' class = 'btn btn-default'>Step</button>
-		<button id = 'submit-btn' class = 'btn btn-default'>Submit This Input</button>
+	
 		<input id = 'moves-input' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 1 commands here' value='iiiiiiiiiiiiiimmmsimmismmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmismmmsimmmismimmmimmmmmmmmmmmmsimmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmimmmimmmmmmmimmmmsimmmmmmmmmmmmmmmmmmmmmismmmmmmmmmmmimmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmi'></input>
 		<input id = 'moves-input2' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 2 commands here'></input>
 
-		<h3>Elevator 1 Instructions <span id ='e1'></span></h3>
+		<button id = 'submit-btn' class = 'btn btn-default'>Score This Input</button>
+		<!-- <h3>Elevator 1 Instructions <span id ='e1'></span></h3>
 		<div id = 'elevator-1-instructions'></div>
 		<h3>Elevator 2 Instructions <span id ='e2'></span></h3>
-		<div id = 'elevator-2-instructions'></div>
+		<div id = 'elevator-2-instructions'></div> -->
 	</div>
 
 	<div class = 'elevators col-md-2'>

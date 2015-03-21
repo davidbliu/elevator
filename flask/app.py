@@ -21,6 +21,13 @@ def visualize():
 	print requests
 	return render_template('animation.html', requests = my_requests)
 
+@app.route('/challenge', methods=['GET'])
+def challenge():
+	return 'visiting challenge page'
+
+@app.route('/score_challenge', methods=['POST'])
+def score_challenge():
+	return 'your result has been scored'
 
 
 if __name__ == "__main__":
