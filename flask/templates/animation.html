@@ -106,12 +106,10 @@ function handleIdle(elevator){
 	request_pool = [];
 	for(r in REQUESTS){
 		req = REQUESTS[r];
-		// console.log(r.floor1.toString()+' '+r.direction.toString()+' '+r.time.toString());
 		if(req.floor1 == ele.pos && req.direction == ele.direction && req.time <= time){
 			new_requests.push(req);
 			req_div = $('#'+req.name);
 			req_div = req_div[0];
-			// $('#request-container').remove(req_div);
 			oldtext = $(req_div).text();
 			oldtext = time.toString()+':'+oldtext;
 			$(req_div).text(oldtext);
@@ -127,7 +125,6 @@ function handleIdle(elevator){
 
 	//change request pool
 	REQUESTS = request_pool;
-	// console.log('those were the ele and ful '+new_requests.length.toString()+' requests '+ele.requests.length.toString());
 	for(f in fulfilled_requests){
 		req = fulfilled_requests[f];
 		console.log(req.name+' finished!'); 
@@ -265,13 +262,15 @@ $(document).ready(function(){
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class="navbar-brand" href="#">Task 1</a>
-                <a class="navbar-brand" href="#">Task 2</a>
-                <a class="navbar-brand" href="#">Task 3</a>
-                <a class="navbar-brand" href="#">Task 4</a>
-                <a class="navbar-brand" href="#">Task 5</a>
-                <a class="navbar-brand" href="#">Task 6</a>
-                <a class="navbar-brand" href="#">Task 7</a>
+                <a class='navbar-brand' href= '/'>Back to Scoreboard</a>
+                <a class="navbar-brand" href="/visualize?challenge=small_input.txt">Baby Elevator</a>
+                <a class="navbar-brand" href="/visualize?challenge=sample_input.txt">Like a Gauss</a>
+                <a class="navbar-brand" href="/visualize?challenge=long_input.txt">Long and Hard</a>
+                <a class="navbar-brand" href="#">Antsy</a>
+                <a class="navbar-brand" href="#">Greenie</a>
+                <a class="navbar-brand" href="#">Hippies</a>
+                <a class="navbar-brand" href="#">Real Life</a>
+                <a class="navbar-brand" href="#">Hwat</a>
             </div>
         </div>
         <!-- /.container -->
@@ -284,8 +283,8 @@ $(document).ready(function(){
 		
 		<button id = 'step-btn' class = 'btn btn-default'>Step</button>
 	
-		<input id = 'moves-input' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 1 commands here' value='iiiiiiiiiiiiiimmmsimmismmsimmmiiiiiiiiiiiiiiiiiiiiiiiismmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmismmmmmmmmmmmmsimmmmmmmismmmmmmsimmi'></input>
-		<input id = 'moves-input2' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 2 commands here' value = 'iiiiiiiiiiiiiiimmmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmismimmmiiiiiiiiiimmmmmmmmmmmmmmmmsimmmmiiimmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmisimmmmmmmmmmmmmmmmmmi'></input>
+		<input id = 'moves-input' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 1 commands here' value='{{solution[0]}}'></input>
+		<input id = 'moves-input2' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 2 commands here' value = '{{solution[1]}}'></input>
 
 		<button id = 'submit-btn' class = 'btn btn-default'>Score This Input</button>
 		<!-- <h3>Elevator 1 Instructions <span id ='e1'></span></h3>

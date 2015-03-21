@@ -1,0 +1,10 @@
+MOIRA at floor 24 wants to go to floor 10 at time 2
+KIM at floor 4 wants to go to floor 20 at time 21
+IRWIN at floor 13 wants to go to floor 22 at time 29
+ERNEST at floor 1 wants to go to floor 12 at time 30
+ALI at floor 4 wants to go to floor 11 at time 32
+ALYSON at floor 20 wants to go to floor 15 at time 35
+ALYSHA at floor 10 wants to go to floor 4 at time 43
+DULCIE at floor 4 wants to go to floor 17 at time 43
+ANNABELL at floor 17 wants to go to floor 1 at time 44
+ISAIAS at floor 7 wants to go to floor 16 at time 48

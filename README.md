@@ -1,4 +1,4 @@
-#Elevator Apprentice Challenge
+# Elevator Apprentice Challenge
 
 ## Problem Description
 

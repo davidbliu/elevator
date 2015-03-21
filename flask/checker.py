@@ -16,6 +16,7 @@ class Request:
 
 	def total_time(self):
 		return self.time_exited - self.time
+
 class Elevator:
 	maxfloor = 25
 	def __init__(self):
@@ -50,6 +51,18 @@ with open('sample_input.txt', 'r') as ifile:
 				int(splits[9]),
 				int(splits[-1]))
 		requests.append(req)
+
+def load_requests(filename):
+	rs = []
+	with open(filename, 'r') as ifile:
+		for line in ifile:
+			splits = line.rstrip().split(' ')
+			req = Request(splits[0],
+					int(splits[3]),
+					int(splits[9]),
+					int(splits[-1]))
+			rs.append(req)
+	return rs
 
 ### check inputted move sequence to see if valid
 # assume use of only one elevator

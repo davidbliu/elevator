@@ -17,13 +17,15 @@ with open('sample_input.txt', 'r') as ifile:
 				int(splits[-1]))
 		requests.append(req)
 
-req = []
-req2 = []
-for i in range(len(requests)):
-	if i%2==0:
-		req.append(requests[i])
-	else:
-		req2.append(requests[i])
+def get_naive_solution(requests):
+	req = []
+	req2 = []
+	for i in range(len(requests)):
+		if i%2==0:
+			req.append(requests[i])
+		else:
+			req2.append(requests[i])
+	return [naive_schedule(req), naive_schedule(req2)]
 
 # naive scheduling algorithm: handle requests as they come in
 def naive_schedule(requests):
@@ -77,7 +79,8 @@ def naive_schedule(requests):
 
 	return commands
 
-print 'ELEVATOR1'
-print naive_schedule(req)
-print 'ELEVATOR2'
-print naive_schedule(req2)
+
+# print 'ELEVATOR1'
+# print naive_schedule(req)
+# print 'ELEVATOR2'
+# print naive_schedule(req2)
