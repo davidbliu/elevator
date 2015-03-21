@@ -6,8 +6,8 @@ from checker import *
 
 
 @app.route("/")
-def hello():
-    return "Hello World!"
+def home():
+    return render_template('home.html')
 
 
 @app.route('/visualize', methods=['GET'])

@@ -245,20 +245,47 @@ $(document).ready(function(){
 .elevator-input{
 	margin:10px;
 }
+#main-content-div{
+	top:50px;
+}
+#navbar{
+	position:relative;
+}
 </style>
 
 
 <head>
 </head>
 <body>
+
+	<nav id = 'navbar' class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="#">Task 1</a>
+                <a class="navbar-brand" href="#">Task 2</a>
+                <a class="navbar-brand" href="#">Task 3</a>
+                <a class="navbar-brand" href="#">Task 4</a>
+                <a class="navbar-brand" href="#">Task 5</a>
+                <a class="navbar-brand" href="#">Task 6</a>
+                <a class="navbar-brand" href="#">Task 7</a>
+            </div>
+        </div>
+        <!-- /.container -->
+    </nav>
+<div id = 'main-content-div'>
+
 	<h1 style = 'text-align:center'>[WD] Elevator Challenge</h1>
 	<div class = 'col-md-4 info-div'>
 		<h3>Time: <span id ='time'>0</span></h3>
 		
 		<button id = 'step-btn' class = 'btn btn-default'>Step</button>
 	
-		<input id = 'moves-input' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 1 commands here' value='iiiiiiiiiiiiiimmmsimmismmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmismmmsimmmismimmmimmmmmmmmmmmmsimmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmimmmimmmmmmmimmmmsimmmmmmmmmmmmmmmmmmmmmismmmmmmmmmmmimmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmi'></input>
-		<input id = 'moves-input2' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 2 commands here'></input>
+		<input id = 'moves-input' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 1 commands here' value='iiiiiiiiiiiiiimmmsimmismmsimmmiiiiiiiiiiiiiiiiiiiiiiiismmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmismmmmmmmmmmmmsimmmmmmmismmmmmmsimmi'></input>
+		<input id = 'moves-input2' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 2 commands here' value = 'iiiiiiiiiiiiiiimmmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmismimmmiiiiiiiiiimmmmmmmmmmmmmmmmsimmmmiiimmmmmmmmmmmmmmsimmmmmmmmmmmmmmmmmmmmmisimmmmmmmmmmmmmmmmmmi'></input>
 
 		<button id = 'submit-btn' class = 'btn btn-default'>Score This Input</button>
 		<!-- <h3>Elevator 1 Instructions <span id ='e1'></span></h3>
@@ -288,4 +315,7 @@ $(document).ready(function(){
 		<h2>Finished Requests</h2>
 		<div id = 'finished-request-container'></div>
 	</div>
+
+</div>
+<!-- end of main content div -->
 </body>
