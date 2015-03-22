@@ -1,2 +1,5 @@
 *.pyc
 /flask/*.pyc
+/flask/*.swp
+/flask/.DS_Store
+.DS_Store

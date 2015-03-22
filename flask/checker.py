@@ -1,3 +1,4 @@
+from seeds import *
 requests = []
 
 class Request:
@@ -16,6 +17,10 @@ class Request:
 
 	def total_time(self):
 		return self.time_exited - self.time
+
+	# check if request was fulfilled
+	def fulfilled(self):
+		return False
 
 class Elevator:
 	maxfloor = 25
@@ -76,6 +81,10 @@ def make_move(move, time,  elevator, requests):
 	if move == 's':
 		elevator.direction *= -1
 	return requests
+
+
+def test_solution(solution, challenge):
+	print 'testing your solution'
 	
 
 
