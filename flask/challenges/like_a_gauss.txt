@@ -1,0 +1,4 @@
+Here is your chance to prove that you're a Gawse!
+The time that each request comes in is gaussian distributed with mean 150 and variance 25.
+The floors requested are also gaussian distributed with mean 13 and standard deviation 6.
+What would a bawse do?

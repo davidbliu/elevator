@@ -248,6 +248,14 @@ $(document).ready(function(){
 #navbar{
 	position:relative;
 }
+#description-p{
+	margin-left: 50px;
+	margin-right: 50px;
+	font-size: 15px;
+}
+.request-div{
+	font-size:10px;
+}
 </style>
 
 
@@ -263,21 +271,27 @@ $(document).ready(function(){
                     <span class="sr-only">Toggle navigation</span>
                 </button>
                 <a class='navbar-brand' href= '/'>Back to Scoreboard</a>
-                <a class="navbar-brand" href="/visualize?challenge=baby_elevator">Baby Elevator</a>
+                {% for challenge in challenge_keys %}
+                <a class = 'navbar-brand' href='/visualize?challenge={{challenge}}'>{{challenges[challenge]['name']}}</a>
+                {% endfor %}
+                <!-- <a class="navbar-brand" href="/visualize?challenge=baby_elevator">Baby Elevator</a>
                 <a class="navbar-brand" href="/visualize?challenge=like_a_gauss">Like a Gauss</a>
                 <a class="navbar-brand" href="/visualize?challenge=long_and_hard">Long and Hard</a>
                 <a class="navbar-brand" href="">Antsy</a>
                 <a class="navbar-brand" href="#">Greenie</a>
                 <a class="navbar-brand" href="#">Hippies</a>
                 <a class="navbar-brand" href="#">Real Life</a>
-                <a class="navbar-brand" href="#">Hwat</a>
+                <a class="navbar-brand" href="#">Hwat</a> -->
             </div>
         </div>
         <!-- /.container -->
     </nav>
 <div id = 'main-content-div'>
 
-	<h1 style = 'text-align:center'>[WD] Elevator Challenge</h1>
+	<h1 style = 'text-align:center'>[WD] Elevator Challenge: {{challenge_name}}</h1>
+
+	<div class = 'jumbotron'><p id='description-p' class = 'description'>{{description}}</p></div>
+
 	<div class = 'col-md-4 info-div'>
 		<h3>Time: <span id ='time'>0</span></h3>
 		
@@ -302,7 +316,7 @@ $(document).ready(function(){
 		<h2>Requests</h2>
 		<div id = 'request-container'>
 		{% for request in requests %}
-		<div id = '{{request.name}}'>{{request.time}}: {{request.name}} {{request.floor1}} to {{request.floor2}}</div>
+		<div class = 'request-div' id = '{{request.name}}'>{{request.time}}: {{request.name}} {{request.floor1}} to {{request.floor2}}</div>
 		{% endfor %}
 		</div>
 		<h2>Elevator 1</h2>
