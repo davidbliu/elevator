@@ -1,47 +1,40 @@
 class Committee:
-	def __init__(self, name, password):
+	def __init__(self, name):
 		self.name = name
-		self.password = password
-		print 'creating '+str(name)
-
 	def total_score(self):
 		return 10
+
+class User:
+	def __init__(self, name, committee):
+		self.name = name
+		self.committee = committee
+		self.scores = {}
 
 class Score:
 	def __init__(self, problem, data):
 		print 'creating score'
 
+class Challenge:
+	def __init__(self, name, input_file, description_file, alias):
+		self.name = name
+		self.alias = alias
+		self.input_file = 'challenges/inputs/'+input_file
+		self.description_file = 'challenges/descriptions/'+description_file
+
 
 challenges = {}
-challenges['baby_elevator'] = {'problem': 'challenges/descriptions/baby_elevator.txt',
-								'inputs': 'challenges/inputs/baby_elevator.txt',
-								'name': 'Baby Elevator'}
-challenges['like_a_gauss'] =  {'problem': 'challenges/descriptions/like_a_gauss.txt',
-								'inputs': 'challenges/inputs/like_a_gauss.txt',
-								'name': 'Like a Gawse'}
-challenges['long_and_hard'] =  {'problem': 'challenges/descriptions/long_and_hard.txt',
-								'inputs': 'challenges/inputs/long_and_hard.txt',
-								'name': 'Long and Hard'}	
-challenges['antsy'] =  {'problem': 'challenges/descriptions/antsy.txt',
-								'inputs': 'challenges/inputs/antsy.txt',
-								'name': 'Ansty'}
-challenges['greenie'] =  {'problem': 'challenges/descriptions/greenie.txt',
-								'inputs': 'challenges/inputs/greenie.txt',
-								'name': 'Greenie'}															
-challenges['hippies'] =  {'problem': 'challenges/descriptions/hippies.txt',
-								'inputs': 'challenges/inputs/hippies.txt',
-								'name': 'Hippies'}
-challenges['real_life'] =  {'problem': 'challenges/descriptions/real_life.txt',
-								'inputs': 'challenges/inputs/real_life.txt',
-								'name': 'Real Life'}
-challenges['amurica'] =  {'problem': 'challenges/descriptions/amurica.txt',
-								'inputs': 'challenges/inputs/amurica.txt',
-								'name': 'Amurica'}
-challenges['hwat'] =  {'problem': 'challenges/descriptions/hwat.txt',
-								'inputs': 'challenges/inputs/hwat.txt',
-								'name': 'HWAT?'}
+challenges['baby_elevator'] = Challenge('Baby Elevator', 'baby_elevator.txt', 'baby_elevator.txt', 'baby_elevator')
+challenges['like_a_gauss'] = Challenge('Like A Gauss', 'like_a_gauss.txt', 'like_a_gauss.txt', 'like_a_gauss')
+challenges['long_and_hard'] = Challenge('Long and Hard', 'long_and_hard.txt', 'long_and_hard.txt', 'long_and_hard')
+challenges['antsy'] = Challenge('Antsy', 'antsy.txt', 'antsy.txt', 'antsy')
+challenges['greenie'] = Challenge('Greenie', 'greenie.txt', 'greenie.txt', 'greenie')
+challenges['hippies'] = Challenge('Hippies', 'hippies.txt', 'hippies.txt', 'hippies')
+challenges['amurica'] = Challenge('Amurica', 'amurica.txt', 'amurica.txt', 'amurica')
+challenges['real_life'] = Challenge('Real Life', 'real_life.txt', 'real_life.txt', 'real_life')
+
+
 challenge_keys =['baby_elevator', 'like_a_gauss', 'long_and_hard',
-				'amurica', 'antsy', 'greenie', 'hippies', 'real_life' , 'hwat']
+				'amurica', 'antsy', 'greenie', 'hippies', 'real_life']
 
 
 committee_names = ['Community Service', 'Consulting', 'Finance', 'Marketing', 'Historian', 'Publications', 

@@ -260,6 +260,7 @@ $(document).ready(function(){
 #main-content-div{
 	top:50px;
 }
+
 #navbar{
 	position:relative;
 }
@@ -284,33 +285,23 @@ $(document).ready(function(){
 
 	<nav id = 'navbar' class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
                 <a class='navbar-brand' href= '/'>Back to Scoreboard</a>
                 {% for challenge in challenge_keys %}
-                <a class = 'navbar-brand' href='/visualize?challenge={{challenge}}'>{{challenges[challenge]['name']}}</a>
+                <a class = 'navbar-brand' href='/visualize?challenge={{challenge}}'>{{challenges[challenge].name}}</a>
                 {% endfor %}
-                <!-- <a class="navbar-brand" href="/visualize?challenge=baby_elevator">Baby Elevator</a>
-                <a class="navbar-brand" href="/visualize?challenge=like_a_gauss">Like a Gauss</a>
-                <a class="navbar-brand" href="/visualize?challenge=long_and_hard">Long and Hard</a>
-                <a class="navbar-brand" href="">Antsy</a>
-                <a class="navbar-brand" href="#">Greenie</a>
-                <a class="navbar-brand" href="#">Hippies</a>
-                <a class="navbar-brand" href="#">Real Life</a>
-                <a class="navbar-brand" href="#">Hwat</a> -->
             </div>
         </div>
-        <!-- /.container -->
     </nav>
 <div id = 'main-content-div'>
 
 	<h1 style = 'text-align:center'>[WD] Elevator Challenge: {{challenge_name}}</h1>
 
 	<div class = 'jumbotron'><p id='description-p' class = 'description'>{% autoescape false %}{{description}}{% endautoescape %}</p>
-		<button id = 'submit-btn' class = 'btn btn-default'>Submit Solution to {{challenge_name}}</button>
+		<a href= "/submit_page?challenge={{challenge.alias}}">Submit a Solution to {{challenge.name}}</a> | <a href = '#'>Download Input File</a> | <a href = '#'>View Leaderboard for {{challenge.name}}</a>
 	</div>
 
 	<div class = 'col-md-4 info-div'>
@@ -320,12 +311,6 @@ $(document).ready(function(){
 	
 		<input id = 'moves-input' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 1 commands here' value='{{solution[0]}}'></input>
 		<input id = 'moves-input2' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 2 commands here' value = '{{solution[1]}}'></input>
-
-		
-		<!-- <h3>Elevator 1 Instructions <span id ='e1'></span></h3>
-		<div id = 'elevator-1-instructions'></div>
-		<h3>Elevator 2 Instructions <span id ='e2'></span></h3>
-		<div id = 'elevator-2-instructions'></div> -->
 	</div>
 
 	<div class = 'elevators col-md-2'>

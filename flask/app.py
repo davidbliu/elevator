@@ -18,7 +18,8 @@ def read_challenge_description(filename):
 		return 'no description'
 @app.route("/")
 def home():
-	return render_template('home.html', committee_names = committee_names)
+	return render_template('home.html', committee_names = committee_names,
+										challenge_names = challenge_keys)
 
 @app.route("/help")
 def help():
@@ -28,10 +29,10 @@ def help():
 def visualize():
 	challenge = request.args.get('challenge')
 	challenge = challenges[challenge]
-	challenge_file = challenge['inputs']
-	challenge_description = read_challenge_description(challenge['problem'])
+	challenge_file = challenge.input_file
+	challenge_description = read_challenge_description(challenge.description_file)
 	challenge_description = challenge_description.replace('\n','<br>\n')
-	challenge_name = challenge['name']
+	challenge_name = challenge.name
 	challenge_requests = load_requests(challenge_file)
 	my_requests = [{'name':r.name, 
 				 'floor1':r.floor1,
@@ -39,13 +40,21 @@ def visualize():
 				 'time':r.time,
 				 'direction':r.dir()} for r in challenge_requests]
 	solution = get_naive_solution(challenge_requests)
-	print challenge_description
 	return render_template('animation.html', requests = my_requests,
+											challenge = challenge,
 											 solution = solution,
 											 description = challenge_description,
 											 challenge_name = challenge_name,
 											 challenges = challenges,
 											 challenge_keys = challenge_keys)
+@app.route('/submit_page', methods=['GET'])
+def submit_page():
+	challenge = request.args.get('challenge')
+	challenge = challenges[challenge]
+	return render_template('submit_page.html', challenge = challenge)
+@app.route('/submit', methods=['POST'])
+def submit():
+	return ''
 
 @app.route('/challenge', methods=['GET'])
 def challenge():
