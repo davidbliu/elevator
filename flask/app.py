@@ -32,6 +32,8 @@ challenges['hwat'] =  {'problem': 'challenges/hwat.txt',
 								'name': 'HWAT?'}
 challenge_keys =['baby_elevator', 'like_a_gauss', 'long_and_hard',
 				'antsy', 'greenie', 'hippies', 'real_life' , 'hwat']
+
+
 def read_challenge_description(filename):
 	try:
 		description = ''
@@ -53,7 +55,6 @@ def visualize():
 	challenge_file = challenge['inputs']
 	challenge_description = read_challenge_description(challenge['problem'])
 	challenge_name = challenge['name']
-	print 'that was my challenge file'
 	challenge_requests = load_requests(challenge_file)
 	my_requests = [{'name':r.name, 
 				 'floor1':r.floor1,
