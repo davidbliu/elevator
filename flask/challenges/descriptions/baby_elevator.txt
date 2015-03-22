@@ -1,0 +1,5 @@
+This is a baby elevator, so there are only 5 request to fulfill! 
+We recommend drawing out the situation; start with an easy-to-understand algorithm and see how it performs!
+
+Scoring:
+minimize this amount of time each person has to wait between requesting an elevator and being delivered to their floor

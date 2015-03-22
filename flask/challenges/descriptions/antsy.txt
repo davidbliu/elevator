@@ -1,0 +1,4 @@
+Your passengers today need to go take a chill pill. Everyone is super upset and you don't think it would be wise to upset them further. Try designing an elevator algorithm that minimizes the time that people need to wait before getting on an elevator. Once people have boarded their elevator they tend to calm down so try not to make them wait too long!
+
+Scoring for this problem:
+

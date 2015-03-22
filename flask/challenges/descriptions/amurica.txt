@@ -1,0 +1,7 @@
+You live in Amurica and everyone is PHAT. 
+Your elevator can only hold a max of 5 people, otherwise it will be sad :_( 
+Wat do?
+
+Scoring:
+-10*(num people past capacity) for every second elevator is over capacity
+

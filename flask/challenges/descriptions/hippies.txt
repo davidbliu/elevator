@@ -1,0 +1,3 @@
+You run an elevator business in Berkeley and you noticed your passengers are all FREAKING HIPPIES. They dont care how long they need to wait for the elevator or how long they end up staying inside. You want to go home, however. Try minimizing the total time it takes to serve everyone!
+
+Scoring for this problem:

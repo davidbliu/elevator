@@ -101,7 +101,7 @@ function handleIdle(elevator){
 			requests.push(req);
 		}
 	}
-	// get new requests
+	// get new requests and push then into elevator
 	new_requests = [];
 	request_pool = [];
 	for(r in REQUESTS){
@@ -187,9 +187,18 @@ function step(){
 	// e_text =  $('#elevator-2-instructions').text()+instruction;
 	// $('#elevator-2-instructions').text(e_text);
 	time += 1;
+	activateRequests();
 	$('#time').text(time);
-
-
+}
+function activateRequests(){
+	$('.request-div').each(function(){
+		req_time = parseInt($(this).text().split(":")[0]);
+		console.log(req_time);
+		if(req_time <= time && $(this).hasClass('inactive-request')){
+			$(this).removeClass('inactive-request');
+			$(this).addClass('active-request');
+		}
+	});
 }
 $(document).ready(function(){
 	
@@ -210,6 +219,12 @@ $(document).ready(function(){
 </script>
 
 <style type = 'text/css'>
+.active-request{
+	opacity: 1;
+}
+.inactive-request{
+	opacity: 0.5;
+}
 .elevator{
 	left: 15px;
 	top:13px;
@@ -252,9 +267,13 @@ $(document).ready(function(){
 	margin-left: 50px;
 	margin-right: 50px;
 	font-size: 15px;
+	text-align: center;
 }
 .request-div{
 	font-size:10px;
+}
+.jumbotron{
+	text-align:center;
 }
 </style>
 
@@ -290,7 +309,9 @@ $(document).ready(function(){
 
 	<h1 style = 'text-align:center'>[WD] Elevator Challenge: {{challenge_name}}</h1>
 
-	<div class = 'jumbotron'><p id='description-p' class = 'description'>{{description}}</p></div>
+	<div class = 'jumbotron'><p id='description-p' class = 'description'>{% autoescape false %}{{description}}{% endautoescape %}</p>
+		<button id = 'submit-btn' class = 'btn btn-default'>Submit Solution to {{challenge_name}}</button>
+	</div>
 
 	<div class = 'col-md-4 info-div'>
 		<h3>Time: <span id ='time'>0</span></h3>
@@ -300,7 +321,7 @@ $(document).ready(function(){
 		<input id = 'moves-input' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 1 commands here' value='{{solution[0]}}'></input>
 		<input id = 'moves-input2' type = 'text' class = 'form-control elevator-input' placeholder = 'Enter elevator 2 commands here' value = '{{solution[1]}}'></input>
 
-		<button id = 'submit-btn' class = 'btn btn-default'>Score This Input</button>
+		
 		<!-- <h3>Elevator 1 Instructions <span id ='e1'></span></h3>
 		<div id = 'elevator-1-instructions'></div>
 		<h3>Elevator 2 Instructions <span id ='e2'></span></h3>
@@ -316,7 +337,7 @@ $(document).ready(function(){
 		<h2>Requests</h2>
 		<div id = 'request-container'>
 		{% for request in requests %}
-		<div class = 'request-div' id = '{{request.name}}'>{{request.time}}: {{request.name}} {{request.floor1}} to {{request.floor2}}</div>
+		<div class = 'request-div inactive-request' id = '{{request.name}}'>{{request.time}}: {{request.name}} {{request.floor1}} to {{request.floor2}}</div>
 		{% endfor %}
 		</div>
 		<h2>Elevator 1</h2>

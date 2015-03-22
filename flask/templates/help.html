@@ -25,8 +25,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">[PBL][IN]Challenge</a>
-                <a class="navbar-brand" href="/help">Help</a>
+                <a class="navbar-brand" href="/">Back to Homepage</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -49,44 +48,33 @@
 
     <!-- Page Content -->
     <div class="container">
+        <h1>Problem Description</h1>
+        <p>You are a rich business dude/diva and have too much money to spend so you decide to build elevators!
 
-        <div class="row">
-            <div class="col-md-6 text-center">
-                <div class="jumbotron">
-                  <h1>[WD] Elevator Apprentice Challenge</h1>
-                  <p class="lead">Problem: Design the best elevator system!</p></p>
-                  <p><a class="btn btn-primary btn-lg" href="/visualize?challenge=baby_elevator" role="button">Enter Challenge Arena</a></p>
-                </div>
-              
-    
-            </div>
-            <div class = 'col-md-6'>
+        You've created a new, simple kind of elevator that only does three things: idle, move, and switch.
+        </p>
 
-            </div>
+        <h1>Terminology</h1>
+        <ul>
+            <li><b>Request: </b>When customers want to be delivered from floor A to floor B they make a request for an elevator. Their request consists of 4 important pieces of information: name, floor A, floor B, and time (the time they requested to be delivered from their start floor to their end floor)</li>
+            <li><b>Elevators</b>
+                <ol>
+                    <li>Idle</li>
+                    <li>Move</li>
+                    <li>Switch</li>
+                </ol>
+            </li>
+            <li><b>Request: </b>When customers want to be delivered from floor A to floor B they make a request for an elevator. Their request consists of 4 important pieces of information: name, floor A, floor B, and time (the time they requested to be delivered from their start floor to their end floor)</li>
+        </ul>
+        <h1>Visualization</h1>
+        <p>We've provided a helpful visualization to help you see how your algorithm performs. Heres how it works:<p>
+            <ul>
+                <li>Press enter to execute another instruction. You will see the timestep advance by one</li>
+            </ul>
+        <h1>Suggestions</h1>
+        <h1>Resources</h1>
 
 
-            <div class="col-md-6 text-center">
-                <div class="col-md-6 text-center">
-                    <h2>Teams</h2>
-                    <ol>
-                    {% for cname in committee_names %}
-                    <li>{{cname}}</li>
-                    {% endfor %}
-                    </ol>
-                </div>
-                <div class="col-md-3 text-center">
-                    <h2>Your Scores</h2>
-                    <p class="lead">Completed Task 1:</p>
-                    <p class="lead">Completed Task 2:</p>
-                    <p class="lead">Completed Task 3:</p>
-                    <p class="lead">Completed Task 4:</p>
-                    <p class="lead">Completed Task 5:</p>
-                </div>
-          
-                
-            </div>
-        </div>
-        <!-- /.row -->
 
     </div>
     <!-- /.container -->

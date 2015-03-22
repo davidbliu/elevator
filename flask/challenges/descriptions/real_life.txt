@@ -1,0 +1,9 @@
+Are you ready to solve a real life elevator problem?
+We will model this problem as closely to a real life elevator as possible :)
+
+Scoring:
+(minimize score)
++1 for each second a person has to wait to get on elevator
++2 for each second a person has to wait on the elevator
++0.5 for each move an elevator has to make
+-Square norm of all peoples' wait times (punishes large values)

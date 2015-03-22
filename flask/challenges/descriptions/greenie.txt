@@ -1,0 +1,1 @@
+You are a greenie and it pains you to see electricity go to waste. Design an elevator algorithm that can transport passengers with minimal electricity costs. Elevators only require electricity when moving up, so try to use as few moves upward as possible!
