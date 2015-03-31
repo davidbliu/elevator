@@ -32,7 +32,7 @@ $('#submit-btn').click(function(){
           data: {"elevator1": $('#elevator-1-input').val(),
                 "elevator2":$('#elevator-2-input').val()}
         }).done(function(data){
-            $('#results-div').text(data);
+            $('#results-div').html(data);
         }).fail(function(data){
             alert('failed');
         }); 

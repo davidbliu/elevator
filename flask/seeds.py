@@ -26,8 +26,9 @@ class Request:
 
 
 class Committee:
-	def __init__(self, name):
+	def __init__(self, name, cid, password = 'asdf'):
 		self.name = name
+		self.id = cid
 	def total_score(self):
 		return 10
 

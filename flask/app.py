@@ -62,10 +62,11 @@ def submit():
 	#
 	# grade these instructions
 	#
-	challenge_requests = challenge.requests()
-	check_moves(elevator_1_instructions, challenge_requests, Elevator())
-	print len(challenge_requests)
-	return 'hello'
+	solution = [elevator_1_instructions, elevator_2_instructions]
+	# challenge_requests = challenge.requests()
+	# check_moves(elevator_1_instructions, challenge_requests, Elevator())
+	solution_stats = get_solution_stats(solution, challenge)
+	return render_template('results.html', stats = solution_stats)
 
 @app.route('/view_input', methods = ['GET'])
 def view_input():
@@ -90,4 +91,7 @@ def score_challenge():
 
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	host = 'localhost'
+	port = 5130
+
+	app.run(host = host, port = port, debug=True)

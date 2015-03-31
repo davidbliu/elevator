@@ -1,0 +1,7 @@
+<h3>Here are your results!</h3>
+
+<ul class = 'list-group'>
+{% for key in stats.keys() %}
+<li class = 'list-group-item'><b>{{key}}</b> {{stats[key]}}</li>
+{% endfor %}
+</ul>

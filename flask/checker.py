@@ -55,40 +55,101 @@ def make_move(move, time,  elevator, requests):
 		# check if people need to get in or out of elevator
 		data = elevator.idle(time, requests)
 		requests = data['new_pool']
-		for f in data['fulfilled']:
-			print f.name + ' got dropped off at time '+str(time)
-			print '     total time: '+str(f.total_time())+' time in elevator: '+str(f.time_in_elevator())
+		# for f in data['fulfilled']:
+		# 	print f.name + ' got dropped off at time '+str(time)
+		# 	print '     total time: '+str(f.total_time())+' time in elevator: '+str(f.time_in_elevator())
 	if move == 's':
 		elevator.direction *= -1
 	return requests
 
- 
-
+def check_solution(moves, requests, elevators):
+	assert len(moves)==len(elevators)
+	time = 0
+	for i in range(max(len(moves[1]), len(moves[0]))):
+		# allow each elevator to move once
+		for i in range(0, len(moves)):
+			movelist = moves[i]
+			elevator = elevators[i]
+			if time < len(movelist):
+				move = movelist[time]
+				requests = make_move(move, time, elevator, requests)
+		time += 1
 def test_solution(solution, challenge):
-	print 'testing your solution'
 	challenge_requests = challenge.requests()
 	e1_instructions = solution[0]
 	e2_instructions = solution[1]
 	e1_instructions = 'iimmmmmmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmismmmimmmmmmmmmismmmmmmmmmmmmmmmmmmsimmmmmmmismimmmmmmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmi'
 	e2_instructions = 'iiiiiiiiiiiiiiiiiiiiimmmmimmmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmimmmmmmmmsimmmmmimmmmmmmmmmmsimmmmmmmmmmmmmismmmmmmmmmmsimmmmmmmmmi'
-	max_time = max(len(e1_instructions), len(e2_instructions))
 	e1 = Elevator('1')
 	e2 = Elevator('2')
-	check_moves(e1_instructions, challenge_requests, e1)
-	# remove handled requests
-	remaining_requests = [r for r in challenge_requests if not r.fulfilled()]
-	check_moves(e2_instructions, remaining_requests, e2)
+	moves = [e1_instructions, e2_instructions]
+	elevators = [e1, e2]
+	check_solution(moves, challenge_requests, elevators)
 
-	print 'here are some lengths you should know'
-	for req in challenge_requests:
-		outstring = req.name+' spent '
-		outstring += str(req.time_in_elevator())
-		outstring += ' waited '+str(req.total_time())
-		outstring += ' in '+str(req.elevator)
-		print outstring
+	# print 'here are some lengths you should know'
+	# for req in challenge_requests:
+	# 	outstring = req.name+' spent '
+	# 	outstring += str(req.time_in_elevator())
+	# 	outstring += ' waited '+str(req.total_time())
+	# 	outstring += ' in '+str(req.elevator)
+	# 	print outstring
 	return e1.fulfilled_requests+e2.fulfilled_requests
 
+def get_solution_stats(solution, challenge):
+	fulfilled_requests = test_solution(solution, challenge)
+	length = len(fulfilled_requests)
+	wait_times_for_elevator = [(x.total_time()-x.time_in_elevator()) for x in fulfilled_requests]
+	avg_wait_time_for_elevator = sum(wait_times_for_elevator)/float(length)
+	max_wait_time_for_elevator = max(wait_times_for_elevator)
+	min_wait_time_for_elevator = min(wait_times_for_elevator)
 
+	total_times = [x.total_time() for x in fulfilled_requests]
+	avg_total_time = sum(total_times)/float(length)
+	max_total_time = max(total_times)
+	min_total_time = min(total_times)
+
+	elevator_times = [x.time_in_elevator() for x in fulfilled_requests]
+	avg_elevator_time = sum(elevator_times)/float(length)
+	max_elevator_time = max(elevator_times)
+	min_elevator_time = min(elevator_times)
+
+	stats = {}
+
+	stats['avg_elevator_time'] = avg_elevator_time
+	stats['max_elevator_time'] = max_elevator_time
+	stats['min_elevator_time'] = min_elevator_time
+
+	stats['avg_total_time'] = avg_total_time
+	stats['max_total_time'] = max_total_time
+	stats['min_total_time'] = min_total_time
+
+	stats['avg_wait_time_for_elevator'] = avg_wait_time_for_elevator
+	stats['max_wait_time_for_elevator'] = max_wait_time_for_elevator
+	stats['min_wait_time_for_elevator'] = min_wait_time_for_elevator
+
+	print 'here are some stats:'
+	print ''
+
+	print '    average wait time '+str(avg_wait_time_for_elevator)
+	print '    max wait time '+str(max_wait_time_for_elevator)
+	print '    min wait time '+str(min_wait_time_for_elevator) 
+	print ''
+
+	print '    average total time '+str(avg_total_time)
+	print '    max total time '+str(max_total_time)
+	print '    min total time '+str(min_total_time)
+	print ''
+
+	print '    average elevator time '+str(avg_elevator_time)
+	print '    max elevator time '+str(max_elevator_time)
+	print '    min elevator time '+str(min_elevator_time)
+	print ''
+
+	return stats
+
+if __name__ == "__main__":
+	results = get_solution_stats([1,1], challenges['baby_elevator'])
+	print results
 
 
 	
