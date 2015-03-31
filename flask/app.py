@@ -16,6 +16,7 @@ def read_challenge_description(filename):
 		return description
 	except:
 		return 'no description'
+		
 @app.route("/")
 def home():
 	return render_template('home.html', committee_names = committee_names,
@@ -54,14 +55,37 @@ def submit_page():
 	return render_template('submit_page.html', challenge = challenge)
 @app.route('/submit', methods=['POST'])
 def submit():
-	return ''
+	challenge = request.args.get('challenge')
+	challenge = challenges[challenge]
+	elevator_1_instructions = request.form['elevator1']
+	elevator_2_instructions = request.form['elevator2']
+	#
+	# grade these instructions
+	#
+	challenge_requests = challenge.requests()
+	check_moves(elevator_1_instructions, challenge_requests, Elevator())
+	print len(challenge_requests)
+	return 'hello'
+
+@app.route('/view_input', methods = ['GET'])
+def view_input():
+	challenge = request.args.get('challenge')
+	challenge = challenges[challenge]
+	lines = read_challenge_description(challenge.input_file)
+	lines = lines.replace('\n','<br>\n')
+	return lines
 
 @app.route('/challenge', methods=['GET'])
 def challenge():
 	return 'visiting challenge page'
 
-@app.route('/score_challenge', methods=['POST'])
+@app.route('/score_challenge', methods=['GET'])
 def score_challenge():
+	# challenge = request.args.get('challenge')
+	challenge = 'baby_elevator'
+	challenge = challenges[challenge]
+	solution = get_naive_solution(challenge.requests())
+	results = test_solution(solution, challenge)
 	return 'your result has been scored'
 
 

@@ -6,7 +6,8 @@
     <title>WD Elevator Challenge</title>
     <link rel="stylesheet" href="{{
       url_for('static', filename='bootstrap.min.css') }}">
-
+    <script type='text/javascript' src="{{
+  url_for('static', filename='jquery.min.js') }}"></script>
     <style>
     body {
         padding-top: 70px;
@@ -14,7 +15,30 @@
     }
     </style>
 </head>
+<style type = 'text/css'>
+.small-input{
+    width:300px;
+    float: left;
+}
+</style>
 
+<script type = 'text/javascript'>
+$(document).ready(function(){
+$('#submit-btn').click(function(){
+    //warn them that this will replace their previous submission
+    $.ajax({
+          url:'/submit?challenge={{challenge.alias}}',
+          type: "POST",
+          data: {"elevator1": $('#elevator-1-input').val(),
+                "elevator2":$('#elevator-2-input').val()}
+        }).done(function(data){
+            $('#results-div').text(data);
+        }).fail(function(data){
+            alert('failed');
+        }); 
+});
+});
+</script>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -30,17 +54,7 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-<!--                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul> -->
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -51,7 +65,19 @@
     <div class="container">
         <h1>Submit Solution to {{challenge.name}}</h1>
     
+        <input id = 'elevator-1-input' type = 'text' placeholder = 'Enter Elevator 1 Instructions Here' class = 'form-control'></input>
+        <br>
+        <input id = 'elevator-2-input' type = 'text' placeholder = 'Enter Elevator 2 Instructions Here' class = 'form-control'></input>
+        <br>
+        <div class = 'form-group'>
+        <input id = 'username-input' type = 'text' placeholder = 'username' class = 'form-control small-input'></input>
+        <input id = 'password-input' type = 'text' placeholder = 'password' class = 'form-control small-input'></input>
+        <button class = 'btn btn-default' id = 'submit-btn'>Score This Solution</button>
+        </div>
+        
 
+        <h1>Results</h1>
+        <div class = 'results-div' id = 'results-div'></div>
 
     </div>
     <!-- /.container -->

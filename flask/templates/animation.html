@@ -1,3 +1,6 @@
+<head>
+	<title>WD Elevator Challenge</title>
+</head>
 <script type='text/javascript' src="{{
   url_for('static', filename='jquery.min.js') }}"></script>
 <link rel="stylesheet" href="{{
@@ -301,7 +304,7 @@ $(document).ready(function(){
 	<h1 style = 'text-align:center'>[WD] Elevator Challenge: {{challenge_name}}</h1>
 
 	<div class = 'jumbotron'><p id='description-p' class = 'description'>{% autoescape false %}{{description}}{% endautoescape %}</p>
-		<a href= "/submit_page?challenge={{challenge.alias}}">Submit a Solution to {{challenge.name}}</a> | <a href = '#'>Download Input File</a> | <a href = '#'>View Leaderboard for {{challenge.name}}</a>
+		<a href= "/submit_page?challenge={{challenge.alias}}">Submit a Solution to {{challenge.name}}</a> | <a href = '/view_input?challenge={{challenge.alias}}'>Download Input File</a> | <a href = '#'>View Leaderboard for {{challenge.name}}</a>
 	</div>
 
 	<div class = 'col-md-4 info-div'>
