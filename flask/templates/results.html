@@ -1,5 +1,18 @@
-<h3>Here are your results!</h3>
+<style type = 'text/css'>
+.green{
+	color:green;
+}
+.red{
+	color:red;
+}
+</style>
 
+<h3>Here are your results!</h3>
+{% if not stats['completed'] %}
+<h4 class = 'red'>Not all requests were completed</h4>
+{% else %}
+<h4 class = 'green'>Challenge Completed</h4>
+{% endif %}
 <ul class = 'list-group'>
 {% for key in stats.keys() %}
 <li class = 'list-group-item'><b>{{key}}</b> {{stats[key]}}</li>

@@ -41,13 +41,18 @@ def load_requests(filename):
 			rs.append(req)
 	return rs
 
-### check inputted move sequence to see if valid
-# assume use of only one elevator
-def check_moves(moves, requests, elevator):
-	time = 0
+def moves_are_valid(moves):
+	floor = 0
+	direction = 1
 	for move in moves:
-		requests = make_move(move, time, elevator, requests)
-		time += 1
+		if move == 'm':
+			floor += direction
+		if move == 's':
+			direction *= -1
+		if floor < 0 or floor > Elevator.maxfloor:
+			return False
+	return True
+
 def make_move(move, time,  elevator, requests):
 	if move == 'm':
 		elevator.move()
@@ -73,31 +78,43 @@ def check_solution(moves, requests, elevators):
 			if time < len(movelist):
 				move = movelist[time]
 				requests = make_move(move, time, elevator, requests)
-		time += 1
+		time += 1 
+
+#
+# returns fulfilled requests
+#
 def test_solution(solution, challenge):
 	challenge_requests = challenge.requests()
 	e1_instructions = solution[0]
 	e2_instructions = solution[1]
-	e1_instructions = 'iimmmmmmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmismmmimmmmmmmmmismmmmmmmmmmmmmmmmmmsimmmmmmmismimmmmmmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmi'
-	e2_instructions = 'iiiiiiiiiiiiiiiiiiiiimmmmimmmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmimmmmmmmmsimmmmmimmmmmmmmmmmsimmmmmmmmmmmmmismmmmmmmmmmsimmmmmmmmmi'
 	e1 = Elevator('1')
 	e2 = Elevator('2')
-	moves = [e1_instructions, e2_instructions]
-	elevators = [e1, e2]
-	check_solution(moves, challenge_requests, elevators)
 
-	# print 'here are some lengths you should know'
-	# for req in challenge_requests:
-	# 	outstring = req.name+' spent '
-	# 	outstring += str(req.time_in_elevator())
-	# 	outstring += ' waited '+str(req.total_time())
-	# 	outstring += ' in '+str(req.elevator)
-	# 	print outstring
+	# e1_instructions = 'iimmmmmmmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmmmmismmmimmmmmmmmmismmmmmmmmmmmmmmmmmmsimmmmmmmismimmmmmmismmmmmmmmmmmmmsimmmmmmmmmmmmmmmmi'
+	# e2_instructions = 'iiiiiiiiiiiiiiiiiiiiimmmmimmmmmmmmmmmmmmmmismmmmmmmmmmmmmmmmmmmsimmmmmmmmmmmimmmmmmmmsimmmmmimmmmmmmmmmmsimmmmmmmmmmmmmismmmmmmmmmmsimmmmmmmmmi'
+	if(not moves_are_valid(e1_instructions) or not moves_are_valid(e2_instructions)):
+		print 'moves are not valid' 
+	else:
+	
+		moves = [e1_instructions, e2_instructions]
+		elevators = [e1, e2]
+		check_solution(moves, challenge_requests, elevators)
+
 	return e1.fulfilled_requests+e2.fulfilled_requests
 
 def get_solution_stats(solution, challenge):
+
+	if(not moves_are_valid(solution[0]) and moves_are_valid(solution[1])):
+		return {'error_with_solution_bounds':'your solution went out of bounds! :('}
+	challenge_requests = challenge.requests()
 	fulfilled_requests = test_solution(solution, challenge)
+
+	print 'these are their lengths'
+	print len(challenge_requests)
+	print len(fulfilled_requests)
 	length = len(fulfilled_requests)
+	if length == 0:
+		return {'error_with_requests':'no requests were fulfilled'}
 	wait_times_for_elevator = [(x.total_time()-x.time_in_elevator()) for x in fulfilled_requests]
 	avg_wait_time_for_elevator = sum(wait_times_for_elevator)/float(length)
 	max_wait_time_for_elevator = max(wait_times_for_elevator)
@@ -114,6 +131,10 @@ def get_solution_stats(solution, challenge):
 	min_elevator_time = min(elevator_times)
 
 	stats = {}
+	stats['num_challenge_requests'] = len(challenge_requests)
+	stats['num_requests_fulfilled'] = length
+	stats['percent_requests_fulfilled'] = length/float(len(challenge_requests))
+	stats['completed'] = (length==len(challenge_requests))
 
 	stats['avg_elevator_time'] = avg_elevator_time
 	stats['max_elevator_time'] = max_elevator_time

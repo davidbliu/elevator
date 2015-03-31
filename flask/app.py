@@ -80,6 +80,7 @@ def view_input():
 def challenge():
 	return 'visiting challenge page'
 
+"""
 @app.route('/score_challenge', methods=['GET'])
 def score_challenge():
 	# challenge = request.args.get('challenge')
@@ -88,6 +89,7 @@ def score_challenge():
 	solution = get_naive_solution(challenge.requests())
 	results = test_solution(solution, challenge)
 	return 'your result has been scored'
+"""
 
 
 if __name__ == "__main__":
