@@ -59,9 +59,12 @@ class Challenge:
 						int(splits[-1]))
 				rs.append(req)
 		return rs
+	def description(self):
+		with open(self.description_file, 'r') as ifile:
+			return ifile.read()
 
 challenges = {}
-challenges['baby_elevator'] = Challenge('Baby Elevator', 'baby_elevator.txt', 'baby_elevator.txt', 'baby_elevator')
+challenges['baby_elevator'] = Challenge('Baby Elevator', 'baby_elevator.txt', 'baby_elevator.html', 'baby_elevator')
 challenges['like_a_gauss'] = Challenge('Like A Gauss', 'like_a_gauss.txt', 'like_a_gauss.txt', 'like_a_gauss')
 challenges['long_and_hard'] = Challenge('Long and Hard', 'long_and_hard.txt', 'long_and_hard.txt', 'long_and_hard')
 challenges['antsy'] = Challenge('Antsy', 'antsy.txt', 'antsy.txt', 'antsy')

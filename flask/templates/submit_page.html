@@ -62,7 +62,7 @@ $('#submit-btn').click(function(){
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="col-md-5">
         <h1>Submit Solution to {{challenge.name}}</h1>
     
         <input id = 'elevator-1-input' type = 'text' placeholder = 'Enter Elevator 1 Instructions Here' class = 'form-control'></input>
@@ -75,12 +75,16 @@ $('#submit-btn').click(function(){
         <button class = 'btn btn-default' id = 'submit-btn'>Score This Solution</button>
         </div>
         
-
-        <h1>Results</h1>
-        <div class = 'results-div' id = 'results-div'></div>
-
-    </div>
+     </div>
     <!-- /.container -->
+
+    <div class = 'col-md-6'></div>
+        <div class = 'col-md-6'>
+            <h1>Results</h1>
+            <div class = 'results-div' id = 'results-div'></div>
+        </div>
+
+   
 
 
 

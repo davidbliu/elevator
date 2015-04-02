@@ -277,6 +277,9 @@ $(document).ready(function(){
 	font-size:10px;
 }
 .jumbotron{
+	/*text-align:center;*/
+}
+.challenge-options-div{
 	text-align:center;
 }
 </style>
@@ -303,8 +306,10 @@ $(document).ready(function(){
 
 	<h1 style = 'text-align:center'>[WD] Elevator Challenge: {{challenge_name}}</h1>
 
-	<div class = 'jumbotron'><p id='description-p' class = 'description'>{% autoescape false %}{{description}}{% endautoescape %}</p>
+	<div class = 'jumbotron'><p id='description-p' class = 'description'>{% autoescape false %}{{challenge.description()}}{% endautoescape %}</p>
+		<div class = 'challenge-options-div'>
 		<a href= "/submit_page?challenge={{challenge.alias}}">Submit a Solution to {{challenge.name}}</a> | <a href = '/view_input?challenge={{challenge.alias}}'>Download Input File</a> | <a href = '#'>View Leaderboard for {{challenge.name}}</a>
+		</div><!-- end of challenge options div -->
 	</div>
 
 	<div class = 'col-md-4 info-div'>
