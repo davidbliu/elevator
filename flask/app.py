@@ -52,7 +52,9 @@ def visualize():
 def submit_page():
 	challenge = request.args.get('challenge')
 	challenge = challenges[challenge]
-	return render_template('submit_page.html', challenge = challenge)
+	naive_solution = get_naive_solution(challenge.requests())
+	return render_template('submit_page.html', challenge = challenge,
+												naive_solution  = naive_solution)
 @app.route('/submit', methods=['POST'])
 def submit():
 	challenge = request.args.get('challenge')
@@ -65,8 +67,31 @@ def submit():
 	solution = [elevator_1_instructions, elevator_2_instructions]
 	# challenge_requests = challenge.requests()
 	# check_moves(elevator_1_instructions, challenge_requests, Elevator())
-	solution_stats = get_solution_stats(solution, challenge)
-	return render_template('results.html', stats = solution_stats)
+	
+	soln_stats = get_solution_stats(solution, challenge)
+	solution_stats = soln_stats['stats']
+	solution_requests = soln_stats['requests']
+	return render_template('results.html', stats = solution_stats, requests = solution_requests)
+
+
+@app.route('/results', methods=['GET'])
+def results():
+	challenge = request.args.get('challenge')
+	challenge = challenges[challenge]
+	elevator_1_instructions = request.args.get('elevator1')
+	elevator_2_instructions = request.args.get('elevator2')
+	#
+	# grade these instructions
+	#
+	solution = [elevator_1_instructions, elevator_2_instructions]
+	# challenge_requests = challenge.requests()
+	# check_moves(elevator_1_instructions, challenge_requests, Elevator())
+	
+	soln_stats = get_solution_stats(solution, challenge)
+	solution_stats = soln_stats['stats']
+	solution_requests = soln_stats['requests']
+	return render_template('results.html', challenge = challenge,
+		stats = solution_stats, requests = solution_requests)
 
 @app.route('/view_input', methods = ['GET'])
 def view_input():
@@ -75,6 +100,18 @@ def view_input():
 	lines = read_challenge_description(challenge.input_file)
 	lines = lines.replace('\n','<br>\n')
 	return lines
+
+@app.route('/timeline', methods = ['GET'])
+def timeline():
+	challenge = 'long_and_hard'
+	challenge = challenges[challenge]
+	requests = challenge.requests()
+
+	solution = get_naive_solution(requests)
+	soln_stats = get_solution_stats(solution, challenge)
+	requests = soln_stats['requests']
+
+	return render_template('timeline.html', requests = requests)
 
 @app.route('/challenge', methods=['GET'])
 def challenge():

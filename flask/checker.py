@@ -18,6 +18,7 @@ class Elevator:
 		fulfilled_requests = [r for r in self.requests if r.floor2 == self.pos]
 		for r in fulfilled_requests:
 			r.time_exited = time
+			r.fulfilled = True
 		requests = [r for r in self.requests if r.floor2 != self.pos]
 		# get new requests
 		new_requests = [r for r in request_pool if r.floor1 == self.pos and r.dir() == self.direction and r.time <= time]
@@ -60,9 +61,6 @@ def make_move(move, time,  elevator, requests):
 		# check if people need to get in or out of elevator
 		data = elevator.idle(time, requests)
 		requests = data['new_pool']
-		# for f in data['fulfilled']:
-		# 	print f.name + ' got dropped off at time '+str(time)
-		# 	print '     total time: '+str(f.total_time())+' time in elevator: '+str(f.time_in_elevator())
 	if move == 's':
 		elevator.direction *= -1
 	return requests
@@ -79,7 +77,23 @@ def check_solution(moves, requests, elevators):
 				move = movelist[time]
 				requests = make_move(move, time, elevator, requests)
 		time += 1 
-
+	for request in requests:
+		print request.time_entered
+		print request.time_exited
+		print '......'
+		if request.time_exited == -1:
+			request.time_exited = time
+		if request.time_entered == -1:
+			request.time_entered = time
+	for elevator in elevators:
+		for request in elevator.requests:
+			print request.time_entered
+			print request.time_exited
+			print '......'
+			if request.time_exited == -1:
+				request.time_exited = time
+			if request.time_entered == -1:
+				request.time_entered = time
 #
 # returns fulfilled requests
 #
@@ -100,21 +114,24 @@ def test_solution(solution, challenge):
 		elevators = [e1, e2]
 		check_solution(moves, challenge_requests, elevators)
 
-	return e1.fulfilled_requests+e2.fulfilled_requests
+	# return e1.fulfilled_requests+e2.fulfilled_requests
+	return challenge_requests
 
 def get_solution_stats(solution, challenge):
 
 	if(not moves_are_valid(solution[0]) and moves_are_valid(solution[1])):
-		return {'error_with_solution_bounds':'your solution went out of bounds! :('}
+		stats = {'error_with_solution_bounds':'your solution went out of bounds! :('}
+		return {'requests':challenge.requests(), 'stats':stats}
 	challenge_requests = challenge.requests()
-	fulfilled_requests = test_solution(solution, challenge)
+	challenge_requests = test_solution(solution, challenge)
+	fulfilled_requests = [x for x in challenge_requests if x.fulfilled]
+	unfulfilled = [x for x in challenge_requests if x not in fulfilled_requests]
 
-	print 'these are their lengths'
-	print len(challenge_requests)
-	print len(fulfilled_requests)
+
 	length = len(fulfilled_requests)
 	if length == 0:
-		return {'error_with_requests':'no requests were fulfilled'}
+		stats =  {'error_with_requests':'no requests were fulfilled'}
+		return {'requests':challenge_requests, 'stats':stats}
 	wait_times_for_elevator = [(x.total_time()-x.time_in_elevator()) for x in fulfilled_requests]
 	avg_wait_time_for_elevator = sum(wait_times_for_elevator)/float(length)
 	max_wait_time_for_elevator = max(wait_times_for_elevator)
@@ -148,25 +165,10 @@ def get_solution_stats(solution, challenge):
 	stats['max_wait_time_for_elevator'] = max_wait_time_for_elevator
 	stats['min_wait_time_for_elevator'] = min_wait_time_for_elevator
 
-	print 'here are some stats:'
-	print ''
+	
+	
 
-	print '    average wait time '+str(avg_wait_time_for_elevator)
-	print '    max wait time '+str(max_wait_time_for_elevator)
-	print '    min wait time '+str(min_wait_time_for_elevator) 
-	print ''
-
-	print '    average total time '+str(avg_total_time)
-	print '    max total time '+str(max_total_time)
-	print '    min total time '+str(min_total_time)
-	print ''
-
-	print '    average elevator time '+str(avg_elevator_time)
-	print '    max elevator time '+str(max_elevator_time)
-	print '    min elevator time '+str(min_elevator_time)
-	print ''
-
-	return stats
+	return {'requests':challenge_requests, 'stats':stats}
 
 if __name__ == "__main__":
 	results = get_solution_stats([1,1], challenges['baby_elevator'])

@@ -25,17 +25,22 @@
 <script type = 'text/javascript'>
 $(document).ready(function(){
 $('#submit-btn').click(function(){
+
+    e1moves = $('#elevator-1-input').val();
+    e2moves = $('#elevator-2-input').val();
+    results_page = "/results?challenge={{challenge.alias}}&elevator1="+e1moves+"&elevator2="+e2moves;
+    window.location = results_page;
     //warn them that this will replace their previous submission
-    $.ajax({
-          url:'/submit?challenge={{challenge.alias}}',
-          type: "POST",
-          data: {"elevator1": $('#elevator-1-input').val(),
-                "elevator2":$('#elevator-2-input').val()}
-        }).done(function(data){
-            $('#results-div').html(data);
-        }).fail(function(data){
-            alert('failed');
-        }); 
+    // $.ajax({
+    //       url:'/submit?challenge={{challenge.alias}}',
+    //       type: "POST",
+    //       data: {"elevator1": $('#elevator-1-input').val(),
+    //             "elevator2":$('#elevator-2-input').val()}
+    //     }).done(function(data){
+    //         $('#results-div').html(data);
+    //     }).fail(function(data){
+    //         alert('failed');
+    //     }); 
 });
 });
 </script>
@@ -62,12 +67,12 @@ $('#submit-btn').click(function(){
     </nav>
 
     <!-- Page Content -->
-    <div class="col-md-5">
+    <div class = 'col-md-8'>
         <h1>Submit Solution to {{challenge.name}}</h1>
     
-        <input id = 'elevator-1-input' type = 'text' placeholder = 'Enter Elevator 1 Instructions Here' class = 'form-control'></input>
+        <input id = 'elevator-1-input' type = 'text' placeholder = 'Enter Elevator 1 Instructions Here' class = 'form-control' value = '{{naive_solution[0]}}'></input>
         <br>
-        <input id = 'elevator-2-input' type = 'text' placeholder = 'Enter Elevator 2 Instructions Here' class = 'form-control'></input>
+        <input id = 'elevator-2-input' type = 'text' placeholder = 'Enter Elevator 2 Instructions Here' class = 'form-control' value = '{{naive_solution[1]}}'></input>
         <br>
         <div class = 'form-group'>
         <input id = 'username-input' type = 'text' placeholder = 'username' class = 'form-control small-input'></input>
@@ -78,12 +83,12 @@ $('#submit-btn').click(function(){
      </div>
     <!-- /.container -->
 
-    <div class = 'col-md-6'></div>
+ <!--    <div class = 'col-md-6'></div>
         <div class = 'col-md-6'>
             <h1>Results</h1>
             <div class = 'results-div' id = 'results-div'></div>
         </div>
-
+ -->
    
 
 

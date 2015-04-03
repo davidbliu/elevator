@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="{{
+  url_for('static', filename='bootstrap.min.css') }}">
+  <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='d3.js')}}" charset="utf-8"></script>
+  <script src="{{ url_for('static', filename='d3-timeline.js')}}"></script>
+
+  <style type="text/css">
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+    }
+
+    .axis text {
+      font-family: sans-serif;
+      font-size: 10px;
+    }
+
+    .timeline-label {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+
+    #timeline2 .axis {
+      transform: translate(0px,30px);
+      -ms-transform: translate(0px,30px); /* IE 9 */
+      -webkit-transform: translate(0px,30px); /* Safari and Chrome */
+      -o-transform: translate(0px,30px); /* Opera */
+      -moz-transform: translate(0px,30px); /* Firefox */
+    }
+
+    .coloredDiv {
+      height:20px; width:20px; float:left;
+    }
+    text{
+    	font-size:10px;
+    	opacity:0;
+    }
+    text:hover{
+    	opacity:1;
+    }
+    text.timeline-label{
+    	opacity:1;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload = function() {
+      var width = 750;
+      var solutionData = [];
+      {% for request in requests %}
+      ts = [{"color": "Coral", "starting_time": {{request.time}}, "ending_time": {{request.time_entered}}, "label": "{{request.time}} to {{request.time_entered}}"},
+      		{"color": "CadetBlue", "starting_time": {{request.time_entered}}, "ending_time": {{request.time_exited}} , "label": "{{request.time_entered}} to {{request.time_exited}}"}];
+      req = {label: "{{request.name}}", times: ts};
+ 	  solutionData.push(req);
+ 	  {% endfor %}
+
+      function elevatorTimeline() {
+        var chart = d3.timeline()
+          .relativeTime()
+          .stack()
+          .margin({left:70, right:30, top:0, bottom:0});
+          // .beginning(1) // we can optionally add beginning and ending times to speed up rendering a little
+          // .ending(100)
+          // .stack() // toggles graph stacking
+          // .margin({left:70, right:30, top:0, bottom:0})
+          // ;
+        var svg = d3.select("#elevator-timeline").append("svg").attr("width", width)
+          .datum(solutionData).call(chart);
+      }
+
+      
+
+      elevatorTimeline();
+    }
+  </script>
+</head>
+<body>
+  <h1>Elevator Timeline Test</h1>
+  <div id = 'elevator-timeline'></div>
+</body>
+</html>

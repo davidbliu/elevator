@@ -33,4 +33,4 @@ def generate_uniform_input(length):
 		input_string = name + ' at floor '+str(floor_1)+' wants to go to floor '+str(floor_2)+' at time '+str(time)
 		print input_string
 
-generate_uniform_input(500)
+generate_uniform_input(15)

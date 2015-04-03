@@ -6,6 +6,7 @@ class Request:
 		self.time = time
 		self.time_entered = -1
 		self.time_exited = -1
+		self.fulfilled = False
 	def dir(self):
 		if self.floor2 > self.floor1:
 			return 1
@@ -18,10 +19,11 @@ class Request:
 		return self.time_exited - self.time
 
 	# check if request was fulfilled
-	def fulfilled(self):
-		if self.time_entered != -1 and self.time_exited != -1:
-			return True
-		return False
+	# def fulfilled(self):
+	# 	if self.time_entered != -1 and self.time_exited != -1:
+	# 		return True
+	# 	return False
+
 
 
 
@@ -62,6 +64,8 @@ class Challenge:
 	def description(self):
 		with open(self.description_file, 'r') as ifile:
 			return ifile.read()
+
+
 
 challenges = {}
 challenges['baby_elevator'] = Challenge('Baby Elevator', 'baby_elevator.txt', 'baby_elevator.html', 'baby_elevator')
