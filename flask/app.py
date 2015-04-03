@@ -5,7 +5,7 @@ app = Flask(__name__)
 from checker import *
 from naive import *
 from seeds import *
-
+import random
 
 def read_challenge_description(filename):
 	try:
@@ -19,8 +19,21 @@ def read_challenge_description(filename):
 		
 @app.route("/")
 def home():
+	scores = Score.Query.all()
+	names = [x.name for x in scores]
+	names = set(names)
+	names = list(names)
+
+	leaders = []
+
+	for name in names:
+		score = 0
+		score+=sum([x.score for x in scores if x.name == name])
+		leaders.append({'name':name, 'score':score, 'committee': 'no'})
+	leaders = sorted(leaders, key= lambda x: -1*x['score'])
 	return render_template('home.html', committee_names = committee_names,
-										challenge_names = challenge_keys)
+										challenge_names = challenge_keys,
+										scores = scores, leaders=leaders, leaderlen = len(leaders))
 
 @app.route("/help")
 def help():
@@ -90,8 +103,31 @@ def results():
 	soln_stats = get_solution_stats(solution, challenge)
 	solution_stats = soln_stats['stats']
 	solution_requests = soln_stats['requests']
+
+	# save this persons score
+	name = request.args.get('name')
+	password = request.args.get('password')
+	past_scores = Score.Query.filter(name = name)
+	if len(past_scores)!=0:
+		score = past_scores[0]
+		if score.pw != password:
+			return 'Wrong password entered!'
+	past_scores = Score.Query.filter(name=name, challenge=challenge.alias)
+	if len(past_scores)!=0:
+		score = past_scores[0]
+		score.score = random.randint(0, 500)
+	else:
+		score = Score(name=name, 
+					  committee='Historians', 
+					  score = random.randint(0, 500),
+					  challenge = challenge.alias,
+					  pw = password)
+
+	score.save()
 	return render_template('results.html', challenge = challenge,
 		stats = solution_stats, requests = solution_requests)
+
+
 
 @app.route('/view_input', methods = ['GET'])
 def view_input():

@@ -26,10 +26,18 @@
 $(document).ready(function(){
 $('#submit-btn').click(function(){
 
-    e1moves = $('#elevator-1-input').val();
-    e2moves = $('#elevator-2-input').val();
-    results_page = "/results?challenge={{challenge.alias}}&elevator1="+e1moves+"&elevator2="+e2moves;
-    window.location = results_page;
+    name = $("#username-input").val();
+    password = $("#password-input").val();
+    if(name == "" || password == ""){
+        alert('you must enter username and password');
+    }
+    else{
+        e1moves = $('#elevator-1-input').val();
+        e2moves = $('#elevator-2-input').val();
+        results_page = "/results?challenge={{challenge.alias}}&elevator1="+e1moves+"&elevator2="+e2moves+"&name="+name+"&password="+password;
+        window.location = results_page;
+
+    }
     //warn them that this will replace their previous submission
     // $.ajax({
     //       url:'/submit?challenge={{challenge.alias}}',

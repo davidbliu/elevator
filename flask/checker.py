@@ -1,5 +1,5 @@
 from seeds import *
-
+import random
 class Elevator:
 	maxfloor = 25
 	def __init__(self, name = "1"):
@@ -164,11 +164,13 @@ def get_solution_stats(solution, challenge):
 	stats['avg_wait_time_for_elevator'] = avg_wait_time_for_elevator
 	stats['max_wait_time_for_elevator'] = max_wait_time_for_elevator
 	stats['min_wait_time_for_elevator'] = min_wait_time_for_elevator
-
-	
 	
 
 	return {'requests':challenge_requests, 'stats':stats}
+
+
+def get_solution_score(solution, challenge):
+	return random.randint(0, 500)
 
 if __name__ == "__main__":
 	results = get_solution_stats([1,1], challenges['baby_elevator'])

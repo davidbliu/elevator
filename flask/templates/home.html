@@ -75,32 +75,19 @@
                         <th>Score</th>
                     </thead>
                     <tbody>
+                        {% for i in range(0, leaderlen) %}
                         <tr>
-                            <td>1</td>
-                            <td>David Liu</td>
-                            <td>Web Development</td>
-                            <td>513</td>
+                            <td>{{i}}</td>
+                            <td>{{leaders[i]['name']}}</td>
+                            <td>{{leaders[i]['committee']}}</td>
+                            <td>{{leaders[i]['score']}}</td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kevin Zhang</td>
-                            <td>Web Development</td>
-                            <td>837</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Eric Quach</td>
-                            <td>Web Development</td>
-                            <td>632</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Bob The Builder</td>
-                            <td>Historian</td>
-                            <td>111</td>
-                        </tr>
+                        {% endfor %}
+                       
                     </tbody>
                 </table>
+
+
                 <!-- <div class="col-md-6">
                     <h2>Leaderboard</h2>
                     <ol>

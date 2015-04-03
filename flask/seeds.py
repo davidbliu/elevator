@@ -1,3 +1,9 @@
+from parse_rest.datatypes import Object
+from parse_rest.connection import register
+
+application_id = 'r1fyuEduAW4upM4ZZJsz54iHpg6o7ZT6jWw0Z7We'
+client_key = 'K2mxfXT12kpvSm4p2rdRt8GU9ipUDaYTfwRsLinK'
+register(application_id, client_key)
 class Request:
 	def __init__(self, name, floor1, floor2, time):
 		self.name = name
@@ -24,7 +30,10 @@ class Request:
 	# 		return True
 	# 	return False
 
-
+"""Parse Objects Here"""
+class Score(Object):
+	pass
+	
 
 
 class Committee:
@@ -40,9 +49,6 @@ class User:
 		self.committee = committee
 		self.scores = {}
 
-class Score:
-	def __init__(self, problem, data):
-		print 'creating score'
 
 class Challenge:
 	def __init__(self, name, input_file, description_file, alias):
