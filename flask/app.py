@@ -2,9 +2,11 @@ from flask import Flask
 from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
-from checker import *
+# from checker import *
 from naive import *
 from seeds import *
+# from name_checker import *
+import name_checker as checker
 import random
 
 def read_challenge_description(filename):
@@ -47,14 +49,14 @@ def visualize():
 	challenge_description = read_challenge_description(challenge.description_file)
 	challenge_description = challenge_description.replace('\n','<br>\n')
 	challenge_name = challenge.name
-	challenge_requests = load_requests(challenge_file)
+	challenge_requests = challenge.requests()
 	my_requests = [{'name':r.name, 
 				 'floor1':r.floor1,
 				 'floor2':r.floor2,
 				 'time':r.time,
 				 'direction':r.dir()} for r in challenge_requests]
 	solution = get_naive_solution(challenge_requests)
-	return render_template('animation.html', requests = my_requests,
+	return render_template('challenge.html', requests = my_requests,
 											challenge = challenge,
 											 solution = solution,
 											 description = challenge_description,
@@ -87,6 +89,7 @@ def submit():
 	return render_template('results.html', stats = solution_stats, requests = solution_requests)
 
 
+"""no longer works, only for the mmsi shit"""
 @app.route('/results', methods=['GET'])
 def results():
 	challenge = request.args.get('challenge')
@@ -126,6 +129,55 @@ def results():
 	score.save()
 	return render_template('results.html', challenge = challenge,
 		stats = solution_stats, requests = solution_requests)
+
+"""da real deal scoring for namelist"""
+@app.route('/challenge_results', methods=['GET'])
+def challenge_results():
+	challenge = request.args.get('challenge')
+	challenge = challenges[challenge]
+	elevator_1_instructions = request.args.get('elevator1')
+	elevator_2_instructions = request.args.get('elevator2')
+	solution = [elevator_1_instructions, elevator_2_instructions]
+
+
+	
+
+	soln = checker.check_solution(challenge, solution)
+	
+	if soln == False:
+		return "Solution Incomplete, please try again!"
+	stats = soln['stats']
+	requests = soln['requests']
+
+
+	"""SAVE THE SCORE
+	name = request.args.get('name')
+	password = request.args.get('password')
+	past_scores = Score.Query.filter(name = name)
+	if len(past_scores)!=0:
+		score = past_scores[0]
+		if score.pw != password:
+			return 'Wrong password entered!'
+	past_scores = Score.Query.filter(name=name, challenge=challenge.alias)
+	if len(past_scores)!=0:
+		score = past_scores[0]
+		score.score = stats['final_score']
+	else:
+		score = Score(name=name, 
+					  committee='Historians', 
+					  score = stats['final_score'],
+					  challenge = challenge.alias,
+					  pw = password)
+	score.solution = solution
+	"""
+
+
+	score.save()
+
+	return render_template('challenge_results.html', stats = stats, 
+											challenge = challenge,
+											requests=requests)
+
 
 
 

@@ -1,0 +1,121 @@
+<head>
+	<title>WD Elevator Challenge</title>
+</head>
+<script type='text/javascript' src="{{
+  url_for('static', filename='jquery.min.js') }}"></script>
+<link rel="stylesheet" href="{{
+  url_for('static', filename='bootstrap.min.css') }}">
+
+
+<style type = 'text/css'>
+
+#main-content-div{
+	top:50px;
+}
+
+#navbar{
+	position:relative;
+}
+#description-p{
+	margin-left: 50px;
+	margin-right: 50px;
+	font-size: 15px;
+	text-align: center;
+}
+.request-div{
+	font-size:10px;
+}
+.jumbotron{
+	/*text-align:center;*/
+}
+.challenge-options-div{
+	text-align:center;
+}
+#inputs-div{
+	margin-left:25px;
+}
+</style>
+
+<script type = 'text/javascript'>
+$(document).ready(function(){
+$('#submit-btn').click(function(){
+
+    name = $("#username-input").val();
+    password = $("#password-input").val();
+    if(name == "" || password == ""){
+        alert('you must enter username and password');
+    }
+    else{
+        e1moves = $('#elevator-1-input').val();
+        e2moves = $('#elevator-2-input').val();
+        results_page = "/challenge_results?challenge={{challenge.alias}}&elevator1="+e1moves+"&elevator2="+e2moves+"&name="+name+"&password="+password;
+        window.location = results_page;
+
+    }
+});
+});
+</script>
+
+<head>
+</head>
+<body>
+
+	<nav id = 'navbar' class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class='navbar-brand' href= '/'>Back to Scoreboard</a>
+                {% for challenge in challenge_keys %}
+                <a class = 'navbar-brand' href='/visualize?challenge={{challenge}}'>{{challenges[challenge].name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+<div id = 'main-content-div'>
+
+	<h1 style = 'text-align:center'>[WD] Elevator Challenge: {{challenge_name}}</h1>
+
+	<div class = 'jumbotron'><p id='description-p' class = 'description'>{% autoescape false %}{{challenge.description()}}{% endautoescape %}</p>
+		
+	</div>
+
+
+	<div class  = 'row'>
+		<div class = 'col-md-1'></div>
+		<div class = 'col-md-4'>
+
+				<h2>Submit A Solution</h2>
+				<input id = 'elevator-1-input' type = 'text' placeholder = 'Enter Elevator 1 Instructions Here' class = 'form-control'></input>
+		        <br>
+		        <input id = 'elevator-2-input' type = 'text' placeholder = 'Enter Elevator 2 Instructions Here' class = 'form-control'></input>
+		        <br>
+
+		        
+
+
+		        <div class = 'form-group'>
+
+		        	
+
+
+		        <input id = 'username-input' type = 'text' placeholder = 'Committee' class = 'form-control small-input'></input>
+		        <input id = 'password-input' type = 'text' placeholder = 'Password' class = 'form-control small-input'></input>
+		        <button class = 'btn btn-default' id = 'submit-btn'>Score This Solution</button>
+	        	</div>
+	        <!-- end of inputs-div -->
+		</div>
+		<div class = 'col-md-2'></div>
+		<div class = 'col-md-4'>
+			<h2>Requests</h2>
+			{% for req in challenge.requests() %}
+			<div>{{req.name}} wants to go from {{req.floor1}} to {{req.floor2}} at time {{req.time}}</div>
+			{% endfor %}
+		</div>
+	</div>
+	
+
+</div>
+<!-- end of main content div -->
+</body>

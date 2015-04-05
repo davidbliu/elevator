@@ -172,6 +172,9 @@ def get_solution_stats(solution, challenge):
 def get_solution_score(solution, challenge):
 	return random.randint(0, 500)
 
+def check_name_list():
+	return 'implemented in new checker file'
+	# can't use previous convert to moves in i's because people may get on the wrong elevator
 if __name__ == "__main__":
 	results = get_solution_stats([1,1], challenges['baby_elevator'])
 	print results

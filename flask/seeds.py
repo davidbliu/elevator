@@ -75,17 +75,17 @@ class Challenge:
 
 challenges = {}
 challenges['baby_elevator'] = Challenge('Baby Elevator', 'baby_elevator.txt', 'baby_elevator.html', 'baby_elevator')
-challenges['like_a_gauss'] = Challenge('Like A Gauss', 'like_a_gauss.txt', 'like_a_gauss.txt', 'like_a_gauss')
+challenges['hurry'] = Challenge('Hurry', 'hurry.txt', 'hurry.html', 'hurry')
 challenges['long_and_hard'] = Challenge('Long and Hard', 'long_and_hard.txt', 'long_and_hard.txt', 'long_and_hard')
 challenges['antsy'] = Challenge('Antsy', 'antsy.txt', 'antsy.txt', 'antsy')
-challenges['greenie'] = Challenge('Greenie', 'greenie.txt', 'greenie.txt', 'greenie')
+challenges['sweaty'] = Challenge('Sweaty', 'sweaty.txt', 'sweaty.html', 'sweaty')
 challenges['hippies'] = Challenge('Hippies', 'hippies.txt', 'hippies.txt', 'hippies')
 challenges['amurica'] = Challenge('Amurica', 'amurica.txt', 'amurica.txt', 'amurica')
 challenges['real_life'] = Challenge('Real Life', 'real_life.txt', 'real_life.txt', 'real_life')
 
 
-challenge_keys =['baby_elevator', 'like_a_gauss', 'long_and_hard',
-				'amurica', 'antsy', 'greenie', 'hippies', 'real_life']
+challenge_keys =['baby_elevator', 'hurry', 'sweaty','long_and_hard',
+				'amurica']
 
 
 committee_names = ['Community Service', 'Consulting', 'Finance', 'Marketing', 'Historian', 'Publications', 
