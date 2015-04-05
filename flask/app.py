@@ -29,12 +29,13 @@ def home():
 	leaders = []
 
 	for name in names:
+		all_scores = [x for x in scores if x.name == name]
 		score = 0
-		score+=sum([x.score for x in scores if x.name == name])
-		leaders.append({'name':name, 'score':score, 'committee': 'no'})
+		score+=sum([x.score for x in all_scores])
+		leaders.append({'name':name, 'score':score, 'committee': 'no','scores':all_scores})
 	leaders = sorted(leaders, key= lambda x: -1*x['score'])
 	return render_template('home.html', committee_names = committee_names,
-										challenge_names = challenge_keys,
+										challenge_names = challenge_keys, challenges = challenges,
 										scores = scores, leaders=leaders, leaderlen = len(leaders))
 
 @app.route("/help")

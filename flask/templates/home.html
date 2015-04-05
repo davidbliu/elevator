@@ -68,7 +68,11 @@
                         <tr>
                             <td>{{i}}</td>
                             <td>{{leaders[i]['name']}}</td>
-                            <td>{{leaders[i]['score']}}</td>
+                            <td>
+                                {% for s in leaders[i]['scores'] %}
+                                {{s.score}} on {{challenges[s.challenge].name}}
+                                {% endfor %}
+                            </td>
                         </tr>
                         {% endfor %}
                        

@@ -5,7 +5,7 @@
   url_for('static', filename='jquery.min.js') }}"></script>
 <link rel="stylesheet" href="{{
   url_for('static', filename='bootstrap.min.css') }}">
-
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
 <style type = 'text/css'>
 
@@ -34,25 +34,86 @@
 #inputs-div{
 	margin-left:25px;
 }
+table td, table td * {
+    vertical-align: top;
+}
+.req-li{
+	  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.e-input{
+	margin:10px;
+	width:100px;
+}
+.list-group.sortable{
+	width:120px;
+	margin:10px;
+}
+
 </style>
 
 <script type = 'text/javascript'>
+function showSubmit(){
+	remainingPeeps = 0;
+	$('#people-list').find('li').each(function(){
+		remainingPeeps += 1;
+	});
+	if(remainingPeeps==0){
+		$('#submit-div').show();
+	}
+}
 $(document).ready(function(){
-$('#submit-btn').click(function(){
+	//grade solution when this button is clicked
+	$('#submit-div').hide();
+	$('#submit-btn').click(function(){
 
-    name = $("#username-input").val();
-    password = $("#password-input").val();
-    if(name == "" || password == ""){
-        alert('you must enter username and password');
-    }
-    else{
-        e1moves = $('#elevator-1-input').val();
-        e2moves = $('#elevator-2-input').val();
-        results_page = "/challenge_results?challenge={{challenge.alias}}&elevator1="+e1moves+"&elevator2="+e2moves+"&name="+name+"&password="+password;
-        window.location = results_page;
+	    name = $("#username-input").val();
+	    password = $("#password-input").val();
+	    if(name == "" || password == ""){
+	        alert('you must enter username and password');
+	    }
+	    else{
+	        e1moves = "";
+	        e2moves = "";
+	        $('#elevator-list-1').find('li').each(function(){
+	        	e1moves+=$(this).attr('id')+',';
+	        });
+	        $('#elevator-list-2').find('li').each(function(){
+	        	e2moves+=$(this).attr('id')+',';
+	        });
+	        results_page = "/challenge_results?challenge={{challenge.alias}}&elevator1="+e1moves+"&elevator2="+e2moves+"&name="+name+"&password="+password;
+	        window.location = results_page;
 
+	    }
+	});
+
+
+	//drag and drop
+	// $(".draggable").draggable();
+	var eLists = {};
+	eLists['e1-input'] = $("#elevator-list-1");
+	eLists['e2-input'] = $("#elevator-list-2");
+	$(".sortable").sortable();
+
+	$(".e-input").keypress(function(e) {
+    if(e.which == 13) {
+    	mylist = $(this).parent();
+        names = $(this).val().split(' ').join('').toUpperCase().split(',');
+      	for(var i=0;i<names.length;i++){
+      		name = names[i];
+      		$('.'+name).each(function(){
+      			console.log($(this));
+      			console.log(mylist);
+      			$(mylist).append($(this));
+      			$(mylist).sortable();
+      		});
+      	}
+      	$(this).val('');
+      	showSubmit();
     }
 });
+
 });
 </script>
 
@@ -84,30 +145,40 @@ $('#submit-btn').click(function(){
 
 	<div class  = 'row'>
 		<div class = 'col-md-1'></div>
-		<div class = 'col-md-4'>
 
-				<h2>Submit A Solution</h2>
-				<input id = 'elevator-1-input' type = 'text' placeholder = 'Enter Elevator 1 Instructions Here' class = 'form-control'></input>
-		        <br>
-		        <input id = 'elevator-2-input' type = 'text' placeholder = 'Enter Elevator 2 Instructions Here' class = 'form-control'></input>
-		        <br>
+		<div class = 'col-md-5'>
+			<table>
+			<tr>
+				<td>
+					<ul id = 'elevator-list-1' class = 'list-group droppable'><h2>E1</h2>
 
-		        
+						<input id = 'e1-input' type = 'text' class = 'form-control e-input' placeholder = 'Add People'></input>
+					
+					</ul>
+				</td>
+				<td>
+					<ul class = 'droppable list-group' id = 'elevator-list-2'><h2>E2</h2>
+						<input id = 'e2-input' type = 'text' class = 'form-control e-input' placeholder = 'Add People'></input>
+					</ul>
+				</td>
+				<td>
+					<ul id = 'people-list' class = 'sortable droppable list-group'><h2>People</h2>
+						
+						<div id = 'submit-div'><input type = 'text' class = 'form-control' placeholder= 'Committee' id = 'username-input'/>
+						<input type = 'text' class = 'form-control' placeholder= 'Password' id = 'password-input'/>
+						<button class = 'btn btn-default' id = 'submit-btn'>Submit This Solution</button>
+					</div>
+						{% for req in challenge.requests() %}
+						<li id = '{{req.name}}' class = '{{req.name}} draggable list-group-item req-li'>{{ req.name }}</li>
+						<li id = '{{req.name}}' class = '{{req.name}} draggable list-group-item req-li'>{{req.name}}</li>
+						{% endfor %}
+					</ul>
 
-
-		        <div class = 'form-group'>
-
-		        	
-
-
-		        <input id = 'username-input' type = 'text' placeholder = 'Committee' class = 'form-control small-input'></input>
-		        <input id = 'password-input' type = 'text' placeholder = 'Password' class = 'form-control small-input'></input>
-		        <button class = 'btn btn-default' id = 'submit-btn'>Score This Solution</button>
-	        	</div>
-	        <!-- end of inputs-div -->
+				</td>
+			</tr>
+		</table>
 		</div>
-		<div class = 'col-md-2'></div>
-		<div class = 'col-md-4'>
+		<div class = 'col-md-3 col-block'>
 			<h2>Requests</h2>
 			{% for req in challenge.requests() %}
 			<div>{{req.name}} wants to go from {{req.floor1}} to {{req.floor2}} at time {{req.time}}</div>
