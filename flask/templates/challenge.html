@@ -54,6 +54,17 @@ table td, table td * {
 </style>
 
 <script type = 'text/javascript'>
+requests = {};
+{% for request in requests %}
+req_entry = {}
+req_entry['name'] = "{{request.name}}";
+req_entry['floor1'] = {{request.floor1}};
+req_entry['floor2'] = {{request.floor2}};
+req_entry['time'] = {{request.time}}
+requests["{{request.name}}"] = req_entry;
+{% endfor %}
+
+console.log(requests);
 function showSubmit(){
 	remainingPeeps = 0;
 	$('#people-list').find('li').each(function(){
@@ -62,6 +73,28 @@ function showSubmit(){
 	if(remainingPeeps==0){
 		$('#submit-div').show();
 	}
+}
+function updateScore(elevator){
+	var entered = Object.create(null);
+	time = 0;
+	floor = 0;
+	$("#"+elevator).find('li').each(function(){
+		req = requests[$(this).attr('id')];
+		if(req.name in entered){
+			time += Math.abs(floor-req.floor2);
+			floor = req.floor2;
+		}
+		else{
+			entered[req.name] = true;
+			
+			time += Math.abs(floor-req.floor1);
+			time = Math.max(time, req.time);
+			floor = req.floor1;
+		}
+		oval = $(this).text().split(' ')[0];
+		new_val = oval+' '+time.toString();
+		$(this).text(new_val);
+	});
 }
 $(document).ready(function(){
 	//grade solution when this button is clicked
@@ -94,8 +127,17 @@ $(document).ready(function(){
 	var eLists = {};
 	eLists['e1-input'] = $("#elevator-list-1");
 	eLists['e2-input'] = $("#elevator-list-2");
-	$(".sortable").sortable();
+	// $(".sortable").sortable();
 
+	$('.sortable').sortable({
+	  stop: function(event, ui) { 
+	  	updateScore('elevator-list-1');
+	  	updateScore('elevator-list-2');
+
+	   }
+	});
+
+	
 	$(".e-input").keypress(function(e) {
     if(e.which == 13) {
     	mylist = $(this).parent();
@@ -106,10 +148,18 @@ $(document).ready(function(){
       			console.log($(this));
       			console.log(mylist);
       			$(mylist).append($(this));
-      			$(mylist).sortable();
+      			// $(mylist).sortable();
+      			$(mylist).sortable({
+				  stop: function(event, ui) { 
+				  	updateScore('elevator-list-1');
+				  	updateScore('elevator-list-2');
+				   }
+				});
       		});
       	}
       	$(this).val('');
+      	updateScore('elevator-list-1');
+      	updateScore('elevator-list-2');
       	showSubmit();
     }
 });
