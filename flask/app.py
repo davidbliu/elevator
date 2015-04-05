@@ -150,7 +150,7 @@ def challenge_results():
 	requests = soln['requests']
 
 
-	"""SAVE THE SCORE
+	"""SAVE THE SCORE"""
 	name = request.args.get('name')
 	password = request.args.get('password')
 	past_scores = Score.Query.filter(name = name)
@@ -169,7 +169,6 @@ def challenge_results():
 					  challenge = challenge.alias,
 					  pw = password)
 	score.solution = solution
-	"""
 
 
 	score.save()
@@ -218,7 +217,7 @@ def score_challenge():
 
 
 if __name__ == "__main__":
-	host = 'localhost'
+	host = '0.0.0.0'
 	port = 5130
 
 	app.run(host = host, port = port, debug=True)
