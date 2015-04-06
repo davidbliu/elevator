@@ -45,35 +45,50 @@
         </div>
         <!-- /.container -->
     </nav>
-
+<style type = 'text/css'>
+#requests{
+	margin:15px;
+	margin-left:35px;
+	font-size:10px;
+}
+</style>
     <!-- Page Content -->
     <div class="container">
         <h1>Problem Description</h1>
-        <p>You are a rich business dude/diva and have too much money to spend so you decide to build elevators!
+	<p>You own a building with 25 floors (0-24) and 2 elevators, and would like to transport passengers as efficiently as possible. Each day you are given a list of requests and timestamps that look like this and are supposed to look for an efficient way to handle the requests with your elevators.</p>
+	<div id = 'requests'>{% for request in challenges['baby_elevator'].requests() %}
+	<div style = 'left:150px'>{{ request.name}} wants to go from {{request.floor1}} to {{request.floor2}} at time {{request.time}}</div>
+	
+	{% endfor %}	
+	
+	</div>
+	<p>Since our elevators can only move 1 floor each timestep, you may notice that <b>handling the requests in some orders is better than handling them in others</b>. For example, if you choose to pick up and drop off ISAIAS first, you may have to wait 48 seconds for his request to come, and 16-7=9 seconds to deliver him to his floor before you can even pick up or drop off anyone else! Your task is to provide each of your two elevators with the order you would like to pick up passengers in. For example:</p>
+	<ol>
+		<li><b>Elevator 1:</b> BOB, NANCY, DREW, DREW, BOB, NANCY</li>
+		<li><b>Elevator 2:</b> ANDREW, ANDREW, DICK, MOE, DICK, MOE</li>
+	</ol>
+	<p>Your output is the order in which you pick up and drop off passengers. Each elevator's instruction list should therefore contain passengers' names twice: once for when they are picked up and once for when they are dropped off.</p>
+	<h3>Navigating the web interface</h3>
+	<p>When you are ready to start tackling some problems, click the blue button on our homepage to see the problem descriptions, scoring rubric, and the requests you are to handle.
 
-        You've created a new, simple kind of elevator that only does three things: idle, move, and switch.
-        </p>
+You can submit a solution when you are ready by entering the names of the people you want on each elevator and ordering their enter and exit orders.
+<b>When you are ready to submit a solution</b> write your committee's name and a password. Use the same committee name and password for submitting subsequent problems/solutions.
+Here is a list of challenges you will have to solve!</p>
 
-        <h1>Terminology</h1>
-        <ul>
-            <li><b>Request: </b>When customers want to be delivered from floor A to floor B they make a request for an elevator. Their request consists of 4 important pieces of information: name, floor A, floor B, and time (the time they requested to be delivered from their start floor to their end floor)</li>
-            <li><b>Elevators</b>
-                <ol>
-                    <li>Idle</li>
-                    <li>Move</li>
-                    <li>Switch</li>
-                </ol>
-            </li>
-            <li><b>Request: </b>When customers want to be delivered from floor A to floor B they make a request for an elevator. Their request consists of 4 important pieces of information: name, floor A, floor B, and time (the time they requested to be delivered from their start floor to their end floor)</li>
-        </ul>
-        <h1>Visualization</h1>
-        <p>We've provided a helpful visualization to help you see how your algorithm performs. Heres how it works:<p>
-            <ul>
-                <li>Press enter to execute another instruction. You will see the timestep advance by one</li>
-            </ul>
+<ul>
+{% for key in challenge_names %}
+<li><a href = '/visualize?challenge={{key}}'>{{challenges[key].name}}</a></li>
+{% endfor %}
+</ul>
+	<h3>Scoring</h3>
+	<p>Each problem will have a different scoring rubric. Some problems as that you minimize the total time passengers wait for the elevator, some problems ask that you minimize only the in-elevator time, and some may penalize algorithms that have more than a certain number of passengers on the elevator at any given time. Your team should figure out a good algorithm for each problem to score well!
         <h1>Suggestions</h1>
-        <h1>Resources</h1>
-
+	<p>We recommend looking at elevator algorithms to help decide how you would like to order the requests. Some examples of good reading material are below</p>
+	<ul>
+	<li><a href = 'http://en.wikipedia.org/wiki/Elevator_algorithm'>Scan Algorithm (wikipedia)</a></li>
+	<li><a href = 'http://www.quora.com/Is-there-any-public-elevator-scheduling-algorithm-standard'>Is there any public elevator scheduling algorithm standard?</a></li>
+	<li><a href = 'http://www.columbia.edu/~cs2035/courses/ieor4405.S13/p14.pdf'>A cool powerpoint</a></li>
+</ul>
 
 
     </div>

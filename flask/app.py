@@ -40,7 +40,7 @@ def home():
 
 @app.route("/help")
 def help():
-	return render_template('help.html')
+	return render_template('help.html', challenges = challenges, challenge_names = challenge_keys)
 
 @app.route('/visualize', methods=['GET'])
 def visualize():
