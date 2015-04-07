@@ -96,6 +96,16 @@ function updateScore(elevator){
 		$(this).text(new_val);
 	});
 }
+
+function countInArray(array, what) {
+    var count = 0;
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === what) {
+            count++;
+        }
+    }
+    return count;
+}
 $(document).ready(function(){
 	//grade solution when this button is clicked
 	$('#submit-div').hide();
@@ -142,21 +152,52 @@ $(document).ready(function(){
     if(e.which == 13) {
     	mylist = $(this).parent();
         names = $(this).val().split(' ').join('').toUpperCase().split(',');
+        var things_to_add = [];
+        var added_names = [];
       	for(var i=0;i<names.length;i++){
       		name = names[i];
-      		$('.'+name).each(function(){
-      			console.log($(this));
-      			console.log(mylist);
-      			$(mylist).append($(this));
-      			// $(mylist).sortable();
-      			$(mylist).sortable({
+      		if(countInArray(names, name)>1){
+      			console.log('im adding separately');
+      			console.log($('.'+name)[0]);
+      			// $(mylist).append($('.'+name));
+      			if(countInArray(added_names, name)>0){
+      				things_to_add.push($('.'+name)[1]);
+      			}
+      			else{
+      				things_to_add.push($('.'+name)[0]);
+      				added_names.push(name);
+
+      			}
+      			
+      			
+      		}
+      		else{
+      			things_to_add.push($('.'+name)[0]);
+      			things_to_add.push($('.'+name)[1]);
+
+     //  			$('.'+name).each(function(){
+     //  				console.log('adding togethrer');
+	    //   			$(mylist).append($(this));
+	    //   			$(mylist).sortable({
+					//   stop: function(event, ui) { 
+					//   	updateScore('elevator-list-1');
+					//   	updateScore('elevator-list-2');
+					//    }
+					// });
+	    //   		});
+
+      		}
+      		
+      	}
+      	for(var i=0;i<things_to_add.length;i++){
+      		$(mylist).append(things_to_add[i]);
+      	}
+      	$(mylist).sortable({
 				  stop: function(event, ui) { 
 				  	updateScore('elevator-list-1');
 				  	updateScore('elevator-list-2');
 				   }
 				});
-      		});
-      	}
       	$(this).val('');
       	updateScore('elevator-list-1');
       	updateScore('elevator-list-2');
@@ -219,8 +260,8 @@ $(document).ready(function(){
 						<button class = 'btn btn-default' id = 'submit-btn'>Submit This Solution</button>
 					</div>
 						{% for req in challenge.requests() %}
-						<li id = '{{req.name}}' class = '{{req.name}} draggable list-group-item req-li'>{{ req.name }}</li>
-						<li id = '{{req.name}}' class = '{{req.name}} draggable list-group-item req-li'>{{req.name}}</li>
+						<li id = '{{req.name}}' class = '{{req.name}} n1 draggable list-group-item req-li'>{{ req.name }}</li>
+						<li id = '{{req.name}}' class = '{{req.name}} n2 draggable list-group-item req-li'>{{req.name}}</li>
 						{% endfor %}
 					</ul>
 

@@ -18,8 +18,8 @@ def check_solution(challenge, solution):
 	if not is_valid_solution(e1_solution, challenge_requests) and is_valid_solution(e2_solution, challenge_requests):
 		print 'not a valid solution'
 		return False
-	e1_finished_requests = check_elevator(e1_solution, req_dict)
-	e2_finished_requests = check_elevator(e2_solution, req_dict)
+	e1_finished_requests, e1_people_list = check_elevator(e1_solution, req_dict)
+	e2_finished_requests, e2_people_list = check_elevator(e2_solution, req_dict)
 	total_finished_requests = []
 	for req in e1_finished_requests:
 		req.elevator = 'elevator1'
@@ -36,6 +36,23 @@ def check_solution(challenge, solution):
 		print 'you are being judged on average total time'
 		print sum(stats['total_times'])/float(len(stats['total_times']))
 		stats['final_score'] = stats['avg_total_time']
+
+		#
+		# set final score based on problem
+		#
+		if challenge.alias == "hurry":
+			stats['final_score'] = max([x.time_exited for x in total_finished_requests])
+		if challenge.alias == "sweaty":
+			stats['final_score'] = sum(stats['elevator_times'])/float(len(stats['elevator_times']))
+		if challenge.alias == 'amurica':
+			penalty = 0
+			print 'handling america'
+			for people_list in [e1_people_list, e2_people_list]:
+				for num_people in people_list:
+					if num_people[0]>3:
+						# penalize score 
+						penalty += 2*num_people[1]
+			stats['final_score'] = stats['final_score'] + penalty
 		return {'stats':stats, 'requests':total_finished_requests}
 
 
@@ -66,7 +83,9 @@ def check_elevator(solution_names, req_dict):
 	entered = {}	
 	floor = 0
 	time = 0
-
+	num_people = 0
+	num_people_list = []
+	times_list = []
 	def move_to_floor(newfloor, req_time, floor, time):
 		elapsed_time = abs(newfloor-floor)
 		floor = newfloor 
@@ -84,6 +103,7 @@ def check_elevator(solution_names, req_dict):
 			# then update their time exited and put their request in finished
 			sol_req.time_exited = time
 			finished_requests.append(sol_req)
+			num_people-=1
 			# print name+ ' is exiting the elevator at time '+str(time)
 		else:
 			# first pick this person up
@@ -94,9 +114,17 @@ def check_elevator(solution_names, req_dict):
 			sol_req.name = name
 			sol_req.time_requested = req.time
 			entered[name] = sol_req
+			num_people+=1
+		num_people_list.append(num_people)
+		times_list.append(time)
 			# print name+ ' is entering the elevator at time '+str(time)
-
-	return finished_requests
+	ppl_list = []
+	for i in range(0, len(num_people_list)):
+		if i<len(num_people_list)-1:
+			ppl_list.append([num_people_list[i], times_list[i+1]])
+		else:
+			ppl_list.append([num_people_list[i], time])
+	return finished_requests, ppl_list
 
 if __name__ == "__main__":
 	names = [x.name for x in challenges['baby_elevator'].requests()]
