@@ -84,7 +84,7 @@ challenges['amurica'] = Challenge('Amurica', 'amurica.txt', 'amurica.html', 'amu
 challenges['real_life'] = Challenge('Real Life', 'real_life.txt', 'real_life.txt', 'real_life')
 
 
-challenge_keys =['baby_elevator', 'hurry', 'sweaty', 'amurica', 'long_and_hard']
+challenge_keys =['baby_elevator']#, 'hurry', 'sweaty', 'amurica', 'long_and_hard']
 
 
 committee_names = ['Community Service', 'Consulting', 'Finance', 'Marketing', 'Historian', 'Publications', 
