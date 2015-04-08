@@ -218,8 +218,8 @@ $(document).ready(function(){
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class='navbar-brand' href= '/'>Back to Scoreboard</a>
-                <a class='navbar-brand' href= '/help'>Help</a>
+                <a class='navbar-brand' href= '/'>Scoreboard</a>
+                <a class='navbar-brand' href= '/help'>Instructions</a>
                 {% for challenge in challenge_keys %}
                 <a class = 'navbar-brand' href='/visualize?challenge={{challenge}}'>{{challenges[challenge].name}}</a>
                 {% endfor %}
