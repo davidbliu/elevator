@@ -77,11 +77,17 @@ You can submit a solution when you are ready by entering the names of the people
 <b>When you are ready to submit a solution</b> write your committee's name and a password. Use the same committee name and password for submitting subsequent problems/solutions.
 Here is a list of challenges you will have to solve!</p>
 
+
+
 <ul>
 {% for key in challenge_names %}
 <li><a href = '/visualize?challenge={{key}}'>{{challenges[key].name}}</a></li>
 {% endfor %}
 </ul>
+
+<img src = "{{url_for('static', filename='elevator_help.png') }}" height = '300'>
+
+<p>Here is an example of how to order requests! On elevator 1 MOIRA will enter, then KIM will enter, then IRWIN will enter, then MORIA will exit, etc... The times listed on the side are the times that the person will enter/exit the elevator. You can add or remove people from the elevator by typing their names into the input box above. Once in the elevator you can drag and drop passengers to change their order. You can also type names in the order you want them to enter and exit; for example: "moira, kim, irwin, moira, irwin, ernest, kim, ernest" would produce the result pictured.</p>
 	<h3>Scoring</h3>
 	<p>Each problem will have a different scoring rubric. Some problems as that you minimize the total time passengers wait for the elevator, some problems ask that you minimize only the in-elevator time, and some may penalize algorithms that have more than a certain number of passengers on the elevator at any given time. Your team should figure out a good algorithm for each problem to score well!
         <h1>Suggestions</h1>
