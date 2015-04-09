@@ -59,8 +59,17 @@
 
 <h1>Frequently Asked Questions</h1>
 <ul>
-<li><b>How does our score for Baby Elevator get calculated?</b> Baby Elevator is scored on your average total response time. This is the average (wait_time+time_in_elevator) for your passengers. <b>wait_time</b> is the time a person has to wait before boarding an elevator and <b>time_in_elevator</b> is the time a person waits inside an elevator before getting off</li>
-<li><b>Why does MOIRA get on the elevator at time 24 if she requests at time 2 and is on floor 24? (assuming I pick her up first)</b> We assume the elevators act optimally given the request ordering. Since the elevators <i>can</i> move to 24 at time 24 to pick up MOIRA, they will. The elevators will be where-ever they need to be (to satisfy your request ordering) at the earliest time the <i>can</i> be there. However the elevators will never violate your request ordering (people will get on and off in the order that you specify, even if the elevators can pick up people along the way. it is your job to detect that!)</li>
+<li><b>How does our score for Baby Elevator get calculated?</b> Baby Elevator is scored on your average total response time. This is the average (wait_time+time_in_elevator) for your passengers. <b>wait_time</b> 
+    <ul>
+        <li>is the time a person has to wait before boarding an elevator and <b>time_in_elevator</b> is the time a person waits inside an elevator before getting off</li>
+    </ul>
+</li>
+
+<li><b>Why does MOIRA get on the elevator at time 24 if she requests at time 2 and is on floor 24? (assuming I pick her up first)</b> 
+    <ul>
+        <li>We assume the elevators act optimally given the request ordering. Since the elevators <i>can</i> move to 24 at time 24 to pick up MOIRA, they will. The elevators will be where-ever they need to be (to satisfy your request ordering) at the earliest time the <i>can</i> be there. However the elevators will never violate your request ordering (people will get on and off in the order that you specify, even if the elevators can pick up people along the way. it is your job to detect that!)</li>
+    </ul>
+</li>
 </ul>
 
         <h1>Problem Description</h1>
