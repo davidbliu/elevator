@@ -205,6 +205,20 @@ def calculate_cost(path, requests):
 	# print cost
 	return cost
 
+#
+# how long would if take to finish the reset of the requests
+#
+def heuristic(path, requests):
+	print'running heuristic function'
+	cost = 0
+	# run a scan algorithm for the remaining requests
+
+	onboard = {}
+	exited = {}
+
+
+	return cost
+
 def uniform_cost_search(requests):
 	print 'running uniform cost search on '+str([r.name for r in requests])
 	req_copy = copy.deepcopy(requests)
@@ -228,7 +242,7 @@ def uniform_cost_search(requests):
 	while not len(search_queue)==0 and found_soln != True:
 		# pop off lowest cost from queue
 		curr_node = heapq.heappop(search_queue)[1]
-		print [x.name for x in curr_node.path]
+		print str(curr_node.cost)+' '+str([x.name for x in curr_node.path])
 
 		# print str([x.name for x in curr_node.path])+' cost was '+str(curr_node.cost)
 		remaining = curr_node.remaining
