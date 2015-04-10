@@ -52,7 +52,7 @@ def home():
 			else:
 				score += 50 #len(challenge_map[challenge])
 		leaders.append({'name':name, 'score':score, 'committee': 'no','scores':all_scores})
-	leaders = sorted(leaders, key= lambda x: -1*x['score'])
+	leaders = sorted(leaders, key= lambda x: x['score'])
 	return render_template('home.html', committee_names = committee_names,
 										challenge_names = challenge_keys, challenges = challenges,
 										scores = scores, leaders=leaders, leaderlen = len(leaders))
