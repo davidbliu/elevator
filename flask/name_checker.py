@@ -15,7 +15,7 @@ def check_solution(challenge, solution):
 	e1_solution = [x for x in solution[0].split(',') if x != '']
 	e2_solution = [x for x in solution[1].split(',') if x != '']
 	if not is_valid_solution(e1_solution, challenge_requests) and is_valid_solution(e2_solution, challenge_requests):
-		# print 'not a valid solution'
+		print 'not a valid solution'
 		return False
 	e1_finished_requests, e1_people_list = check_elevator(e1_solution, req_dict)
 	e2_finished_requests, e2_people_list = check_elevator(e2_solution, req_dict)
@@ -27,7 +27,7 @@ def check_solution(challenge, solution):
 		req.elevator = 'elevator2'
 		total_finished_requests.append(req)
 	if not len(total_finished_requests) == len(challenge_requests):
-		# print 'not all the requests were finished'
+		print 'not all the requests were finished'
 		return False
 	else:
 		# print 'all the requests were finished, generating statistics'
