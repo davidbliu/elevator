@@ -1,0 +1,3 @@
+MOIRA at floor 24 wants to go to floor 10 at time 2
+KIM at floor 4 wants to go to floor 20 at time 21
+ERNEST at floor 1 wants to go to floor 12 at time 30

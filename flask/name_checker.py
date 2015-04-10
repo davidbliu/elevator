@@ -9,6 +9,21 @@ def check_solution(challenge, solution):
 
 	challenge_requests = challenge.requests()
 	req_dict = {}
+
+
+	# Add additional challenge options based on problem
+	e1_challenge_options = []
+	e2_challenge_options = []
+	if challenge.alias == "speedy":
+		#Elevators of different speeds, higher number is slower elevator
+		e1_challenge_options.append("speedy")
+		e1_challenge_options.append(1)
+
+		e2_challenge_options.append("speedy")
+		e2_challenge_options.append(2)
+
+
+
 	for req in challenge_requests:
 		req_dict[req.name] = req
 
@@ -17,8 +32,8 @@ def check_solution(challenge, solution):
 	if not is_valid_solution(e1_solution, challenge_requests) and is_valid_solution(e2_solution, challenge_requests):
 		print 'not a valid solution'
 		return False
-	e1_finished_requests, e1_people_list = check_elevator(e1_solution, req_dict)
-	e2_finished_requests, e2_people_list = check_elevator(e2_solution, req_dict)
+	e1_finished_requests, e1_people_list = check_elevator(e1_solution, req_dict, e1_challenge_options)
+	e2_finished_requests, e2_people_list = check_elevator(e2_solution, req_dict, e2_challenge_options)
 	total_finished_requests = []
 	for req in e1_finished_requests:
 		req.elevator = 'elevator1'
@@ -78,15 +93,22 @@ def get_stats(finished_requests):
 	stats['max_elevator_time'] = max(elevator_times)
  	return stats
 
-def check_elevator(solution_names, req_dict):
+def check_elevator(solution_names, req_dict, options):
+	#options is a list. options[0] is the challenge alias. What follows depends on challenge.
+
 	entered = {}	
 	floor = 0
 	time = 0
 	num_people = 0
 	num_people_list = []
 	times_list = []
-	def move_to_floor(newfloor, req_time, floor, time):
-		elapsed_time = abs(newfloor-floor)
+	velocity = 1
+	if options:
+		alias = options[0]
+		if alias == 'speedy':
+			velocity = options[1]
+	def move_to_floor(newfloor, req_time, floor, time, velocity):
+		elapsed_time = abs(newfloor-floor) * velocity
 		floor = newfloor 
 		time+=elapsed_time
 		time = max(time, req_time)
@@ -98,7 +120,7 @@ def check_elevator(solution_names, req_dict):
 		if name in entered.keys():
 			# first drop this person off
 			sol_req = entered[name]
-			floor, time = move_to_floor(req.floor2, req.time, floor, time)
+			floor, time = move_to_floor(req.floor2, req.time, floor, time, velocity)
 			# then update their time exited and put their request in finished
 			sol_req.time_exited = time
 			finished_requests.append(sol_req)
@@ -106,7 +128,7 @@ def check_elevator(solution_names, req_dict):
 			# print name+ ' is exiting the elevator at time '+str(time)
 		else:
 			# first pick this person up
-			floor, time = move_to_floor(req.floor1, req.time, floor, time)
+			floor, time = move_to_floor(req.floor1, req.time, floor, time, velocity)
 			# pick this person up and create a sol req
 			sol_req = SolutionRequest()
 			sol_req.time_entered = time
@@ -127,12 +149,25 @@ def check_elevator(solution_names, req_dict):
 
 if __name__ == "__main__":
 	names = [x.name for x in challenges['baby_elevator'].requests()]
-	names = names
+	names = names+names
 
 	namestring = ''
 	for name in names:
 		namestring += name + ','
+	#print namestring
 	soln = check_solution(challenges['baby_elevator'], [namestring[:-1], ''])
+	#print soln
+
+	#KZ tests
+	kz_name = [x.name for x in challenges['speedy'].requests()]
+	kz_name = kz_name + kz_name
+
+	namestring = ''
+	for name in kz_name:
+		namestring += name + ','
+	print namestring
+	soln = check_solution(challenges['speedy'], [namestring[:-1], ''])
+	print soln
 
 
 
