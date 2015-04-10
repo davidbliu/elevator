@@ -63,18 +63,22 @@
                     <thead>
                         <th>Rank</th>
                         <th>Committee</th>
-                        <th>Score</th>
+                        <th>Scores</th>
+                        <th>Total Score ({{num_scored_challenges}} Challenges)</th>
+                        
                     </thead>
                     <tbody>
                         {% for i in range(0, leaderlen) %}
                         <tr>
                             <td>{{i+1}}</td>
                             <td>{{leaders[i]['name']}}</td>
+                            
                             <td>
                                 {% for s in leaders[i]['scores'] %}
                                 {{s.score}} on {{challenges[s.challenge].name}} 
                                 {% endfor %}
                             </td>
+                            <td style = 'text-align:center'>{{leaders[i]['score']}}</td>
                         </tr>
                         {% endfor %}
                        

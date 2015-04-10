@@ -75,7 +75,11 @@
         <li>Baby Elevator is scored on your average total response time. This is the average (wait_time+time_in_elevator) for your passengers. <b>wait_time</b> is the time a person has to wait before boarding an elevator and <b>time_in_elevator</b> is the time a person waits inside an elevator before getting off</li>
     </ul>
 </li>
-
+<li><b>What does total score mean? How does scoring work?</b> 
+    <ul>
+        <li>Refer to section below on scoring</li>
+    </ul>
+</li>
 <li><b>Why does MOIRA get on the elevator at time 24 if she requests at time 2 and is on floor 24? (assuming I pick her up first)</b> 
     <ul>
         <li>We assume the elevators act optimally given the request ordering. Since the elevators <i>can</i> move to 24 at time 24 to pick up MOIRA, they will. The elevators will be where-ever they need to be (to satisfy your request ordering) at the earliest time the <i>can</i> be there. However the elevators will never violate your request ordering (people will get on and off in the order that you specify, even if the elevators can pick up people along the way. it is your job to detect that!)</li>
@@ -83,7 +87,7 @@
 </li>
 </ul>
 
-        <h1>Problem Description</h1>
+<h1>Problem Description</h1>
 	<p>You own a building with 25 floors (0-24) and 2 elevators, and would like to transport passengers as efficiently as possible. Each day you are given a list of requests and timestamps that look like this and are supposed to look for an efficient way to handle the requests with your elevators.</p>
 	<div id = 'requests'>{% for request in challenges['baby_elevator'].requests() %}
 	<div style = 'left:150px'>{{ request.name}} wants to go from {{request.floor1}} to {{request.floor2}} at time {{request.time}}</div>
@@ -97,14 +101,29 @@
 		<li><b>Elevator 2:</b> ANDREW, ANDREW, DICK, MOE, DICK, MOE</li>
 	</ol>
 	<p>Your output is the order in which you pick up and drop off passengers. Each elevator's instruction list should therefore contain passengers' names twice: once for when they are picked up and once for when they are dropped off.</p>
-	<h3>Navigating the web interface</h3>
+<h3>TL;DR</h3>
+<ul>
+    <li>you have two elevators and 25 floors</li>
+    <li>passengers want to go from floor A to floor B at time T</li>
+    <li>elevators move 1 floor in 1 timestep</li>
+    <li>both elevators start at floor 0 at time 0</li>
+    <li>a solution is an ordering of pick-ups and drop-offs</li>
+    <li>elevators will act optimally to fulfill requests in the order you specify
+        <ul>
+            <li>However they will always respect your ordering. Even if people can be picked up along the way the elevator will pick up/drop off in the order you specify. It is up to you to detect faster orderings</li>
+        </ul>
+    </li>
+    <li>you should find an efficient ordering of pick up and drop offs</li>
+</ul>
+
+
+
+<h3>Navigating the web interface</h3>
 	<p>When you are ready to start tackling some problems, click the blue button on our homepage to see the problem descriptions, scoring rubric, and the requests you are to handle.
 
 You can submit a solution when you are ready by entering the names of the people you want on each elevator and ordering their enter and exit orders.
 <b>When you are ready to submit a solution</b> write your committee's name and a password. Use the same committee name and password for submitting subsequent problems/solutions.
 Here is a list of challenges you will have to solve!</p>
-
-
 
 <ul>
 {% for key in challenge_names %}
@@ -115,9 +134,19 @@ Here is a list of challenges you will have to solve!</p>
 <img src = "{{url_for('static', filename='elevator_help.png') }}" height = '300'>
 
 <p>Here is an example of how to order requests! On elevator 1 MOIRA will enter, then KIM will enter, then IRWIN will enter, then MORIA will exit, etc... The times listed on the side are the times that the person will enter/exit the elevator. You can add or remove people from the elevator by typing their names into the input box above. Once in the elevator you can drag and drop passengers to change their order. You can also type names in the order you want them to enter and exit; for example: "moira, kim, irwin, moira, irwin, ernest, kim, ernest" would produce the result pictured.</p>
-	<h3>Scoring</h3>
+
+<h1>Scoring</h1>
+    <h4>The Leaderboard</h4>
+    <p>The leaderboard will reflect your scores on individual problems (like baby elevator) and your score overall. Your overall score is calculated from your rank on each of the problem's you've submitted, heres how:<p>
+        <p style = 'margin-left:25px; font-size:11px'>Each problem is worth a max of 50 points. We take your rank for each problem (for example if you got 5th out of 50 contestants your rank is 5/50) and scale the max points per problem by your rank (50 * 5/50).</p>
+    <h4>Committee Scores</h4>
+    <p>While it is a ok to test your solutions under an alias, solutions will not count for a committee score unless they are preceded by [Committee Abbreviation] and contain a recognizable name. An example of this would be <b>"[WD] Eric Quach"</b>. Unless your submission is formatted this way it <b>may be subject to deletion!</b> It is also ok to have multiple submissions per committee. When calculating your overall score we will be taking the committees best score per problem</p>
+    <h4>Scoring for indivdual problems</h4>
 	<p>Each problem will have a different scoring rubric. Some problems as that you minimize the total time passengers wait for the elevator, some problems ask that you minimize only the in-elevator time, and some may penalize algorithms that have more than a certain number of passengers on the elevator at any given time. Your team should figure out a good algorithm for each problem to score well!
-        <h1>Suggestions</h1>
+
+
+
+<h1>Suggested Reading</h1>
 	<p>We recommend looking at elevator algorithms to help decide how you would like to order the requests. Some examples of good reading material are below</p>
 	<ul>
 	<li><a href = 'http://en.wikipedia.org/wiki/Elevator_algorithm'>Scan Algorithm (wikipedia)</a></li>

@@ -25,6 +25,7 @@ def home():
 	names = [x.name for x in scores]
 	names = set(names)
 	names = list(names)
+	num_scored_challenges = 0 #number of challenges people have made submissions for
 	challenge_map = {}
 	name_map = {}
 	for score in scores:
@@ -35,7 +36,8 @@ def home():
 		name_map[name][score.challenge] = score.score
 		if ch not in challenge_map.keys():
 			challenge_map[ch] = []
-		challenge_map[ch].append(score.score)
+			num_scored_challenges+= 1
+		challenge_map[ch].append(score.score) # save the scores for each person
 	for key in challenge_map.keys():
 		challenge_map[key] = sorted(challenge_map[key])
 
@@ -48,14 +50,15 @@ def home():
 			# score for challenge is rank in list
 			if challenge in name_map[name].keys():
 				my_score_this_challenge = name_map[name][challenge]
-				score += challenge_map[challenge].index(my_score_this_challenge)/float(len(names)) * 50
+				score += 50 - (challenge_map[challenge].index(my_score_this_challenge)/float(len(names)) * 50)
 			else:
 				score += 50 #len(challenge_map[challenge])
-		leaders.append({'name':name, 'score':score, 'committee': 'no','scores':all_scores})
-	leaders = sorted(leaders, key= lambda x: x['score'])
+		leaders.append({'name':name, 'score':round(score, 2), 'committee': 'no','scores':all_scores})
+	leaders = sorted(leaders, key= lambda x: -x['score'])
 	return render_template('home.html', committee_names = committee_names,
 										challenge_names = challenge_keys, challenges = challenges,
-										scores = scores, leaders=leaders, leaderlen = len(leaders))
+										scores = scores, leaders=leaders, leaderlen = len(leaders),
+										num_scored_challenges = num_scored_challenges)
 
 @app.route("/help")
 def help():
