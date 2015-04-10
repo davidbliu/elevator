@@ -12,15 +12,15 @@ def check_solution(challenge, solution):
 
 
 	# Add additional challenge options based on problem
-	e1_challenge_options = []
-	e2_challenge_options = []
+	e1_challenge_options = {}
+	e2_challenge_options = {}
 	if challenge.alias == "speedy":
 		#Elevators of different speeds, higher number is slower elevator
-		e1_challenge_options.append("speedy")
-		e1_challenge_options.append(1)
+		e1_challenge_options['alias'] = "speedy"
+		e1_challenge_options['velocity'] = 1
 
-		e2_challenge_options.append("speedy")
-		e2_challenge_options.append(2)
+		e2_challenge_options['alias'] = "speedy"
+		e2_challenge_options['velocity'] = 2
 
 
 
@@ -94,7 +94,7 @@ def get_stats(finished_requests):
  	return stats
 
 def check_elevator(solution_names, req_dict, options):
-	#options is a list. options[0] is the challenge alias. What follows depends on challenge.
+	#options is a dictionary. options['alias'] is the challenge alias. Other keys depends on challenge.
 
 	entered = {}	
 	floor = 0
@@ -103,10 +103,17 @@ def check_elevator(solution_names, req_dict, options):
 	num_people_list = []
 	times_list = []
 	velocity = 1
+
+
+	#Challenge Options
 	if options:
-		alias = options[0]
+		alias = options['alias']
+
+		#Baby Do Me Slow
 		if alias == 'speedy':
-			velocity = options[1]
+			velocity = options['velocity']
+
+
 	def move_to_floor(newfloor, req_time, floor, time, velocity):
 		elapsed_time = abs(newfloor-floor) * velocity
 		floor = newfloor 

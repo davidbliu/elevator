@@ -74,20 +74,27 @@ function showSubmit(){
 		$('#submit-div').show();
 	}
 }
-function updateScore(elevator){
+function updateScore(elevator, elevator_num){
+	var challenge_name = "{{challenge.alias}}";
+
 	var entered = Object.create(null);
+
+	velocity = 1;
+	if (challenge_name == "speedy" && elevator_num == 2){
+		velocity = 2;
+	}
 	time = 0;
 	floor = 0;
 	$("#"+elevator).find('li').each(function(){
 		req = requests[$(this).attr('id')];
 		if(req.name in entered){
-			time += Math.abs(floor-req.floor2);
+			time += Math.abs(floor-req.floor2)*velocity;
 			floor = req.floor2;
 		}
 		else{
 			entered[req.name] = true;
 			
-			time += Math.abs(floor-req.floor1);
+			time += Math.abs(floor-req.floor1)*velocity;
 			time = Math.max(time, req.time);
 			floor = req.floor1;
 		}
@@ -141,8 +148,8 @@ $(document).ready(function(){
 
 	$('.sortable').sortable({
 	  stop: function(event, ui) { 
-	  	updateScore('elevator-list-1');
-	  	updateScore('elevator-list-2');
+	  	updateScore('elevator-list-1',1);
+	  	updateScore('elevator-list-2',2);
 
 	   }
 	});
@@ -194,13 +201,13 @@ $(document).ready(function(){
       	}
       	$(mylist).sortable({
 				  stop: function(event, ui) { 
-				  	updateScore('elevator-list-1');
-				  	updateScore('elevator-list-2');
+				  	updateScore('elevator-list-1',1);
+				  	updateScore('elevator-list-2',2);
 				   }
 				});
       	$(this).val('');
-      	updateScore('elevator-list-1');
-      	updateScore('elevator-list-2');
+      	updateScore('elevator-list-1',1);
+      	updateScore('elevator-list-2',2);
       	showSubmit();
     }
 });

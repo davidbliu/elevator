@@ -25,15 +25,34 @@ def home():
 	names = [x.name for x in scores]
 	names = set(names)
 	names = list(names)
+	challenge_map = {}
+	name_map = {}
+	for score in scores:
+		ch = score.challenge
+		name = score.name
+		if name not in name_map.keys():
+			name_map[name] = {}
+		name_map[name][score.challenge] = score.score
+		if ch not in challenge_map.keys():
+			challenge_map[ch] = []
+		challenge_map[ch].append(score.score)
+	for key in challenge_map.keys():
+		challenge_map[key] = sorted(challenge_map[key])
 
 	leaders = []
 
 	for name in names:
-		all_scores = [x for x in scores if x.name == name]
 		score = 0
-		score+=sum([x.score for x in all_scores])
+		all_scores = [x for x in scores if x.name == name]
+		for challenge in challenge_map.keys():
+			# score for challenge is rank in list
+			if challenge in name_map[name].keys():
+				my_score_this_challenge = name_map[name][challenge]
+				score += challenge_map[challenge].index(my_score_this_challenge)/float(len(names)) * 50
+			else:
+				score += 50 #len(challenge_map[challenge])
 		leaders.append({'name':name, 'score':score, 'committee': 'no','scores':all_scores})
-	leaders = sorted(leaders, key= lambda x: -1*x['score'])
+	leaders = sorted(leaders, key= lambda x: x['score'])
 	return render_template('home.html', committee_names = committee_names,
 										challenge_names = challenge_keys, challenges = challenges,
 										scores = scores, leaders=leaders, leaderlen = len(leaders))
@@ -200,6 +219,7 @@ def timeline():
 	requests = soln_stats['requests']
 
 	return render_template('timeline.html', requests = requests)
+
 
 @app.route('/challenge', methods=['GET'])
 def challenge():
