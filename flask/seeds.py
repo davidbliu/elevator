@@ -83,6 +83,8 @@ challenges['hippies'] = Challenge('Hippies', 'hippies.txt', 'hippies.txt', 'hipp
 challenges['amurica'] = Challenge('Amurica', 'amurica.txt', 'amurica.html', 'amurica')
 challenges['real_life'] = Challenge('Real Life', 'real_life.txt', 'real_life.txt', 'real_life')
 
+challenges['speedy'] = Challenge('Speeding Baby Elevator', 'baby_elevator.txt', 'speedy.html', 'speedy')
+
 
 challenge_keys =['baby_elevator']#, 'hurry', 'sweaty', 'amurica', 'long_and_hard']
 
