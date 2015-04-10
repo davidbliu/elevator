@@ -201,6 +201,7 @@ def timeline():
 
 	return render_template('timeline.html', requests = requests)
 
+
 @app.route('/challenge', methods=['GET'])
 def challenge():
 	return 'visiting challenge page'
