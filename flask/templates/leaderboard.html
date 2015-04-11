@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>WD Elevator Challenge</title>
+    <link rel="stylesheet" href="{{
+      url_for('static', filename='bootstrap.min.css') }}">
+
+    <style>
+    body {
+        padding-top: 70px;
+    }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Scoreboard </a>
+                <a class="navbar-brand" href="/visualize?challenge=baby_elevator"><b>Enter Challenge Arena</b></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+<!-- Page Content -->
+<div class="container">
+
+<div class="row">
+
+        <h2>Committee Leaderboard</h2>
+       
+       <table class = 'table table-striped'>
+        <thead>
+            <tr>
+                <td>Committee</td>
+                <td>Total Score</td>
+                {% for challenge in challenge_names %}
+                <td>{{challenges[challenge].name}}</td>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for committee in committee_leaderboard['ranked_committees'] %}
+            <tr>
+                <td>{{committee}}</td>
+                <td>{{committee_leaderboard['committee_leaderboard'][committee]['total_score']}}</td>
+                {% for challenge in challenge_names %}
+                {% if challenge in committee_leaderboard['committee_score_map'][committee].keys() %}
+                <td><b>{{committee_leaderboard['committee_leaderboard'][committee][challenge]}}:</b> {% for score in committee_leaderboard['committee_score_map'][committee][challenge]['scores'] %}
+                    {{score.name}}({{score.score}})
+                    {% endfor %}
+                </td>
+                {% else %}
+                <td><b>50:</b> No Scores Recorded for this challenge!</td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+       </table>
+
+
+  
+
+</div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+
+</body>
+
+</html>

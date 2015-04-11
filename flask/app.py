@@ -7,6 +7,7 @@ from naive import *
 from seeds import *
 # from name_checker import *
 import name_checker as checker
+import leaderboard as lb
 import random
 
 def read_challenge_description(filename):
@@ -22,43 +23,19 @@ def read_challenge_description(filename):
 @app.route("/")
 def home():
 	scores = Score.Query.all()
-	names = [x.name for x in scores]
-	names = set(names)
-	names = list(names)
-	num_scored_challenges = 0 #number of challenges people have made submissions for
-	challenge_map = {}
-	name_map = {}
-	for score in scores:
-		ch = score.challenge
-		name = score.name
-		if name not in name_map.keys():
-			name_map[name] = {}
-		name_map[name][score.challenge] = score.score
-		if ch not in challenge_map.keys():
-			challenge_map[ch] = []
-			num_scored_challenges+= 1
-		challenge_map[ch].append(score.score) # save the scores for each person
-	for key in challenge_map.keys():
-		challenge_map[key] = sorted(challenge_map[key])
-
-	leaders = []
-
-	for name in names:
-		score = 0
-		all_scores = [x for x in scores if x.name == name]
-		for challenge in challenge_map.keys():
-			# score for challenge is rank in list
-			if challenge in name_map[name].keys():
-				my_score_this_challenge = name_map[name][challenge]
-				score += 50 - (challenge_map[challenge].index(my_score_this_challenge)/float(len(names)) * 50)
-			else:
-				score += 50 #len(challenge_map[challenge])
-		leaders.append({'name':name, 'score':round(score, 2), 'committee': 'no','scores':all_scores})
-	leaders = sorted(leaders, key= lambda x: -x['score'])
+	leaders = lb.get_overall_leaders(scores)
 	return render_template('home.html', committee_names = committee_names,
 										challenge_names = challenge_keys, challenges = challenges,
 										scores = scores, leaders=leaders, leaderlen = len(leaders),
-										num_scored_challenges = num_scored_challenges)
+										num_scored_challenges = lb.get_num_challenges(scores))
+
+@app.route('/leaderboard')
+def leaderboard():
+	scores = Score.Query.all()
+	committee_leaderboard = lb.get_committee_leaderboard(scores)
+	return render_template('leaderboard.html', num_committees=len(lb.VALID_COMMITTEES),
+		challenge_names = challenge_keys,
+		challenges = challenges, committee_leaderboard = committee_leaderboard)
 
 @app.route("/help")
 def help():
@@ -223,10 +200,6 @@ def timeline():
 
 	return render_template('timeline.html', requests = requests)
 
-
-@app.route('/challenge', methods=['GET'])
-def challenge():
-	return 'visiting challenge page'
 
 """
 @app.route('/score_challenge', methods=['GET'])
