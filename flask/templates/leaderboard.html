@@ -54,12 +54,12 @@
                 <td>{{committee_leaderboard['committee_leaderboard'][committee]['total_score']}}</td>
                 {% for challenge in challenge_names %}
                 {% if challenge in committee_leaderboard['committee_score_map'][committee].keys() %}
-                <td><b>{{committee_leaderboard['committee_leaderboard'][committee][challenge]}}:</b> {% for score in committee_leaderboard['committee_score_map'][committee][challenge]['scores'] %}
+                <td><b>{{committee_leaderboard['committee_leaderboard'][committee][challenge]}}</b> {% for score in committee_leaderboard['committee_score_map'][committee][challenge]['scores'] %}
                     {{score.name}}({{score.score}})
                     {% endfor %}
                 </td>
                 {% else %}
-                <td><b>50:</b> No Scores Recorded for this challenge!</td>
+                <td><b>50</b> No Scores Recorded for this challenge!</td>
                 {% endif %}
                 {% endfor %}
             </tr>
