@@ -23,7 +23,7 @@ def get_overall_leaders(scores):
 				my_score_this_challenge = name_map[name][challenge]
 				score += 50 - (challenge_map[challenge].index(my_score_this_challenge)/float(len(names)) * 50)
 			else:
-				score += 50 #len(challenge_map[challenge]
+				score += 0 #len(challenge_map[challenge]
 		leaders.append({'name':name, 'score':round(score, 2), 'committee': 'no','scores':all_scores})
 	leaders = sorted(leaders, key= lambda x: -x['score'])
 	return leaders

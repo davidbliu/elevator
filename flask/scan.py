@@ -17,7 +17,7 @@ def findsubsets(S,m):
 def solve(e1_requests, e2_requests):
 
 	e1 = solve_requests(e1_requests)
-	e2 = solve_requests(e2_requests)
+	e2 = solve_requests(e2_requests, speed = 1)
 
 	e1 = [x.name for x in e1]
 	e2 = [x.name for x in e2]
@@ -35,11 +35,11 @@ def solve(e1_requests, e2_requests):
 	e1_inst = e1_inst[:len(e1_inst)]
 	e2_inst = e2_inst[:len(e2_inst)]
 
-	score = check_solution(challenges['baby_elevator'],[e1_inst, e2_inst])
+	score = check_solution(challenges['speedy'],[e1_inst, e2_inst])
 	score = score['stats']['final_score']
 	return [score, e1_inst, e2_inst]
 
-def solve_requests(requests):
+def solve_requests(requests, speed = 1):
 
 
 	# take the min. TODO loop through all possible starting values and run scan algorithm
@@ -53,7 +53,7 @@ def solve_requests(requests):
 
 	curr_destination = curr_request.floor2
 	floor = curr_request.floor1
-	time = floor 
+	time = floor*speed
 	time = max(curr_request.time, time)
 
 	onboard.append(curr_request)
@@ -77,7 +77,7 @@ def solve_requests(requests):
 		requests = [x for x in requests if x not in ontheway]
 
 		# update time and position
-		time += 1
+		time += speed
 		if len(onboard)!=0:
 			if curr_destination == floor:
 				curr_request = min(onboard, key = lambda x: x.time)
@@ -114,25 +114,47 @@ def test_scan(e1, e2):
 	e2_req = [x for x in requests if x.name in e2]
 	soln = solve(e1_req, e2_req)
 	print soln 
-e1 = "KIM,IRWIN,KIM,ALYSON,IRWIN,ALYSON,ALYSHA,ALYSHA,DULCIE,DULCIE,ISAIAS,ISAIAS" 
-e2 = "MOIRA,MOIRA,ERNEST,ALI,ERNEST,ALI,ANNABELL,ANNABELL"
-test_scan(e1, e2)
+# e1 = "KIM,IRWIN,KIM,ALYSON,IRWIN,ALYSON,ALYSHA,ALYSHA,DULCIE,DULCIE,ISAIAS,ISAIAS" 
+# e2 = "MOIRA,MOIRA,ERNEST,ALI,ERNEST,ALI,ANNABELL,ANNABELL"
+# test_scan(e1, e2)
 
-print 'analyzing 17.1 soln'
-e1 = 'ERNEST,ALI,ALI,ERNEST,ALYSHA,ALYSHA,DULCIE,ISAIAS,ISAIAS,DULCIE'
-e2 = 'KIM,IRWIN,KIM,ALYSON,IRWIN,MOIRA,ANNABELL,ALYSON,MOIRA,ANNABELL'
-test_scan(e1, e2)
+# print 'analyzing 17.1 soln'
+# e1 = 'ERNEST,ALI,ALI,ERNEST,ALYSHA,ALYSHA,DULCIE,ISAIAS,ISAIAS,DULCIE'
+# e2 = 'KIM,IRWIN,KIM,ALYSON,IRWIN,MOIRA,ANNABELL,ALYSON,MOIRA,ANNABELL'
+# test_scan(e1, e2)
 	# print ordering
 	# print 'that was ordering'
 
 	#
 	# return only the best ordering
 	#
-	# best_ordering = []
-	# best_cost = sys.maxint
-	# for ordering in orderings:
-	# 	cost = calculate_ordering_cost(ordering, req_copy)
-	# 	if cost < best_cost:
-	# 		best_ordering = ordering 
-	# 		best_cost = cost
-	# return best_ordering
+
+def brute_force_subsets(requests):
+	request_set = set(requests)
+	subsets = []
+	for i in range(0, len(requests)):
+		s = findsubsets(request_set, i)
+		for subset in s:
+			subsets.append(subset)
+
+	bestscore = sys.maxint
+	best_e1 = ""
+	best_e2 = ""
+	for subset in subsets:
+		e1_requests = list(subset)
+		e2_requests = [x for x in request_set if x not in subset]
+		if len(e1_requests)!=0 and len(e2_requests)!=0:
+			# score, e1_inst, e2_inst = solve(e1_requests, e2_requests)
+			score, e1_inst, e2_inst = solve(e1_requests, e2_requests)
+			print score
+			if score<bestscore:
+				bestscore = score
+				best_e1 = e1_inst
+				best_e2 = e2_inst
+
+	print 'best score was '
+	print bestscore
+	print 'E1: '+best_e1
+	print 'E2: '+best_e2
+requests = challenges['speedy'].requests()
+brute_force_subsets(requests)

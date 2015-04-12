@@ -126,7 +126,7 @@ def results():
 					  challenge = challenge.alias,
 					  pw = password)
 
-	score.save()
+	# score.save()
 	return render_template('results.html', challenge = challenge,
 		stats = solution_stats, requests = solution_requests)
 
