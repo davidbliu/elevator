@@ -22,6 +22,8 @@ def check_solution(challenge, solution):
 		e2_challenge_options['alias'] = "speedy"
 		e2_challenge_options['velocity'] = 2
 
+	if challenge.alias == "broken":
+		e1_challenge_options['alias'] = "broken"
 
 
 	for req in challenge_requests:
@@ -114,6 +116,12 @@ def check_elevator(solution_names, req_dict, options):
 	times_list = []
 	velocity = 1
 
+	global BROKEN_TIME
+	BROKEN_TIME = -1
+
+	global BROKEN_LENGTH
+	BROKEN_LENGTH = 0
+
 
 	#Challenge Options
 	if options:
@@ -123,11 +131,29 @@ def check_elevator(solution_names, req_dict, options):
 		if alias == 'speedy':
 			velocity = options['velocity']
 
+		if alias == 'broken':
+			BROKEN_TIME = 50
+			BROKEN_LENGTH = 60
+
 
 	def move_to_floor(newfloor, req_time, floor, time, velocity):
 		elapsed_time = abs(newfloor-floor) * velocity
-		floor = newfloor 
+		floor = newfloor
+
+		# Elevator breaks 
+		if time < BROKEN_TIME and time + elapsed_time > BROKEN_TIME:
+
+			#Recalculate the amount of time needed to get from broken location to destination
+			elapsed_time = time + elapsed_time - BROKEN_TIME
+
+			#Add on the length of time where the elevator is broken
+			time = BROKEN_TIME + BROKEN_LENGTH
+
+
 		time+=elapsed_time
+
+
+
 		time = max(time, req_time)
 		return floor, time
 
@@ -172,10 +198,11 @@ if __name__ == "__main__":
 	for name in names:
 		namestring += name + ','
 	#print namestring
-	soln = check_solution(challenges['baby_elevator'], [namestring[:-1], ''])
+	#soln = check_solution(challenges['baby_elevator'], [namestring[:-1], ''])
 	#print soln
 
-	#KZ tests
+	#Baby Do ME Slow Tests
+	"""
 	kz_name = [x.name for x in challenges['speedy'].requests()]
 	kz_name = kz_name + kz_name
 
@@ -185,6 +212,19 @@ if __name__ == "__main__":
 	print namestring
 	soln = check_solution(challenges['speedy'], [namestring[:-1], ''])
 	print soln
+	"""
+
+	#Broken Elevator Tests
+	kz_name = [x.name for x in challenges['broken'].requests()]
+	kz_name = kz_name + kz_name
+
+	namestring = ''
+	for name in kz_name:
+		namestring += name + ','
+	print namestring
+	soln = check_solution(challenges['broken'], [namestring[:-1], ''])
+	print soln
+
 
 
 

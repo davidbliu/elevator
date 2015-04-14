@@ -1,0 +1,3 @@
+DAVID at floor 1 wants to go to floor 11 at time 49
+KEVIN at floor 5 wants to go to floor 9 at time 55
+ERIC at floor 3 wants to go to floor 11 at time 112
