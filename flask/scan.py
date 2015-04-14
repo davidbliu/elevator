@@ -14,11 +14,15 @@ def findsubsets(S,m):
 
 
 
-def solve(e1_requests, e2_requests):
+def solve(challenge, e1_requests, e2_requests):
 
-	e1 = solve_requests(e1_requests)
-	e2 = solve_requests(e2_requests, speed = 1)
-
+	if challenge.alias == 'speedy':
+		e1 = solve_requests(e1_requests)
+		e2 = solve_requests(e2_requests, speed = 2)
+	else:
+		e1 = solve_requests(e1_requests)
+		e2 = solve_requests(e2_requests)
+	
 	e1 = [x.name for x in e1]
 	e2 = [x.name for x in e2]
 
@@ -35,12 +39,11 @@ def solve(e1_requests, e2_requests):
 	e1_inst = e1_inst[:len(e1_inst)]
 	e2_inst = e2_inst[:len(e2_inst)]
 
-	score = check_solution(challenges['speedy'],[e1_inst, e2_inst])
+	score = check_solution(challenge,[e1_inst, e2_inst])
 	score = score['stats']['final_score']
 	return [score, e1_inst, e2_inst]
 
 def solve_requests(requests, speed = 1):
-
 
 	# take the min. TODO loop through all possible starting values and run scan algorithm
 	# curr_request = min(requests, key = lambda x: x.time)
@@ -129,7 +132,7 @@ def test_scan(e1, e2):
 	# return only the best ordering
 	#
 
-def brute_force_subsets(requests):
+def brute_force_subsets(challenge, requests):
 	request_set = set(requests)
 	subsets = []
 	for i in range(0, len(requests)):
@@ -145,16 +148,19 @@ def brute_force_subsets(requests):
 		e2_requests = [x for x in request_set if x not in subset]
 		if len(e1_requests)!=0 and len(e2_requests)!=0:
 			# score, e1_inst, e2_inst = solve(e1_requests, e2_requests)
-			score, e1_inst, e2_inst = solve(e1_requests, e2_requests)
-			print score
+			score, e1_inst, e2_inst = solve(challenge, e1_requests, e2_requests)
+			
 			if score<bestscore:
+				print score
 				bestscore = score
 				best_e1 = e1_inst
 				best_e2 = e2_inst
+				print e1_inst
+				print e2_inst
 
 	print 'best score was '
 	print bestscore
 	print 'E1: '+best_e1
 	print 'E2: '+best_e2
-requests = challenges['speedy'].requests()
-brute_force_subsets(requests)
+requests = challenges['mama'].requests()
+brute_force_subsets(challenges['mama'], requests)

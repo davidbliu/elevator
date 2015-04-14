@@ -395,7 +395,7 @@ for subset in subsets[53:54]:
 	e2_requests = [x for x in request_set if x not in subset]
 	if len(e1_requests)!=0 and len(e2_requests)!=0:
 		# score, e1_inst, e2_inst = solve(e1_requests, e2_requests)
-		score, e1_inst, e2_inst = uniform_cost_solve(e1_requests, e2_requests)
+		score, e1_inst, e2_inst = solve(e1_requests, e2_requests)
 		print score
 		if score<bestscore:
 			bestscore = score

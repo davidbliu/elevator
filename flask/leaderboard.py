@@ -16,14 +16,17 @@ def get_overall_leaders(scores):
 
 	for name in names:
 		score = 0
-		all_scores = [x for x in scores if x.name == name]
-		for challenge in challenge_map.keys():
+		all_scores = {}
+
+		for challenge in challenge_keys:
 			# score for challenge is rank in list
 			if challenge in name_map[name].keys():
 				my_score_this_challenge = name_map[name][challenge]
+				all_scores[challenge] = my_score_this_challenge
 				score += 50 - (challenge_map[challenge].index(my_score_this_challenge)/float(len(names)) * 50)
 			else:
 				score += 0 #len(challenge_map[challenge]
+				all_scores[challenge] = 'n/a'
 		leaders.append({'name':name, 'score':round(score, 2), 'committee': 'no','scores':all_scores})
 	leaders = sorted(leaders, key= lambda x: -x['score'])
 	return leaders
