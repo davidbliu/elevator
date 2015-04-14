@@ -7,7 +7,7 @@ ALICE at floor 6 wants to go to floor 3 at time 82
 SHIRLEY at floor 6 wants to go to floor 10 at time 84
 LAWRENCE at floor 10 wants to go to floor 0 at time 88
 JAEHOON at floor 22 wants to go to floor 6 at time 92
-DCHUENG at floor 6 wants to go to floor 14 at time 95
+DCHEUNG at floor 6 wants to go to floor 14 at time 95
 TIFFANY at floor 8 wants to go to floor 10 at time 99
 FELICIA at floor 4 wants to go to floor 16 at time 100
 RAYMOND at floor 10 wants to go to floor 11 at time 113
