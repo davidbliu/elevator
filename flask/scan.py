@@ -18,7 +18,7 @@ def solve(challenge, e1_requests, e2_requests):
 
 	if challenge.alias == 'speedy':
 		e1 = solve_requests(e1_requests)
-		e2 = solve_requests(e2_requests, speed = 2)
+		e2 = solve_requests(e2_requests, speed = 1)
 	else:
 		e1 = solve_requests(e1_requests)
 		e2 = solve_requests(e2_requests)
@@ -162,5 +162,5 @@ def brute_force_subsets(challenge, requests):
 	print bestscore
 	print 'E1: '+best_e1
 	print 'E2: '+best_e2
-requests = challenges['mama'].requests()
-brute_force_subsets(challenges['mama'], requests)
+requests = challenges['speedy'].requests()
+brute_force_subsets(challenges['speedy'], requests)
