@@ -55,11 +55,11 @@
                 {% for challenge in challenge_names %}
                 {% if challenge in committee_leaderboard['committee_score_map'][committee].keys() %}
                 <td><b>{{committee_leaderboard['committee_leaderboard'][committee][challenge]}}</b> {% for score in committee_leaderboard['committee_score_map'][committee][challenge]['scores'] %}
-                    <div>{{score.name}}({{score.score}})</div>
+                    <div>{{score.name}}&nbsp;({{score.score}})</div>
                     {% endfor %}
                 </td>
                 {% else %}
-                <td><b>50</b> n/a</td>
+                <td><b>50</b>&nbsp;n/a</td>
                 {% endif %}
                 {% endfor %}
             </tr>
