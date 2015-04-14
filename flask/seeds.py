@@ -84,9 +84,9 @@ challenges['amurica'] = Challenge('Amurica', 'amurica.txt', 'amurica.html', 'amu
 challenges['real_life'] = Challenge('Real Life', 'real_life.txt', 'real_life.txt', 'real_life')
 
 challenges['speedy'] = Challenge('Baby Do Me Slow', 'baby_elevator.txt', 'speedy.html', 'speedy')
-
-
-challenge_keys =['baby_elevator']#, 'speedy']#, 'hurry', 'sweaty', 'amurica', 'long_and_hard']
+challenges['cooties'] = Challenge('Cooties', 'cooties.txt', 'cooties.html', 'cooties')
+challenges['mama'] = Challenge('MamaVator', 'mama.txt', 'mama_elevator.html', 'mama')
+challenge_keys =['baby_elevator', 'speedy', 'mama']#cooties']#, 'speedy']#, 'hurry', 'sweaty', 'amurica', 'long_and_hard']
 
 
 committee_names = ['Community Service', 'Consulting', 'Finance', 'Marketing', 'Historian', 'Publications', 

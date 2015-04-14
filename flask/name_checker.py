@@ -70,6 +70,16 @@ def check_solution(challenge, solution):
 		return {'stats':stats, 'requests':total_finished_requests}
 
 
+def is_valid_cooties(solution):
+	males = set(['JOHN', 'MICHAEL', 'DAVID', 'RICHARD', 'ROBERT', 'JAMES', 'WILLIAM'])
+	females = set(['MARY', 'PATRICIA', 'JENNIFER', 'MARIA', 'LINDA', 'BARBARA', 'ELIZABETH'])
+	entered = set()
+	exited = set()
+	for req in solution:
+		if req not in entered:
+			if req not in exited:
+				entered.add(req)
+		
 
 def is_valid_solution(solution, requests):
 	request_names = set([x.name for x in requests])

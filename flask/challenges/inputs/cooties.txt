@@ -1,0 +1,14 @@
+JOHN at floor 9 wants to go to floor 10 at time 2
+MARY at floor 3 wants to go to floor 7 at time 3
+MICHAEL at floor 18 wants to go to floor 14 at time 7
+PATRICIA at floor 2 wants to go to floor 20 at time 7
+DAVID at floor 1 wants to go to floor 22 at time 13
+RICHARD at floor 21 wants to go to floor 15 at time 24
+ROBERT at floor 12 wants to go to floor 22 at time 27
+JAMES at floor 14 wants to go to floor 16 at time 31
+JENNIFER at floor 8 wants to go to floor 6 at time 32
+MARIA at floor 21 wants to go to floor 11 at time 33
+WILLIAM at floor 21 wants to go to floor 1 at time 34
+LINDA at floor 24 wants to go to floor 12 at time 37
+BARBARA at floor 21 wants to go to floor 11 at time 44
+ELIZABETH at floor 5 wants to go to floor 11 at time 48
