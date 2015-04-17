@@ -145,6 +145,8 @@ def challenge_results():
 	soln = checker.check_solution(challenge, solution)
 	
 	if soln == False:
+		if challenge.alias == 'cooties':
+			return render_template('cooties.html', solution = solution, challenge = challenge)
 		return "Solution Incomplete, please try again!"
 	stats = soln['stats']
 	requests = soln['requests']

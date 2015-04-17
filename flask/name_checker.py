@@ -32,6 +32,9 @@ def check_solution(challenge, solution):
 	if not is_valid_solution(e1_solution, challenge_requests) and is_valid_solution(e2_solution, challenge_requests):
 		print 'not a valid solution'
 		return False
+	if challenge.alias == 'cooties' and not ( is_valid_cooties(e1_solution) and is_valid_cooties(e2_solution)):
+		print 'not a valid solution for cooties'
+		return False
 	e1_finished_requests, e1_people_list = check_elevator(e1_solution, req_dict, e1_challenge_options)
 	e2_finished_requests, e2_people_list = check_elevator(e2_solution, req_dict, e2_challenge_options)
 	total_finished_requests = []
@@ -75,10 +78,27 @@ def is_valid_cooties(solution):
 	females = set(['MARY', 'PATRICIA', 'JENNIFER', 'MARIA', 'LINDA', 'BARBARA', 'ELIZABETH'])
 	entered = set()
 	exited = set()
+	gender = 0
 	for req in solution:
 		if req not in entered:
-			if req not in exited:
-				entered.add(req)
+			
+			if req in males:
+				req_gender = 1
+			else:
+				req_gender = 2
+			# if empty request
+			if len(entered) == 0:
+				if req in males:
+					gender = 1
+				else:
+					gender = 2
+			if gender != req_gender and gender != 0:
+				return False
+			entered.add(req)
+		else:
+			exited.add(req)
+			entered.remove(req)
+	return True
 		
 
 def is_valid_solution(solution, requests):
@@ -186,6 +206,21 @@ if __name__ == "__main__":
 	soln = check_solution(challenges['speedy'], [namestring[:-1], ''])
 	print soln
 
+	# test for cooties
+	print 'testing cooties'
+	req = challenges['cooties'].requests()
+	# soln = str([x.name for x in req]).replace(' ', '').replace("'", '').replace('[', '').replace(']', '')
+	print soln
+	print 'checking if that is a valid solution'
+
+	males = list(['JOHN', 'MICHAEL', 'DAVID', 'RICHARD', 'ROBERT', 'JAMES', 'WILLIAM'])
+	females = list(['MARY', 'PATRICIA', 'JENNIFER', 'MARIA', 'LINDA', 'BARBARA', 'ELIZABETH'])
+	print is_valid_cooties(males)
+
+
+	e1 = "JOHN,MARY,JOHN,MARY,MICHAEL,MICHAEL,PATRICIA,PATRICIA,DAVID,DAVID,RICHARD,RICHARD,ROBERT,ROBERT"
+	e2 = "JAMES,JAMES,JENNIFER,JENNIFER,MARIA,MARIA,WILLIAM,WILLIAM,LINDA,LINDA,BARBARA,BARBARA,ELIZABETH,ELIZABETH"
+	print check_solution(challenges['cooties'], [e1, e2])
 
 
 
