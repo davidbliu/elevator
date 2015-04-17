@@ -1,0 +1,10 @@
+VISHNAVI at floor 25 wants to go to floor 13 at time 26
+SONIA at floor 15 wants to go to floor 19 at time 29
+ARNOLD at floor 4 wants to go to floor 28 at time 32
+DAVID at floor 1 wants to go to floor 11 at time 49
+KEVIN at floor 17 wants to go to floor 9 at time 55
+JULIE at floor 25 wants to go to floor 15 at time 68
+MOLLY at floor 6 wants to go to floor 17 at time 69
+RANUL at floor 11 wants to go to floor 24 at time 76
+JOEY at floor 24 wants to go to floor 13 at time 101
+ERIC at floor 3 wants to go to floor 11 at time 112
