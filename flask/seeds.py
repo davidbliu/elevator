@@ -86,8 +86,8 @@ challenges['real_life'] = Challenge('Real Life', 'real_life.txt', 'real_life.txt
 challenges['speedy'] = Challenge('Baby Do Me Slow', 'baby_elevator.txt', 'speedy.html', 'speedy')
 challenges['cooties'] = Challenge('Cooties', 'cooties.txt', 'cooties.html', 'cooties')
 challenges['mama'] = Challenge('MamaVator', 'mama.txt', 'mama_elevator.html', 'mama')
-challenges['broken'] = Challenge('Overload', 'broken.txt', 'broken_elevator.html', 'broken')
-challenge_keys =['baby_elevator', 'speedy', 'mama']#cooties']#, 'speedy']#, 'hurry', 'sweaty', 'amurica', 'long_and_hard']
+challenges['broken'] = Challenge('Sketchy Ride', 'broken.txt', 'broken_elevator.html', 'broken')
+challenge_keys =['baby_elevator', 'speedy', 'mama',] ##cooties']#, 'speedy']#, 'hurry', 'sweaty', 'amurica', 'long_and_hard']
 
 
 committee_names = ['Community Service', 'Consulting', 'Finance', 'Marketing', 'Historian', 'Publications', 

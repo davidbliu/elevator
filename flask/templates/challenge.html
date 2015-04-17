@@ -78,23 +78,46 @@ function updateScore(elevator, elevator_num){
 	var challenge_name = "{{challenge.alias}}";
 
 	var entered = Object.create(null);
+	var broken = false;
+
+	var BROKEN_TIME = 50;
+	var BROKEN_LENGTH = 60;
 
 	velocity = 1;
 	if (challenge_name == "speedy" && elevator_num == 2){
 		velocity = 2;
+	} else if (challenge_name == "broken" && elevator_num == 2){
+		broken = true;
 	}
 	time = 0;
 	floor = 0;
 	$("#"+elevator).find('li').each(function(){
 		req = requests[$(this).attr('id')];
+
 		if(req.name in entered){
 			time += Math.abs(floor-req.floor2)*velocity;
+
+			if (broken && time > BROKEN_TIME && time < BROKEN_TIME + BROKEN_LENGTH){
+				var partial_time = time - BROKEN_TIME;
+				time = BROKEN_TIME + BROKEN_LENGTH + partial_time;
+			}
+
 			floor = req.floor2;
 		}
 		else{
 			entered[req.name] = true;
 			
 			time += Math.abs(floor-req.floor1)*velocity;
+
+			if (broken && time > BROKEN_TIME && time < BROKEN_TIME + BROKEN_LENGTH){
+				var partial_time = time - BROKEN_TIME;
+				time = BROKEN_TIME + BROKEN_LENGTH + partial_time;
+			}
+
+			if (broken && req.time > BROKEN_TIME && time < BROKEN_TIME + BROKEN_LENGTH){
+				time = BROKEN_TIME + BROKEN_LENGTH;
+			}
+
 			time = Math.max(time, req.time);
 			floor = req.floor1;
 		}

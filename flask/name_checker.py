@@ -23,7 +23,7 @@ def check_solution(challenge, solution):
 		e2_challenge_options['velocity'] = 2
 
 	if challenge.alias == "broken":
-		e1_challenge_options['alias'] = "broken"
+		e2_challenge_options['alias'] = "broken"
 
 
 	for req in challenge_requests:
@@ -140,19 +140,23 @@ def check_elevator(solution_names, req_dict, options):
 		elapsed_time = abs(newfloor-floor) * velocity
 		floor = newfloor
 
-		# Elevator breaks 
-		if time < BROKEN_TIME and time + elapsed_time > BROKEN_TIME:
-
-			#Recalculate the amount of time needed to get from broken location to destination
-			elapsed_time = time + elapsed_time - BROKEN_TIME
-
-			#Add on the length of time where the elevator is broken
-			time = BROKEN_TIME + BROKEN_LENGTH
-
-
 		time+=elapsed_time
 
+		# Elevator breaks 
+		if time > BROKEN_TIME and time < BROKEN_TIME + BROKEN_LENGTH:
 
+			partial_time = time - BROKEN_TIME
+
+			#Add on the length of time where the elevator is broken
+			time = BROKEN_TIME + BROKEN_LENGTH + partial_time
+
+
+
+		if req_time > BROKEN_TIME and time < BROKEN_LENGTH + BROKEN_TIME:
+			time = BROKEN_TIME + BROKEN_LENGTH
+
+		#if req_time < BROKEN_TIME + BROKEN_LENGTH and req_time > BROKEN_TIME:
+		#	req_time = BROKEN_TIME + BROKEN_LENGTH
 
 		time = max(time, req_time)
 		return floor, time
@@ -222,7 +226,7 @@ if __name__ == "__main__":
 	for name in kz_name:
 		namestring += name + ','
 	print namestring
-	soln = check_solution(challenges['broken'], [namestring[:-1], ''])
+	soln = check_solution(challenges['broken'],['',namestring[:-1]])
 	print soln
 
 
