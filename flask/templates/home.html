@@ -46,21 +46,33 @@
     <!-- Page Content -->
     <div class="container">
 
-        <div class="row">
-            <div class="col-md-5 text-center">
+        <div class="row" style = 'text-align:center'>
+            <div class="col-md-7 text-center" style = 'text-align:center'>
                 <div class="jumbotron">
+                <table>
+                    <tr>
+                        <td>
                   <h1 id = 'main-title'>[WD] Elevator Apprentice Challenge</h1>
                   <p class="lead">Problem: Design the best elevator system!</p></p>
+              </td>
+              <td>
                   
-                  <p><a class="btn btn-primary btn-lg" href="/help" role="button">Instructions</a></p
-                  <p><a class="btn btn-primary btn-lg" href="/visualize?challenge=baby_elevator" role="button">Enter Challenge Arena</a></p>
-                </div>
-              
+                  <div class = 'buttons-div' style = 'margin-left: 50px'>
+                      <p><a class="btn btn-primary btn-lg" href="/help" role="button">Instructions</a></p
+                      <p><a class="btn btn-primary btn-lg" href="/visualize?challenge=baby_elevator" role="button">Enter Challenge Arena</a></p>
+                    </div>
+                
+                </td>
+            </tr>
+            </table>
+              </div>
     
             </div>
+    <!-- moving it down below -->
+        </div>
+        <div class = 'row'>
 
-
-            <div class="col-md-7">
+            <div class="">
                 <h2 id = 'leaderboard-title'>Leaderboard ({{leaderlen}} Scores)</h2>
                 <a href = '/leaderboard'>View Committee Scores</a>
                 <table class = 'table table-striped'>

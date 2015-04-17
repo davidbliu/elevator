@@ -88,7 +88,9 @@ def get_committee_leaderboard(scores):
 		# calculate whole score
 		print committee_leaderboard
 		total_score = sum(committee_leaderboard[committee].values())
+		total_score += participation[committee]
 		committee_leaderboard[committee]['total_score'] = total_score
+
 
 	ranked_committees = list(reversed(sorted(list(VALID_COMMITTEES), key = lambda x: committee_leaderboard[x]['total_score'])))
 	print ranked_committees
