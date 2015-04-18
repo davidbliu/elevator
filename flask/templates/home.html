@@ -4,9 +4,8 @@
 
 <head>
     <title>WD Elevator Challenge</title>
-    <link rel="stylesheet" href="{{
-      url_for('static', filename='bootstrap.min.css') }}">
-
+  
+      <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
     body {
         padding-top: 70px;
@@ -17,7 +16,12 @@
     #leaderboard-title{
         text-align:center;
     }
-
+    .sortable-col:hover{
+        cursor:pointer;
+    }
+    .sortable-col a{
+        text-decoration:none;
+    }
     </style>
 </head>
 
@@ -79,9 +83,14 @@
                     <thead>
                         <th>Rank</th>
                         <th>Committee</th>
-                        <th>Total Score ({{num_scored_challenges}} Challenges)</th>
+                        <th><a href = '/'>Total Score ({{num_scored_challenges}} Challenges)</a>
+                            {% if not sort_by or sort_by == "" %}<span class = 'glyphicon glyphicon-sort-by-attributes'></span>{% endif %}
+                        </th>
                         {% for challenge in challenge_names %}
-                        <th>{{challenges[challenge].name}}</td>
+
+                        <th class = 'sortable-col'><a href = '/?sort_by={{challenges[challenge].alias}}'>{{challenges[challenge].name}}</a>
+                            {% if sort_by and challenge==sort_by %}<span class = 'glyphicon glyphicon-sort-by-attributes'></span>{% endif %}
+                        </th>
                         {% endfor %}
                         
                     </thead>

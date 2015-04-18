@@ -42,7 +42,7 @@ if __name__=="__main__":
 	
 	# cleanup_committees()
 
-	bad_names = ['Ian', 'asdf', 'ok', 'K', 'incredi_tester', 'poop', 'test', 'testes', 'Marketing']
+	bad_names = ['Ian', 'asdf', 'ok', 'K', 'incredi_tester', 'poop', 'test', 'testes', 'Marketing', 'Poop', 'whee', 'fa']
 	cleanup_names(bad_names)
 	cleanup_committees()
 	# cleanup_names(bad_names)

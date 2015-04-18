@@ -31,6 +31,14 @@ def get_overall_leaders(scores):
 	leaders = sorted(leaders, key= lambda x: -x['score'])
 	return leaders
 
+def sort_leaders_by_challenge_name(leaders, challenge_name):
+	def comparator(x):
+		score = x['scores'][challenge_name]
+		if score == 'n/a':
+			return 50
+		else:
+			return x['scores'][challenge_name]
+	return sorted(leaders, key = comparator)
 
 def get_score_maps(scores):
 	challenge_map = {}
@@ -51,6 +59,12 @@ def get_score_maps(scores):
 # returns data to help construct committee leaderboad
 # 
 def get_committee_leaderboard(scores):
+	"""set participation scores"""
+	pscores = Participation.Query.all()
+	participation = {}
+	for p in pscores:
+		participation[p.committee] = p.score
+	"""done using parse for participation scores"""
 	committee_score_map = {}
 	for committee in VALID_COMMITTEES:
 		committee_score_map[committee] = {}

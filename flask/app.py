@@ -24,10 +24,18 @@ def read_challenge_description(filename):
 def home():
 	scores = Score.Query.all()
 	leaders = lb.get_overall_leaders(scores)
+	sort_by = request.args.get('sort_by')
+	if sort_by and sort_by != '':
+		print 'sorting leaders by '+sort_by
+		leaders = lb.sort_leaders_by_challenge_name(leaders, sort_by)
+		print [x['scores'][sort_by] for x in leaders]
+	else:
+		sort_by = False
 	return render_template('home.html', committee_names = committee_names,
 										challenge_names = challenge_keys, challenges = challenges,
 										scores = scores, leaders=leaders, leaderlen = len(leaders),
-										num_scored_challenges = lb.get_num_challenges(scores))
+										num_scored_challenges = lb.get_num_challenges(scores),
+										sort_by = sort_by)
 
 @app.route('/leaderboard')
 def leaderboard():

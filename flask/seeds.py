@@ -34,7 +34,8 @@ class Request:
 class Score(Object):
 	pass
 	
-
+class Participation(Object):
+	pass
 
 class Committee:
 	def __init__(self, name, cid, password = 'asdf'):
@@ -71,18 +72,6 @@ class Challenge:
 		with open(self.description_file, 'r') as ifile:
 			return ifile.read()
 
-participation = {}
-participation['CO'] = 1
-participation['CS'] = 2
-participation['FI'] = 3
-participation['HT'] = 4
-participation['MK'] = 5
-participation['PD'] = 6
-participation['PB'] = 7
-participation['SO'] = 8
-participation['WD'] = 9
-participation['IN'] = 20
-participation['EX'] = -1
 
 
 challenges = {}
