@@ -14,14 +14,14 @@ class Score(Object):
 
 
 def cleanup_names(bad_names):
-	scores = Score.Query.all()
+	scores = Score.Query.all().limit(10000)
 	for score in scores:
 		if score.name in bad_names:
 			print 'deleting score '+str(score.name)
 			score.delete()
 
 def cleanup_committees():
-	scores = Score.Query.all()
+	scores = Score.Query.all().limit(10000)
 	for score in scores:
 		name = score.name
 		bracks = name.split('[')
