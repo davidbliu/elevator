@@ -10,7 +10,7 @@ requests = challenge.requests()
 
 
 def findsubsets(S,m):
-    return set(itertools.combinations(S, m))
+	return set(itertools.combinations(S, m))
 
 
 
@@ -162,5 +162,16 @@ def brute_force_subsets(challenge, requests):
 	print bestscore
 	print 'E1: '+best_e1
 	print 'E2: '+best_e2
-requests = challenges['speedy'].requests()
-brute_force_subsets(challenges['speedy'], requests)
+requests = challenges['broken'].requests()
+brute_force_subsets(challenges['broken'], requests)
+
+# req = challenges['cooties'].requests()
+# males = set(['JOHN', 'MICHAEL', 'DAVID', 'RICHARD', 'ROBERT', 'JAMES', 'WILLIAM'])
+# females = set(['MARY', 'PATRICIA', 'JENNIFER', 'MARIA', 'LINDA', 'BARBARA', 'ELIZABETH'])
+# mal_req = [x for x in req if x.name in males]
+# fem_req = [x for x in req if x.name in females]
+# score, e1_inst, e2_inst = solve(challenges['cooties'], mal_req, fem_req)
+# print 'e1'
+# print e1_inst
+# print 'e2'
+# print e2_inst

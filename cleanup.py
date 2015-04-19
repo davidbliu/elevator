@@ -15,10 +15,6 @@ class Score(Object):
 
 def cleanup_names(bad_names):
 	scores = Score.Query.all()
-
-	args = sys.argv[1]
-
-	badnames = set(args.split(','))
 	for score in scores:
 		if score.name in bad_names:
 			print 'deleting score '+str(score.name)
@@ -42,8 +38,11 @@ if __name__=="__main__":
 	
 	# cleanup_committees()
 
-	bad_names = ['Ian', 'asdf', 'ok', 'K', 'incredi_tester', 'poop', 'test', 'testes', 'Marketing', 'Poop', 'whee', 'fa']
+	bad_names = ['Ian', 'asdf', 'ok', 'K', 'incredi_tester', 'poop', 'test', 'testes', 'Marketing', 'Poop', 'whee', 'fa',
+	'PB', 'SO_veekdoor', 'IHATEMAMAVATOR', 'mk', 'aslkfjl;as', 'WINDEX', 'Poop', '[FI]', '[HT]', 'bubble', 'testes']
 	cleanup_names(bad_names)
 	cleanup_committees()
-	# cleanup_names(bad_names)
-	# cleanup_committees()
+
+	query = Score.Query.all().limit(10000)
+
+	print 'len of query was '+str(len(query))

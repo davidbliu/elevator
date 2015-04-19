@@ -22,7 +22,7 @@ def read_challenge_description(filename):
 		
 @app.route("/")
 def home():
-	scores = Score.Query.all()
+	scores = Score.Query.all().limit(10000)
 	leaders = lb.get_overall_leaders(scores)
 	sort_by = request.args.get('sort_by')
 	if sort_by and sort_by != '':
@@ -39,7 +39,7 @@ def home():
 
 @app.route('/leaderboard')
 def leaderboard():
-	scores = Score.Query.all()
+	scores = Score.Query.all().limit(10000)
 	committee_leaderboard = lb.get_committee_leaderboard(scores)
 	return render_template('leaderboard.html', num_committees=len(lb.VALID_COMMITTEES),
 		challenge_names = challenge_keys,
