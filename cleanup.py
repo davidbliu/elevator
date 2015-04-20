@@ -39,7 +39,8 @@ if __name__=="__main__":
 	# cleanup_committees()
 
 	bad_names = ['Ian', 'asdf', 'ok', 'K', 'incredi_tester', 'poop', 'test', 'testes', 'Marketing', 'Poop', 'whee', 'fa',
-	'PB', 'SO_veekdoor', 'IHATEMAMAVATOR', 'mk', 'aslkfjl;as', 'WINDEX', 'Poop', '[FI]', '[HT]', 'bubble', 'testes']
+	'PB', 'SO_veekdoor', 'IHATEMAMAVATOR', 'mk', 'aslkfjl;as', 'WINDEX', 'Poop', '[FI]',
+	 '[HT]', 'bubble', 'testes', 'MK] Joseph Chiang', 'Alexnader the Great']
 	cleanup_names(bad_names)
 	cleanup_committees()
 

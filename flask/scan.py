@@ -135,10 +135,24 @@ def test_scan(e1, e2):
 def brute_force_subsets(challenge, requests):
 	request_set = set(requests)
 	subsets = []
-	for i in range(0, len(requests)):
-		s = findsubsets(request_set, i)
-		for subset in s:
-			subsets.append(subset)
+
+	# small = len(requests)/2-1
+	# big = len(requests)/2+1
+	# for i in range(small, big):#range(0, len(requests)):
+	# 	print 'finding subsets of size '+str(i)
+	# 	s = findsubsets(request_set, i)
+	# 	for subset in s:
+	# 		subsets.append(subset)
+
+	odds = []
+	index = 0
+	for req in request_set:
+		if index % 2 != 0:
+			odds.append(req)
+		index += 1
+
+	subsets = []
+	subsets.append(odds)
 
 	bestscore = sys.maxint
 	best_e1 = ""
@@ -146,6 +160,10 @@ def brute_force_subsets(challenge, requests):
 	for subset in subsets:
 		e1_requests = list(subset)
 		e2_requests = [x for x in request_set if x not in subset]
+
+		print len(e1_requests)
+		print len(e2_requests)
+		print 'those were lengths'
 		if len(e1_requests)!=0 and len(e2_requests)!=0:
 			# score, e1_inst, e2_inst = solve(e1_requests, e2_requests)
 			score, e1_inst, e2_inst = solve(challenge, e1_requests, e2_requests)
@@ -161,9 +179,10 @@ def brute_force_subsets(challenge, requests):
 	print 'best score was '
 	print bestscore
 	print 'E1: '+best_e1
+	print '\n\n\n'
 	print 'E2: '+best_e2
-requests = challenges['broken'].requests()
-brute_force_subsets(challenges['broken'], requests)
+requests = challenges['tiebreaker'].requests()
+brute_force_subsets(challenges['tiebreaker'], requests)
 
 # req = challenges['cooties'].requests()
 # males = set(['JOHN', 'MICHAEL', 'DAVID', 'RICHARD', 'ROBERT', 'JAMES', 'WILLIAM'])
